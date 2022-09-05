@@ -1,0 +1,5801 @@
+// Generated .IDL file (by the OLE/COM Object Viewer)
+// 
+// typelib filename: <could not determine filename>
+
+[
+  uuid(C88FCAC2-DE90-11D3-9076-8517F6B99C70),
+  version(1.0),
+  helpstring("XVB TypeLib")
+]
+library XVBHelpLib
+{
+    // TLib :     // TLib : OLE Automation : {00020430-0000-0000-C000-000000000046}
+    importlib("stdole32.tlb");
+    importlib("D:\\ADPVODA\\XVB\\xstdole2.tlb");
+    importlib("msftedit.dll");
+
+
+    // Forward declare all types defined in this typelib
+
+    interface IEnumFORMATETC;
+    interface IDataObject;
+    interface IDropTarget;
+    interface IDropSource;
+    interface IOleClientSite;
+    interface IOleObject;
+    interface IStream;
+    interface IEnumSTATSTG;
+    interface IStorage;
+
+    interface IOleWindow;
+    interface IOleInPlaceUIWindow;
+    interface IOleInPlaceActiveObject;
+    interface IOleInPlaceSite;
+    interface IOleInPlaceFrame;
+    interface IOleInPlaceObject;
+    interface IRichEditOle;
+    interface IRichEditOleCallback;
+
+    interface ITextDocument;
+    interface ITextRange;
+    interface ITextSelection;
+    interface ITextFont;
+    interface ITextPara;
+    interface ITextStoryRanges;
+
+interface IActiveScriptSite;
+interface IActiveScriptSiteWindow;
+interface IActiveScriptSiteDebug;
+interface IActiveScriptError;
+
+
+
+
+    typedef struct  {
+		double Left;
+		double Top;
+		double Right;
+		double Bottom;
+    } XRECT;
+
+    typedef struct  {
+		double x;
+		double y;
+    } XPOINT;
+
+
+
+    typedef struct  {
+		long Left;
+		long Top;
+		long Right;
+		long Bottom;
+    } RECT;
+
+    typedef struct  {
+		long x;
+		long y;
+    } POINTAPI;
+
+    typedef struct  {
+		long cx;
+		long cy;
+    } SIZE;
+
+    typedef struct  {
+		long hWnd;
+		long message;
+		long wParam;
+		long lParam;
+		long time;
+		POINTAPI pt;
+    } MSG;
+
+    typedef struct  {
+		long hWnd;
+		long hWndInsertAfter;
+		long x;
+		long y;
+		long cx;
+		long cy;
+		long Flags;
+    } WINDOWPOS;
+
+    typedef struct  {
+		long lfHeight;
+		long lfWidth;
+		long lfEscapement;
+		long lfOrientation;
+		long lfWeight;
+		unsigned char lfItalic;
+		unsigned char lfUnderline;
+		unsigned char lfStrikeOut;
+		unsigned char lfCharSet;
+		unsigned char lfOutPrecision;
+		unsigned char lfClipPrecision;
+		unsigned char lfQuality;
+		unsigned char lfPitchAndFamily;
+		unsigned char lfFaceName[32];
+    } LOGFONT;
+
+    typedef struct  {
+		long cbSize;
+		long iBorderWidth;
+		long iScrollWidth;
+		long iScrollHeight;
+		long iCaptionWidth;
+		long iCaptionHeight;
+		LOGFONT lfCaptionFont;
+		long iSmCaptionWidth;
+		long iSmCaptionHeight;
+		LOGFONT lfSmCaptionFont;
+		long iMenuWidth;
+		long iMenuHeight;
+		LOGFONT lfMenuFont;
+		LOGFONT lfStatusFont;
+		LOGFONT lfMessageFont;
+    } NONCLIENTMETRICS;
+
+    typedef struct  {
+		long lbStyle;
+		long lbColor;
+		long lbHatch;
+    } LOGBRUSH;
+
+    typedef struct  {
+		long bmType;
+		long bmWidth;
+		long bmHeight;
+		long bmWidthBytes;
+		short bmPlanes;
+		short bmBitsPixel;
+		long bmBits;
+    } BITMAP;
+
+    typedef struct  {
+		long CtlType;
+		long CtlID;
+		long itemID;
+		long itemAction;
+		long itemState;
+		long hwndItem;
+		long hDC;
+		RECT rcItem;
+		long itemData;
+    } DRAWITEMSTRUCT;
+
+    typedef struct  {
+		long CtlType;
+		long CtlID;
+		long itemID;
+		long itemWidth;
+		long itemHeight;
+		long itemData;
+    } MEASUREITEMSTRUCT;
+
+    typedef struct  {
+		long hwndFrom;
+		long idfrom;
+		long code;
+    } NMHDR;
+
+    typedef struct  {
+		RECT rc0;
+		RECT rc1;
+		RECT rc2;
+		WINDOWPOS wpos;
+    } NCCALCSIZE_PARAMS;
+
+    typedef struct  {
+		long cpMin;
+		long cpMax;
+    } CHARRANGE;
+
+    typedef struct  {
+		NMHDR NMHDR;
+		CHARRANGE chrg;
+		long seltyp;
+    } SELCHANGE;
+
+    typedef struct  {
+        LONG cElements;
+        LONG lLbound;
+    } SAFEARRAYBOUND;
+
+	typedef struct  {
+	  SHORT         cDims;
+	  SHORT         fFeatures;
+	  LONG          cbElements;
+	  LONG          cLocks;
+	  LONG          pvData;
+	  SAFEARRAYBOUND rgsabound;
+	} SAFEARRAY1D;
+
+	typedef struct  {
+	  SHORT         cDims;
+	  SHORT         fFeatures;
+	  LONG          cbElements;
+	  LONG          cLocks;
+	  LONG          pvData;
+	  SAFEARRAYBOUND rgsabound[2];
+	} SAFEARRAY2D;
+
+    typedef struct  {
+		unsigned char dmDeviceName[32];
+		short dmSpecVersion;
+		short dmDriverVersion;
+		short dmSize;
+		short dmDriverExtra;
+		long dmFields;
+		short dmOrientation;
+		short dmPaperSize;
+		short dmPaperLength;
+		short dmPaperWidth;
+		short dmScale;
+		short dmCopies;
+		short dmDefaultSource;
+		short dmPrintQuality;
+		short dmColor;
+		short dmDuplex;
+		short dmYResolution;
+		short dmTTOption;
+		short dmCollate;
+		unsigned char dmFormName[32];
+		short reserved0;
+		long reserved1;
+		long reserved2;
+		long reserved3;
+		long dmNup;
+		long reserved4;
+		long dmICMMethod;
+		long dmICMIntent;
+		long dmMediaType;
+		long dmDitherType;
+		long reserved5;
+		long reserved6;
+		long reserved7;
+		long reserved8;
+    } DEVMODE;
+
+
+    typedef enum {
+        SWP_NOSIZE = 1,
+        SWP_NOMOVE = 2,
+        SWP_NOZORDER = 4,
+        SWP_NOREDRAW = 8,
+        SWP_NOACTIVATE = 16,
+        SWP_FRAMECHANGED = 32,
+        SWP_SHOWWINDOW = 64,
+        SWP_HIDEWINDOW = 128,
+        SWP_NOCOPYBITS = 256,
+        SWP_NOOWNERZORDER = 512,
+        SWP_NOSENDCHANGING = 1024,
+        SWP_DEFERERASE = 8192,
+        SWP_ASYNCWINDOWPOS = 16384
+    } SetWindowPosFlags;
+
+    typedef enum {
+        WM_CREATE = 1,
+        WM_DESTROY = 2,
+        WM_MOVE = 3,
+        WM_SIZE = 5,
+        WM_ACTIVATE = 6,
+        WM_SETFOCUS = 7,
+        WM_KILLFOCUS = 8,
+        WM_ENABLE = 10,
+        WM_SETREDRAW = 11,
+        WM_SETTEXT = 12,
+        WM_GETTEXT = 13,
+        WM_GETTEXTLENGTH = 14,
+        WM_PAINT = 15,
+        WM_CLOSE = 16,
+        WM_QUERYENDSESSION = 17,
+        WM_QUIT = 18,
+        WM_QUERYOPEN = 19,
+        WM_ERASEBKGND = 20,
+        WM_SYSCOLORCHANGE = 21,
+        WM_ENDSESSION = 22,
+        WM_SHOWWINDOW = 24,
+        WM_WININICHANGE = 26,
+        WM_DEVMODECHANGE = 27,
+        WM_ACTIVATEAPP = 28,
+        WM_FONTCHANGE = 29,
+        WM_TIMECHANGE = 30,
+        WM_CANCELMODE = 31,
+        WM_SETCURSOR = 32,
+        WM_MOUSEACTIVATE = 33,
+        WM_CHILDACTIVATE = 34,
+        WM_QUEUESYNC = 35,
+        WM_GETMINMAXINFO = 36,
+        WM_PAINTICON = 38,
+        WM_ICONERASEBKGND = 39,
+        WM_NEXTDLGCTL = 40,
+        WM_SPOOLERSTATUS = 42,
+        WM_DRAWITEM = 43,
+        WM_MEASUREITEM = 44,
+        WM_DELETEITEM = 45,
+        WM_VKEYTOITEM = 46,
+        WM_CHARTOITEM = 47,
+        WM_SETFONT = 48,
+        WM_GETFONT = 49,
+        WM_SETHOTKEY = 50,
+        WM_GETHOTKEY = 51,
+        WM_QUERYDRAGICON = 55,
+        WM_COMPAREITEM = 57,
+        WM_GETOBJECT = 61,
+        WM_COMPACTING = 65,
+        WM_WINDOWPOSCHANGING = 70,
+        WM_WINDOWPOSCHANGED = 71,
+        WM_POWER = 72,
+        WM_COPYDATA = 74,
+        WM_CANCELJOURNAL = 75,
+        WM_NOTIFY = 78,
+        WM_INPUTLANGCHANGEREQUEST = 80,
+        WM_INPUTLANGCHANGE = 81,
+        WM_TCARD = 82,
+        WM_HELP = 83,
+        WM_USERCHANGED = 84,
+        WM_NOTIFYFORMAT = 85,
+        WM_CONTEXTMENU = 123,
+        WM_STYLECHANGING = 124,
+        WM_STYLECHANGED = 125,
+        WM_DISPLAYCHANGE = 126,
+        WM_GETICON = 127,
+        WM_SETICON = 128,
+        WM_NCCREATE = 129,
+        WM_NCDESTROY = 130,
+        WM_NCCALCSIZE = 131,
+        WM_NCHITTEST = 132,
+        WM_NCPAINT = 133,
+        WM_NCACTIVATE = 134,
+        WM_GETDLGCODE = 135,
+        WM_SYNCPAINT = 136,
+        WM_NCMOUSEMOVE = 160,
+        WM_NCLBUTTONDOWN = 161,
+        WM_NCLBUTTONUP = 162,
+        WM_NCLBUTTONDBLCLK = 163,
+        WM_NCRBUTTONDOWN = 164,
+        WM_NCRBUTTONUP = 165,
+        WM_NCRBUTTONDBLCLK = 166,
+        WM_NCMBUTTONDOWN = 167,
+        WM_NCMBUTTONUP = 168,
+        WM_NCMBUTTONDBLCLK = 169,
+        WM_KEYFIRST = 256,
+        WM_KEYDOWN = 256,
+        WM_KEYUP = 257,
+        WM_CHAR = 258,
+        WM_DEADCHAR = 259,
+        WM_SYSKEYDOWN = 260,
+        WM_SYSKEYUP = 261,
+        WM_SYSCHAR = 262,
+        WM_SYSDEADCHAR = 263,
+        WM_KEYLAST = 264,
+        WM_IME_STARTCOMPOSITION = 269,
+        WM_IME_ENDCOMPOSITION = 270,
+        WM_IME_COMPOSITION = 271,
+        WM_IME_KEYLAST = 271,
+        WM_INITDIALOG = 272,
+        WM_COMMAND = 273,
+        WM_SYSCOMMAND = 274,
+        WM_TIMER = 275,
+        WM_HSCROLL = 276,
+        WM_VSCROLL = 277,
+        WM_INITMENU = 278,
+        WM_INITMENUPOPUP = 279,
+        WM_MENUSELECT = 287,
+        WM_MENUCHAR = 288,
+        WM_ENTERIDLE = 289,
+        WM_MENURBUTTONUP = 290,
+        WM_MENUDRAG = 291,
+        WM_MENUGETOBJECT = 292,
+        WM_UNINITMENUPOPUP = 293,
+        WM_MENUCOMMAND = 294,
+        WM_CTLCOLORMSGBOX = 306,
+        WM_CTLCOLOREDIT = 307,
+        WM_CTLCOLORLISTBOX = 308,
+        WM_CTLCOLORBTN = 309,
+        WM_CTLCOLORDLG = 310,
+        WM_CTLCOLORSCROLLBAR = 311,
+        WM_CTLCOLORSTATIC = 312,
+        WM_MOUSEFIRST = 512,
+        WM_MOUSEMOVE = 512,
+        WM_LBUTTONDOWN = 513,
+        WM_LBUTTONUP = 514,
+        WM_LBUTTONDBLCLK = 515,
+        WM_RBUTTONDOWN = 516,
+        WM_RBUTTONUP = 517,
+        WM_RBUTTONDBLCLK = 518,
+        WM_MBUTTONDOWN = 519,
+        WM_MBUTTONUP = 520,
+        WM_MBUTTONDBLCLK = 521,
+        WM_MOUSEWHEEL = 522,
+        WM_MOUSELAST = 522,
+        WM_PARENTNOTIFY = 528,
+        WM_ENTERMENULOOP = 529,
+        WM_EXITMENULOOP = 530,
+        WM_NEXTMENU = 531,
+        WM_SIZING = 532,
+        WM_CAPTURECHANGED = 533,
+        WM_MOVING = 534,
+        WM_POWERBROADCAST = 536,
+        WM_MDICREATE = 544,
+        WM_MDIDESTROY = 545,
+        WM_MDIACTIVATE = 546,
+        WM_MDIRESTORE = 547,
+        WM_MDINEXT = 548,
+        WM_MDIMAXIMIZE = 549,
+        WM_MDITILE = 550,
+        WM_MDICASCADE = 551,
+        WM_MDIICONARRANGE = 552,
+        WM_MDIGETACTIVE = 553,
+        WM_MDISETMENU = 560,
+        WM_ENTERSIZEMOVE = 561,
+        WM_EXITSIZEMOVE = 562,
+        WM_DROPFILES = 563,
+        WM_MDIREFRESHMENU = 564,
+        WM_MOUSEHOVER = 673,
+        WM_MOUSELEAVE = 675,
+        WM_CUT = 768,
+        WM_COPY = 769,
+        WM_PASTE = 770,
+        WM_CLEAR = 771,
+        WM_UNDO = 772,
+        WM_RENDERFORMAT = 773,
+        WM_RENDERALLFORMATS = 774,
+        WM_DESTROYCLIPBOARD = 775,
+        WM_DRAWCLIPBOARD = 776,
+        WM_PAINTCLIPBOARD = 777,
+        WM_VSCROLLCLIPBOARD = 778,
+        WM_SIZECLIPBOARD = 779,
+        WM_ASKCBFORMATNAME = 780,
+        WM_CHANGECBCHAIN = 781,
+        WM_HSCROLLCLIPBOARD = 782,
+        WM_QUERYNEWPALETTE = 783,
+        WM_PALETTEISCHANGING = 784,
+        WM_PALETTECHANGED = 785,
+        WM_HOTKEY = 786,
+        WM_PRINT = 791,
+        WM_PRINTCLIENT = 792,
+        WM_HANDHELDFIRST = 856,
+        WM_HANDHELDLAST = 863,
+        WM_AFXFIRST = 864,
+        WM_AFXLAST = 895,
+        WM_PENWINFIRST = 896,
+        WM_PENWINLAST = 911,
+        WM_APP = 32768,
+        WM_USER = 1024,
+		CW_USEDEFAULT = -2147483648,
+		MN_GETHMENU = 0x01E1,
+
+    } WindowMessages;
+
+    typedef enum {
+        WS_OVERLAPPED = 0,
+        WS_POPUP = -2147483648,
+        WS_CHILD = 1073741824,
+        WS_MINIMIZE = 536870912,
+        WS_VISIBLE = 268435456,
+        WS_DISABLED = 134217728,
+        WS_CLIPSIBLINGS = 67108864,
+        WS_CLIPCHILDREN = 33554432,
+        WS_MAXIMIZE = 16777216,
+        WS_CAPTION = 12582912,
+        WS_BORDER = 8388608,
+        WS_DLGFRAME = 4194304,
+        WS_VSCROLL = 2097152,
+        WS_HSCROLL = 1048576,
+        WS_SYSMENU = 524288,
+        WS_THICKFRAME = 262144,
+        WS_GROUP = 131072,
+        WS_TABSTOP = 65536,
+        WS_MINIMIZEBOX = 131072,
+        WS_MAXIMIZEBOX = 65536,
+        WS_TILED = 0,
+        WS_ICONIC = 536870912,
+        WS_SIZEBOX = 262144,
+        WS_OVERLAPPEDWINDOW = 13565952,
+        WS_POPUPWINDOW = -2138570752
+    } WindowStyle;
+
+    typedef enum {
+        WS_EX_DLGMODALFRAME = 1,
+        WS_EX_NOPARENTNOTIFY = 4,
+        WS_EX_TOPMOST = 8,
+        WS_EX_ACCEPTFILES = 16,
+        WS_EX_TRANSPARENT = 32,
+        WS_EX_MDICHILD = 64,
+        WS_EX_TOOLWINDOW = 128,
+        WS_EX_WINDOWEDGE = 256,
+        WS_EX_CLIENTEDGE = 512,
+        WS_EX_CONTEXTHELP = 1024,
+        WS_EX_RIGHT = 4096,
+        WS_EX_LEFT = 0,
+        WS_EX_RTLREADING = 8192,
+        WS_EX_LTRREADING = 0,
+        WS_EX_LEFTSCROLLBAR = 16384,
+        WS_EX_RIGHTSCROLLBAR = 0,
+        WS_EX_CONTROLPARENT = 65536,
+        WS_EX_STATICEDGE = 131072,
+        WS_EX_APPWINDOW = 262144,
+        WS_EX_OVERLAPPEDWINDOW = 768,
+        WS_EX_PALETTEWINDOW = 392,
+        WS_EX_LAYERED = 524288
+    } WindowStyleEx;
+
+
+	typedef struct  {
+		long cbSize;
+		RECT  rcWindow;
+		RECT  rcClient;
+		long dwStyle;
+		long dwExStyle;
+		long dwWindowStatus;
+		int  cxWindowBorders;
+		int  cyWindowBorders;
+		long  atomWindowType;
+		short  wCreatorVersion;
+	} WINDOWINFO;
+
+
+    typedef enum {
+        CS_VREDRAW = 1,
+        CS_HREDRAW = 2,
+        CS_DBLCLKS = 8,
+        CS_OWNDC = 32,
+        CS_CLASSDC = 64,
+        CS_PARENTDC = 128,
+        CS_NOCLOSE = 512,
+        CS_SAVEBITS = 2048,
+        CS_BYTEALIGNCLIENT = 4096,
+        CS_BYTEALIGNWINDOW = 8192,
+        CS_GLOBALCLASS = 16384,
+        CS_DROPSHADOW = 131072
+    } WindowClassStyle;
+
+    typedef enum {
+        GW_HWNDFIRST = 0,
+        GW_HWNDLAST = 1,
+        GW_HWNDNEXT = 2,
+        GW_HWNDPREV = 3,
+        GW_OWNER = 4,
+        GW_CHILD = 5
+    } GetWindowConstants;
+
+    typedef enum {
+        GA_MIC = 1,
+        GA_PARENT = 1,
+        GA_ROOT = 2,
+        GA_ROOTOWNER = 3,
+        GA_MAC = 4
+    } GetAncestorConstants;
+
+    typedef enum {
+        DT_TOP = 0,
+        DT_LEFT = 0,
+        DT_CENTER = 1,
+        DT_RIGHT = 2,
+        DT_VCENTER = 4,
+        DT_BOTTOM = 8,
+        DT_WORDBREAK = 16,
+        DT_SINGLELINE = 32,
+        DT_EXPANDTABS = 64,
+        DT_TABSTOP = 128,
+        DT_NOCLIP = 256,
+        DT_EXTERNALLEADING = 512,
+        DT_CALCRECT = 1024,
+        DT_NOPREFIX = 2048,
+        DT_INTERNAL = 4096,
+        DT_EDITCONTROL = 8192,
+        DT_PATH_ELLIPSIS = 16384,
+        DT_END_ELLIPSIS = 32768,
+        DT_MODIFYSTRING = 65536,
+        DT_RTLREADING = 131072,
+        DT_WORD_ELLIPSIS = 262144,
+        DT_NOFULLWIDTHCHARBREAK = 524288,
+        DT_HIDEPREFIX = 1048576,
+        DT_PREFIXONLY = 2097152
+    } DrawTextFlag;
+
+    typedef enum {
+        SW_HIDE = 0,
+        SW_SHOWNORMAL = 1,
+        SW_NORMAL = 1,
+        SW_SHOWMINIMIZED = 2,
+        SW_SHOWMAXIMIZED = 3,
+        SW_MAXIMIZE = 3,
+        SW_SHOWNOACTIVATE = 4,
+        SW_SHOW = 5,
+        SW_MINIMIZE = 6,
+        SW_SHOWMINNOACTIVE = 7,
+        SW_SHOWNA = 8,
+        SW_RESTORE = 9,
+        SW_SHOWDEFAULT = 10,
+        SW_FORCEMINIMIZE = 11,
+        SW_MAX = 11
+    } ShowWindowCommands;
+
+    typedef enum {
+        IDC_ARROW = 32512,
+        IDC_IBEAM = 32513,
+        IDC_WAIT = 32514,
+        IDC_CROSS = 32515,
+        IDC_UPARROW = 32516,
+        IDC_SIZE = 32640,
+        IDC_ICON = 32641,
+        IDC_SIZENWSE = 32642,
+        IDC_SIZENESW = 32643,
+        IDC_SIZEWE = 32644,
+        IDC_SIZENS = 32645,
+        IDC_SIZEALL = 32646,
+        IDC_NO = 32648,
+        IDC_HAND = 32649,
+        IDC_APPSTARTING = 32650,
+        IDC_HELP = 32651
+    } StandardCursorIDs;
+
+    typedef enum {
+        GWL_WNDPROC = -4,
+        GWL_HINSTANCE = -6,
+        GWL_HWNDPARENT = -8,
+        GWL_STYLE = -16,
+        GWL_EXSTYLE = -20,
+        GWL_USERDATA = -21,
+        GWL_ID = -12
+    } GetWindowLongOffsets;
+
+    typedef enum {
+        GCL_MENUNAME = -8,
+        GCL_HBRBACKGROUND = -10,
+        GCL_HCURSOR = -12,
+        GCL_HICON = -14,
+        GCL_HMODULE = -16,
+        GCL_CBWNDEXTRA = -18,
+        GCL_CBCLSEXTRA = -20,
+        GCL_WNDPROC = -24,
+        GCL_STYLE = -26,
+        GCW_ATOM = -32
+    } GetClassLongOffsets;
+
+    typedef enum {
+        BS_PUSHBUTTON = 0,
+        BS_DEFPUSHBUTTON = 1,
+        BS_CHECKBOX = 2,
+        BS_AUTOCHECKBOX = 3,
+        BS_RADIOBUTTON = 4,
+        BS_3STATE = 5,
+        BS_AUTO3STATE = 6,
+        BS_GROUPBOX = 7,
+        BS_USERBUTTON = 8,
+        BS_AUTORADIOBUTTON = 9,
+        BS_OWNERDRAW = 11,
+        BS_LEFTTEXT = 32,
+        BS_TEXT = 0,
+        BS_ICON = 64,
+        BS_BITMAP = 128,
+        BS_LEFT = 256,
+        BS_RIGHT = 512,
+        BS_CENTER = 768,
+        BS_TOP = 1024,
+        BS_BOTTOM = 2048,
+        BS_VCENTER = 3072,
+        BS_PUSHLIKE = 4096,
+        BS_MULTILINE = 8192,
+        BS_NOTIFY = 16384,
+        BS_FLAT = 32768,
+        BS_RIGHTBUTTON = 32
+    } ButtonControlStyles;
+
+    typedef enum {
+        ES_LEFT = 0,
+        ES_CENTER = 1,
+        ES_RIGHT = 2,
+        ES_MULTILINE = 4,
+        ES_UPPERCASE = 8,
+        ES_LOWERCASE = 16,
+        ES_PASSWORD = 32,
+        ES_AUTOVSCROLL = 64,
+        ES_AUTOHSCROLL = 128,
+        ES_NOHIDESEL = 256,
+        ES_OEMCONVERT = 1024,
+        ES_READONLY = 2048,
+        ES_WANTRETURN = 4096,
+        ES_NUMBER = 8192,
+        ES_DISABLENOSCROLL = 8192,
+        ES_SUNKEN = 16384,
+        ES_SAVESEL = 32768,
+        ES_NOOLEDRAGDROP = 8,
+        ES_EX_NOCALLOLEINIT = 0,
+        ES_SELFIME = 262144,
+        ES_NOIME = 524288,
+        ES_VERTICAL = 4194304,
+        ES_SELECTIONBAR = 16777216,
+        EM_GETSEL = 176,
+        EM_SETSEL = 177,
+        EM_SETRECT = 179,
+        EM_SCROLLCARET = 183,
+        EM_REPLACESEL = 194,
+        EM_SETLIMITTEXT = 197,
+        EM_CANUNDO = 198,
+        EM_UNDO = 199,
+        EM_SETPASSWORDCHAR = 204,
+        EM_EMPTYUNDOBUFFER = 205,
+        EM_SETREADONLY = 207,
+        EM_SETMARGINS = 211,
+        EM_GETLIMITTEXT = 1061,
+        EM_POSFROMCHAR = 1062,
+        EM_CHARFROMPOS = 1063,
+        EM_CANPASTE = 1074,
+        EM_DISPLAYBAND = 1075,
+        EM_EXGETSEL = 1076,
+        EM_EXLIMITTEXT = 1077,
+        EM_EXLINEFROMCHAR = 1078,
+        EM_EXSETSEL = 1079,
+        EM_FINDTEXT = 1080,
+        EM_FORMATRANGE = 1081,
+        EM_GETCHARFORMAT = 1082,
+        EM_GETEVENTMASK = 1083,
+        EM_GETOLEINTERFACE = 1084,
+        EM_GETPARAFORMAT = 1085,
+        EM_GETSELTEXT = 1086,
+        EM_HIDESELECTION = 1087,
+        EM_PASTESPECIAL = 1088,
+        EM_REQUESTRESIZE = 1089,
+        EM_SELECTIONTYPE = 1090,
+        EM_SETBKGNDCOLOR = 1091,
+        EM_SETCHARFORMAT = 1092,
+        EM_SETEVENTMASK = 1093,
+        EM_SETOLECALLBACK = 1094,
+        EM_SETPARAFORMAT = 1095,
+        EM_SETTARGETDEVICE = 1096,
+        EM_STREAMIN = 1097,
+        EM_STREAMOUT = 1098,
+        EM_GETTEXTRANGE = 1099,
+        EM_FINDWORDBREAK = 1100,
+        EM_SETOPTIONS = 1101,
+        EM_GETOPTIONS = 1102,
+        EM_FINDTEXTEX = 1103,
+        EM_GETWORDBREAKPROCEX = 1104,
+        EM_SETWORDBREAKPROCEX = 1105,
+        EM_SETUNDOLIMIT = 1106,
+        EM_REDO = 1108,
+        EM_CANREDO = 1109,
+        EM_GETUNDONAME = 1110,
+        EM_GETREDONAME = 1111,
+        EM_STOPGROUPTYPING = 1112,
+        EM_SETTEXTMODE = 1113,
+        EM_GETTEXTMODE = 1114,
+        EM_AUTOURLDETECT = 1115,
+        EM_GETAUTOURLDETECT = 1116,
+        EM_SETPALETTE = 1117,
+        EM_GETTEXTEX = 1118,
+        EM_GETTEXTLENGTHEX = 1119,
+        EM_SHOWSCROLLBAR = 1120,
+        EM_SETTEXTEX = 1121,
+        EM_SETPUNCTUATION = 1124,
+        EM_GETPUNCTUATION = 1125,
+        EM_SETWORDWRAPMODE = 1126,
+        EM_GETWORDWRAPMODE = 1127,
+        EM_SETIMECOLOR = 1128,
+        EM_GETIMECOLOR = 1129,
+        EM_SETIMEOPTIONS = 1130,
+        EM_GETIMEOPTIONS = 1131,
+        EM_CONVPOSITION = 1132,
+        EM_SETLANGOPTIONS = 1144,
+        EM_GETLANGOPTIONS = 1145,
+        EM_GETIMECOMPMODE = 1146,
+        EM_FINDTEXTW = 1147,
+        EM_FINDTEXTEXW = 1148,
+        EM_RECONVERSION = 1149,
+        EM_SETTIMEMODEBIAS = 1150,
+        EM_GETTIMEMODEBIAS = 1151,
+        EM_SETBIDIOPTIONS = 1224,
+        EM_GETBIDIOPTIONS = 1225,
+        EM_SETTYPOGRAPHYOPTIONS = 1226,
+        EM_GETTYPOGRAPHYOPTIONS = 1227,
+        EM_SETEDITSTYLE = 1228,
+        EM_GETEDITSTYLE = 1229,
+        EM_OUTLINE = 1244,
+        EM_GETSCROLLPOS = 1245,
+        EM_SETSCROLLPOS = 1246,
+        EM_SETFONTSIZE = 1247,
+        EM_GETZOOM = 1248,
+        EM_SETZOOM = 1249,
+        EM_GETVIEWKIND = 1250,
+        EM_SETVIEWKIND = 1251,
+        EM_GETPAGE = 1252,
+        EM_SETPAGE = 1253,
+        EM_GETHYPHENATEINFO = 1254,
+        EM_SETHYPHENATEINFO = 1255,
+        EM_GETPAGEROTATE = 1259,
+        EM_SETPAGEROTATE = 1260,
+        EM_GETCTFMODEBIAS = 1261,
+        EM_SETCTFMODEBIAS = 1262,
+        EM_GETCTFOPENSTATUS = 1264,
+        EM_SETCTFOPENSTATUS = 1265,
+        EM_GETIMECOMPTEXT = 1266,
+        EM_ISIME = 1267,
+        EM_GETIMEPROPERTY = 1268,
+        EM_GETQUERYRTFOBJ = 1293,
+        EM_SETQUERYRTFOBJ = 1294,
+        EMO_EXIT = 0,
+        EMO_ENTER = 1,
+        EMO_PROMOTE = 2,
+        EMO_EXPAND = 3,
+        EMO_MOVESELECTION = 4,
+        EMO_GETVIEWMODE = 5,
+        EMO_EXPANDSELECTION = 0,
+        EMO_EXPANDDOCUMENT = 1,
+        VM_NORMAL = 4,
+        VM_OUTLINE = 2,
+        VM_PAGE = 9,
+        ENM_NONE = 0,
+        ENM_CHANGE = 1,
+        ENM_UPDATE = 2,
+        ENM_SCROLL = 4,
+        ENM_SCROLLEVENTS = 8,
+        ENM_DRAGDROPNONE = 16,
+        ENM_PARAGRAPHEXPANDED = 32,
+        ENM_PAGECHANGE = 64,
+        ENM_KEYEVENTS = 65536,
+        ENM_MOUSEEVENTS = 131072,
+        ENM_REQUESTRESIZE = 262144,
+        ENM_SELCHANGE = 524288,
+        ENM_DROPFILES = 1048576,
+        ENM_PROTECTED = 2097152,
+        ENM_CORRECTTEXT = 4194304,
+        ENM_IMECHANGE = 8388608,
+        ENM_LANGCHANGE = 16777216,
+        ENM_OBJECTPOSITIONS = 33554432,
+        ENM_LINK = 67108864,
+        ENM_LOWFIRTF = 134217728,
+        EM_SETCUEBANNER = 5377,
+        GTL_DEFAULT = 0,
+        GTL_USECRLF = 1,
+        GTL_PRECISE = 2,
+        GTL_CLOSE = 4,
+        GTL_NUMCHARS = 8,
+        GTL_NUMBYTES = 16
+    } EditControlStyles;
+
+    typedef enum {
+        TBSTATE_CHECKED = 1,
+        TBSTATE_PRESSED = 2,
+        TBSTATE_ENABLED = 4,
+        TBSTATE_HIDDEN = 8,
+        TBSTATE_INDETERMINATE = 16,
+        TBSTATE_WRAP = 32,
+        TBSTATE_ELLIPSES = 64,
+        TBSTATE_MARKED = 128,
+        TBSTYLE_BUTTON = 0,
+        TBSTYLE_SEP = 1,
+        TBSTYLE_CHECK = 2,
+        TBSTYLE_GROUP = 4,
+        TBSTYLE_CHECKGROUP = 6,
+        TBSTYLE_DROPDOWN = 8,
+        TBSTYLE_AUTOSIZE = 16,
+        TBSTYLE_NOPREFIX = 32,
+        TBSTYLE_TOOLTIPS = 256,
+        TBSTYLE_WRAPABLE = 512,
+        TBSTYLE_ALTDRAG = 1024,
+        TBSTYLE_FLAT = 2048,
+        TBSTYLE_LIST = 4096,
+        TBSTYLE_CUSTOMERASE = 8192,
+        TBSTYLE_REGISTERDROP = 16384,
+        TBSTYLE_TRANSPARENT = 32768,
+        TBSTYLE_EX_DRAWDDARROWS = 1,
+        TB_ENABLEBUTTON = 1025,
+        TB_CHECKBUTTON = 1026,
+        TB_PRESSBUTTON = 1027,
+        TB_HIDEBUTTON = 1028,
+        TB_INDETERMINATE = 1029,
+        TB_MARKBUTTON = 1030,
+        TB_ISBUTTONENABLED = 1033,
+        TB_ISBUTTONCHECKED = 1034,
+        TB_ISBUTTONPRESSED = 1035,
+        TB_ISBUTTONHIDDEN = 1036,
+        TB_ISBUTTONINDETERMINATE = 1037,
+        TB_ISBUTTONHIGHLIGHTED = 1038,
+        TB_SETSTATE = 1041,
+        TB_GETSTATE = 1042,
+        TB_ADDBITMAP = 1043,
+        TB_ADDBUTTONS = 1044,
+        TB_INSERTBUTTON = 1045,
+        TB_DELETEBUTTON = 1046,
+        TB_GETBUTTON = 1047,
+        TB_BUTTONCOUNT = 1048,
+        TB_COMMANDTOINDEX = 1049,
+        TB_SAVERESTOREA = 1050,
+        TB_SAVERESTOREW = 1100,
+        TB_CUSTOMIZE = 1051,
+        TB_ADDSTRINGA = 1052,
+        TB_ADDSTRINGW = 1101,
+        TB_GETITEMRECT = 1053,
+        TB_BUTTONSTRUCTSIZE = 1054,
+        TB_SETBUTTONSIZE = 1055,
+        TB_SETBITMAPSIZE = 1056,
+        TB_AUTOSIZE = 1057,
+        TB_GETTOOLTIPS = 1059,
+        TB_SETTOOLTIPS = 1060,
+        TB_SETPARENT = 1061,
+        TB_SETROWS = 1063,
+        TB_GETROWS = 1064,
+        TB_SETCMDID = 1066,
+        TB_CHANGEBITMAP = 1067,
+        TB_GETBITMAP = 1068,
+        TB_GETBUTTONTEXTA = 1069,
+        TB_GETBUTTONTEXTW = 1099,
+        TB_REPLACEBITMAP = 1070,
+        TB_SETINDENT = 1071,
+        TB_SETIMAGELIST = 1072,
+        TB_GETIMAGELIST = 1073,
+        TB_LOADIMAGES = 1074,
+        TB_GETRECT = 1075,
+        TB_SETHOTIMAGELIST = 1076,
+        TB_GETHOTIMAGELIST = 1077,
+        TB_SETDISABLEDIMAGELIST = 1078,
+        TB_GETDISABLEDIMAGELIST = 1079,
+        TB_SETSTYLE = 1080,
+        TB_GETSTYLE = 1081,
+        TB_GETBUTTONSIZE = 1082,
+        TB_SETBUTTONWIDTH = 1083,
+        TB_SETMAXTEXTROWS = 1084,
+        TB_GETTEXTROWS = 1085,
+        TB_GETOBJECT = 1086,
+        TB_GETHOTITEM = 1095,
+        TB_SETHOTITEM = 1096,
+        TB_SETANCHORHIGHLIGHT = 1097,
+        TB_GETANCHORHIGHLIGHT = 1098,
+        TB_MAPACCELERATORA = 1102,
+        IDB_STD_SMALL_COLOR = 0,
+        IDB_STD_LARGE_COLOR = 1,
+        IDB_VIEW_SMALL_COLOR = 4,
+        IDB_VIEW_LARGE_COLOR = 5,
+        IDB_HIST_SMALL_COLOR = 8,
+        IDB_HIST_LARGE_COLOR = 9,
+        STD_CUT = 0,
+        STD_COPY = 1,
+        STD_PASTE = 2,
+        STD_UNDO = 3,
+        STD_REDOW = 4,
+        STD_DELETE = 5,
+        STD_FILENEW = 6,
+        STD_FILEOPEN = 7,
+        STD_FILESAVE = 8,
+        STD_PRINTPRE = 9,
+        STD_PROPERTIES = 10,
+        STD_HELP = 11,
+        STD_FIND = 12,
+        STD_REPLACE = 13,
+        STD_PRINT = 14,
+        VIEW_LARGEICONS = 0,
+        VIEW_SMALLICONS = 1,
+        VIEW_LIST = 2,
+        VIEW_DETAILS = 3,
+        VIEW_SORTNAME = 4,
+        VIEW_SORTSIZE = 5,
+        VIEW_SORTDATE = 6,
+        VIEW_SORTTYPE = 7,
+        VIEW_PARENTFOLDER = 8,
+        VIEW_NETCONNECT = 9,
+        VIEW_NETDISCONNECT = 10,
+        VIEW_NEWFOLDER = 11,
+        VIEW_VIEWMENU = 12,
+        HIST_BACK = 0,
+        HIST_FORWARD = 1,
+        HIST_FAVORITES = 2,
+        HIST_ADDTOFAVORITES = 3,
+        HIST_VIEWTREE = 4
+    } ToolBarConstants;
+
+    typedef struct tagTBBUTTON {
+		long iBitmap;
+		long idCommand;
+		unsigned char fsState;
+		unsigned char fsStyle;
+		int bReserved;
+		long dwData;
+		long iString;
+    } TBBUTTON;
+
+    typedef struct tagTBADDBITMAP {
+		long hInst;
+		long nID;
+    } TBADDBITMAP;
+
+    typedef struct tagGETTEXTLENGTHEX {
+		long Flags;
+		int codepage;
+    } GETTEXTLENGTHEX;
+
+    typedef enum {
+        COLOR_SCROLLBAR = 0,
+        COLOR_BACKGROUND = 1,
+        COLOR_ACTIVECAPTION = 2,
+        COLOR_INACTIVECAPTION = 3,
+        COLOR_MENU = 4,
+        COLOR_WINDOW = 5,
+        COLOR_WINDOWFRAME = 6,
+        COLOR_MENUTEXT = 7,
+        COLOR_WINDOWTEXT = 8,
+        COLOR_CAPTIONTEXT = 9,
+        COLOR_ACTIVEBORDER = 10,
+        COLOR_INACTIVEBORDER = 11,
+        COLOR_APPWORKSPACE = 12,
+        COLOR_HIGHLIGHT = 13,
+        COLOR_HIGHLIGHTTEXT = 14,
+        COLOR_BTNFACE = 15,
+        COLOR_BTNSHADOW = 16,
+        COLOR_GRAYTEXT = 17,
+        COLOR_BTNTEXT = 18,
+        COLOR_INACTIVECAPTIONTEXT = 19,
+        COLOR_BTNHIGHLIGHT = 20,
+        COLOR_3DDKSHADOW = 21,
+        COLOR_3DLIGHT = 22,
+        COLOR_INFOTEXT = 23,
+        COLOR_INFOBK = 24,
+        COLOR_HOTLIGHT = 26,
+        COLOR_GRADIENTACTIVECAPTION = 27,
+        COLOR_GRADIENTINACTIVECAPTION = 28,
+        COLOR_DESKTOP = 1,
+        COLOR_3DFACE = 15,
+        COLOR_3DSHADOW = 16,
+        COLOR_3DHIGHLIGHT = 20,
+        COLOR_3DHILIGHT = 20,
+        COLOR_BTNHILIGHT = 20
+    } ColorTypes;
+
+    typedef enum {
+        SIF_RANGE = 1,
+        SIF_PAGE = 2,
+        SIF_POS = 4,
+        SIF_DISABLENOSCROLL = 8,
+        SIF_TRACKPOS = 16,
+        SIF_ALL = 31
+    } ScrollInfoFlags;
+
+    typedef enum {
+        SM_CXSCREEN = 0,
+        SM_CYSCREEN = 1,
+        SM_CXVSCROLL = 2,
+        SM_CYHSCROLL = 3,
+        SM_CYCAPTION = 4,
+        SM_CXBORDER = 5,
+        SM_CYBORDER = 6,
+        SM_CXDLGFRAME = 7,
+        SM_CYDLGFRAME = 8,
+        SM_CYVTHUMB = 9,
+        SM_CXHTHUMB = 10,
+        SM_CXICON = 11,
+        SM_CYICON = 12,
+        SM_CXCURSOR = 13,
+        SM_CYCURSOR = 14,
+        SM_CYMENU = 15,
+        SM_CXFULLSCREEN = 16,
+        SM_CYFULLSCREEN = 17,
+        SM_CYKANJIWINDOW = 18,
+        SM_MOUSEPRESENT = 19,
+        SM_CYVSCROLL = 20,
+        SM_CXHSCROLL = 21,
+        SM_DEBUG = 22,
+        SM_SWAPBUTTON = 23,
+        SM_RESERVED1 = 24,
+        SM_RESERVED2 = 25,
+        SM_RESERVED3 = 26,
+        SM_RESERVED4 = 27,
+        SM_CXMIN = 28,
+        SM_CYMIN = 29,
+        SM_CXSIZE = 30,
+        SM_CYSIZE = 31,
+        SM_CXFRAME = 32,
+        SM_CYFRAME = 33,
+        SM_CXMINTRACK = 34,
+        SM_CYMINTRACK = 35,
+        SM_CXDOUBLECLK = 36,
+        SM_CYDOUBLECLK = 37,
+        SM_CXICONSPACING = 38,
+        SM_CYICONSPACING = 39,
+        SM_MENUDROPALIGNMENT = 40,
+        SM_PENWINDOWS = 41,
+        SM_DBCSENABLED = 42,
+        SM_CMOUSEBUTTONS = 43,
+        SM_SECURE = 44,
+        SM_CXEDGE = 45,
+        SM_CYEDGE = 46,
+        SM_CXMINSPACING = 47,
+        SM_CYMINSPACING = 48,
+        SM_CXSMICON = 49,
+        SM_CYSMICON = 50,
+        SM_CYSMCAPTION = 51,
+        SM_CXSMSIZE = 52,
+        SM_CYSMSIZE = 53,
+        SM_CXMENUSIZE = 54,
+        SM_CYMENUSIZE = 55,
+        SM_ARRANGE = 56,
+        SM_CXMINIMIZED = 57,
+        SM_CYMINIMIZED = 58,
+        SM_CXMAXTRACK = 59,
+        SM_CYMAXTRACK = 60,
+        SM_CXMAXIMIZED = 61,
+        SM_CYMAXIMIZED = 62,
+        SM_NETWORK = 63,
+        SM_CLEANBOOT = 67,
+        SM_CXDRAG = 68,
+        SM_CYDRAG = 69,
+        SM_SHOWSOUNDS = 70,
+        SM_CXMENUCHECK = 71,
+        SM_CYMENUCHECK = 72,
+        SM_SLOWMACHINE = 73,
+        SM_MIDEASTENABLED = 74,
+        SM_MOUSEWHEELPRESENT = 75,
+        SM_XVIRTUALSCREEN = 76,
+        SM_YVIRTUALSCREEN = 77,
+        SM_CXVIRTUALSCREEN = 78,
+        SM_CYVIRTUALSCREEN = 79,
+        SM_CMONITORS = 80,
+        SM_SAMEDISPLAYFORMAT = 81,
+        SM_CMETRICS = 83
+    } GetSystemMetricsCodes;
+
+    typedef enum {
+        DRIVERVERSION = 0,
+        TECHNOLOGY = 2,
+        HORZSIZE = 4,
+        VERTSIZE = 6,
+        HORZRES = 8,
+        VERTRES = 10,
+        BITSPIXEL = 12,
+        PLANES = 14,
+        NUMBRUSHES = 16,
+        NUMPENS = 18,
+        NUMMARKERS = 20,
+        NUMFONTS = 22,
+        NUMCOLORS = 24,
+        PDEVICESIZE = 26,
+        CURVECAPS = 28,
+        LINECAPS = 30,
+        POLYGONALCAPS = 32,
+        TEXTCAPS = 34,
+        CLIPCAPS = 36,
+        RASTERCAPS = 38,
+        ASPECTX = 40,
+        ASPECTY = 42,
+        ASPECTXY = 44,
+        SHADEBLENDCAPS = 45,
+        LOGPIXELSX = 88,
+        LOGPIXELSY = 90,
+        SIZEPALETTE = 104,
+        NUMRESERVED = 106,
+        COLORRES = 108,
+        PHYSICALWIDTH = 110,
+        PHYSICALHEIGHT = 111,
+        PHYSICALOFFSETX = 112,
+        PHYSICALOFFSETY = 113,
+        SCALINGFACTORX = 114,
+        SCALINGFACTORY = 115,
+        VREFRESH = 116,
+        DESKTOPVERTRES = 117,
+        DESKTOPHORZRES = 118,
+        BLTALIGNMENT = 119
+    } DeviceCapsParameters;
+
+    typedef enum {
+        PD_ALLPAGES = 0,
+        PD_SELECTION = 1,
+        PD_PAGENUMS = 2,
+        PD_NOSELECTION = 4,
+        PD_NOPAGENUMS = 8,
+        PD_COLLATE = 16,
+        PD_PRINTTOFILE = 32,
+        PD_PRINTSETUP = 64,
+        PD_NOWARNING = 128,
+        PD_RETURNDC = 256,
+        PD_RETURNIC = 512,
+        PD_RETURNDEFAULT = 1024,
+        PD_SHOWHELP = 2048,
+        PD_ENABLEPRINTHOOK = 4096,
+        PD_ENABLESETUPHOOK = 8192,
+        PD_ENABLEPRINTTEMPLATE = 16384,
+        PD_ENABLESETUPTEMPLATE = 32768,
+        PD_ENABLEPRINTTEMPLATEHANDLE = 65536,
+        PD_ENABLESETUPTEMPLATEHANDLE = 131072,
+        PD_USEDEVMODECOPIES = 262144,
+        PD_DISABLEPRINTTOFILE = 524288,
+        PD_HIDEPRINTTOFILE = 1048576,
+        PD_NONETWORKBUTTON = 2097152
+    } PrintDialogConstants;
+
+
+	typedef enum {
+		SB_HORZ           =  0,
+		SB_VERT           =  1,
+		SB_CTL            =  2,
+		SB_BOTH           =  3,
+	} ScrollBarConstants;
+	typedef enum {
+		SB_LINEUP         =  0,
+		SB_LINELEFT       =  0,
+		SB_LINEDOWN       =  1,
+		SB_LINERIGHT      =  1,
+		SB_PAGEUP         =  2,
+		SB_PAGELEFT       =  2,
+		SB_PAGEDOWN       =  3,
+		SB_PAGERIGHT      =  3,
+		SB_THUMBPOSITION  =  4,
+		SB_THUMBTRACK     =  5,
+		SB_TOP            =  6,
+		SB_LEFT           =  6,
+		SB_BOTTOM         =  7,
+		SB_RIGHT          =  7,
+		SB_ENDSCROLL      =  8,
+	} ScrollBarCommands;
+
+
+//CUSTOMDRAW =================================================================
+	typedef enum {
+		CDDS_PREPAINT         =  0x00000001,
+		CDDS_POSTPAINT        =  0x00000002,
+		CDDS_PREERASE         =  0x00000003,
+		CDDS_POSTERASE        =  0x00000004,
+		CDDS_ITEM             =  0x00010000,
+		CDDS_ITEMPREPAINT     =  0x00010001,
+		CDDS_ITEMPOSTPAINT    =  0x00010002,
+		CDDS_ITEMPREERASE     =  0x00010003,
+		CDDS_ITEMPOSTERASE    =  0x00010004,
+	} CustomDraw_Stages;
+
+	typedef enum {
+		CDIS_SELECTED     =  0x0001,
+		CDIS_GRAYED       =  0x0002,
+		CDIS_DISABLED     =  0x0004,
+		CDIS_CHECKED      =  0x0008,
+		CDIS_FOCUS        =  0x0010,
+		CDIS_DEFAULT      =  0x0020,
+		CDIS_HOT          =  0x0040,
+		CDIS_MARKED       =  0x0080,
+		CDIS_INDETERMINATE=  0x0100,
+	} CustomDraw_ItemStates;
+
+	typedef enum {
+		CDRF_DODEFAULT        =  0x00000000,
+		CDRF_NEWFONT          =  0x00000002,
+		CDRF_SKIPDEFAULT      =  0x00000004,
+		CDRF_NOTIFYPOSTPAINT  =  0x00000010,
+		CDRF_NOTIFYITEMDRAW   =  0x00000020,
+		CDRF_NOTIFYSUBITEMDRAW=  0x00000020,
+		CDRF_NOTIFYPOSTERASE  =  0x00000040,
+	} CustomDraw_ReturnValues;
+
+	typedef struct {
+		NMHDR     hdr;
+		CustomDraw_Stages     dwDrawStage;
+		long       hDC;
+		RECT      rc;
+		long dwItemSpec;
+		CustomDraw_ItemStates      uItemState;
+		long    lItemlParam;
+	} NMCUSTOMDRAW;
+//CUSTOMDRAW =================================================================
+
+
+//TREEVIEW =================================================================
+
+	typedef enum {
+		TVS_HASBUTTONS        =  0x0001,
+		TVS_HASLINES          =  0x0002,
+		TVS_LINESATROOT       =  0x0004,
+		TVS_EDITLABELS        =  0x0008,
+		TVS_DISABLEDRAGDROP   =  0x0010,
+		TVS_SHOWSELALWAYS     =  0x0020,
+		TVS_RTLREADING        =  0x0040,
+		TVS_NOTOOLTIPS        =  0x0080,
+		TVS_CHECKBOXES        =  0x0100,
+		TVS_TRACKSELECT       =  0x0200,
+		TVS_SINGLEEXPAND      =  0x0400,
+		TVS_INFOTIP           =  0x0800,
+		TVS_FULLROWSELECT     =  0x1000,
+		TVS_NOSCROLL          =  0x2000,
+		TVS_NONEVENHEIGHT     =  0x4000,
+	} TreeView_WindowStyles;
+
+	typedef enum {
+		TVI_ROOT                = 0xFFFF0000,
+		TVI_FIRST               = 0xFFFF0001,
+		TVI_LAST                = 0xFFFF0002,
+		TVI_SORT                = 0xFFFF0003,
+	} TreeView_InsertingStuff;
+
+	typedef enum {
+		TVGN_ROOT              = 0x0000,
+		TVGN_NEXT              = 0x0001,
+		TVGN_PREVIOUS          = 0x0002,
+		TVGN_PARENT            = 0x0003,
+		TVGN_CHILD             = 0x0004,
+		TVGN_FIRSTVISIBLE      = 0x0005,
+		TVGN_NEXTVISIBLE       = 0x0006,
+		TVGN_PREVIOUSVISIBLE   = 0x0007,
+		TVGN_DROPHILITE        = 0x0008,
+		TVGN_CARET             = 0x0009,
+		TVGN_LASTVISIBLE       = 0x000A,
+	} TreeView_GetNext;
+
+	typedef enum {
+		TVE_COLLAPSE           = 0x0001,
+		TVE_EXPAND             = 0x0002,
+		TVE_TOGGLE             = 0x0003,
+		TVE_EXPANDPARTIAL      = 0x4000,
+		TVE_COLLAPSERESET      = 0x8000,
+	} TreeView_Expanding;
+
+	typedef struct {
+		NMCUSTOMDRAW nmcd;
+		long     clrText;
+		long     clrTextBk;
+		int      iLevel;
+	} NMTVCUSTOMDRAW;
+
+	typedef enum {
+		TVIF_TEXT            =   0x0001,
+		TVIF_IMAGE           =   0x0002,
+		TVIF_PARAM           =   0x0004,
+		TVIF_STATE           =   0x0008,
+		TVIF_HANDLE          =   0x0010,
+		TVIF_SELECTEDIMAGE   =   0x0020,
+		TVIF_CHILDREN        =   0x0040,
+		TVIF_INTEGRAL        =   0x0080,
+	} TVITEM_Mask;
+
+	typedef enum {
+		TVIS_SELECTED        =   0x0002,
+		TVIS_CUT             =   0x0004,
+		TVIS_DROPHILITED     =   0x0008,
+		TVIS_BOLD            =   0x0010,
+		TVIS_EXPANDED        =   0x0020,
+		TVIS_EXPANDEDONCE    =   0x0040,
+		TVIS_EXPANDPARTIAL   =   0x0080,
+		TVIS_OVERLAYMASK     =   0x0F00,
+		TVIS_STATEIMAGEMASK  =   0xF000,
+		TVIS_USERMASK        =   0xF000,
+	} TVITEM_States;
+
+	typedef struct {
+		TVITEM_Mask     mask;
+		long		   hItem;
+		TVITEM_States   state;
+		TVITEM_States   stateMask;
+		LPSTR		   pszText;
+		int			   cchTextMax;
+		int            iImage;
+		int			   iSelectedImage;
+		int			   cChildren;
+		long		   lParam;
+	} TVITEM;
+
+	typedef struct tagTVITEMEX {
+		TVITEM_Mask     mask;
+		long		   hItem;
+		TVITEM_States   state;
+		TVITEM_States   stateMask;
+		LPSTR		   pszText;
+		int			   cchTextMax;
+		int            iImage;
+		int			   iSelectedImage;
+		int			   cChildren;
+		long		   lParam;
+		int       iIntegral;
+	} TVITEMEX;
+
+	typedef struct {
+		NMHDR hdr;
+		TVITEM item;
+	} TVDISPINFO;
+
+	typedef enum {
+		TVHT_NOWHERE         =   0x0001,
+		TVHT_ONITEMICON      =   0x0002,
+		TVHT_ONITEMLABEL     =   0x0004,
+		TVHT_ONITEM          =   0x0046, //(TVHT_ONITEMICON | TVHT_ONITEMLABEL | TVHT_ONITEMSTATEICON)
+		TVHT_ONITEMINDENT    =   0x0008,
+		TVHT_ONITEMBUTTON    =   0x0010,
+		TVHT_ONITEMRIGHT     =   0x0020,
+		TVHT_ONITEMSTATEICON =   0x0040,
+		TVHT_ABOVE           =   0x0100,
+		TVHT_BELOW           =   0x0200,
+		TVHT_TORIGHT         =   0x0400,
+		TVHT_TOLEFT          =   0x0800,
+	} TVITEM_HitTestFlags;
+
+	typedef struct {
+		POINTAPI       pt;
+		TVITEM_HitTestFlags        flags;
+		TVITEM   hItem;
+	} TVHITTESTINFO;
+
+	typedef struct {
+		long hParent;
+		long hInsertAfter;
+		TVITEMEX itemex;
+	} TVINSERTSTRUCT;
+
+
+
+//TREEVIEW =================================================================
+
+
+
+    interface IConnectionPoint;
+    interface IEnumConnectionPoints;
+    interface IEnumConnections;
+
+[
+    odl,
+    uuid(00000000-0000-0000-C000-000000000046),
+]
+interface IUnknown{
+
+    LONG QueryInterface(
+        [in, out] UUID *riid,
+        [in, out] void *ppvObject);
+
+    LONG AddRef();
+    LONG Release();
+}
+
+
+
+    [odl,uuid(B196B287-BAB4-101A-B69C-00AA00341D07)]
+    interface IEnumConnections : stdole.IUnknown {
+
+        typedef struct CONNECTDATA {
+            IDispatch *pUnk;
+            LONG dwCookie;
+        } CONNECTDATA;
+
+        LONG Next(
+            [in] LONG cConnections,
+            [in, out] CONNECTDATA *rgcd,
+            [in, out, defaultvalue(0)] LONG *lpcFetched);
+
+        HRESULT Skip(
+            [in] LONG cConnections);
+
+        HRESULT Reset(void);
+
+        HRESULT Clone(
+            [out, retval] IEnumConnections ** ppEnum);
+    }
+
+
+    [odl,uuid(B196B285-BAB4-101A-B69C-00AA00341D07)]
+    interface IEnumConnectionPoints : stdole.IUnknown {
+
+        HRESULT Next(
+            [in] LONG cConnections,
+            [in, out] IConnectionPoint **rgpcn,
+            [out, defaultvalue(0)] LONG *lpcFetched);
+
+        HRESULT Skip(
+            [in] LONG cConnections);
+
+        HRESULT Reset(void);
+
+        HRESULT Clone(
+            [out, retval] IEnumConnectionPoints **ppEnum);
+    }
+
+
+
+
+    [odl,uuid(B196B284-BAB4-101A-B69C-00AA00341D07)]
+    interface IConnectionPointContainer : stdole.IUnknown {
+
+        HRESULT EnumConnectionPoints(
+            [out, retval] IEnumConnectionPoints ** ppEnum);
+
+        HRESULT FindConnectionPoint(
+            [in] UUID *riid,
+            [out, retval]   IConnectionPoint ** ppCP);
+    }
+
+
+
+    [odl,uuid(B196B286-BAB4-101A-B69C-00AA00341D07)]
+    interface IConnectionPoint : stdole.IUnknown {
+
+        HRESULT GetConnectionInterface(
+            [in, out] UUID *piid);
+
+        HRESULT GetConnectionPointContainer(
+            [out, retval] IConnectionPointContainer ** ppCPC);
+
+        HRESULT Advise(
+            [in] stdole.IUnknown *pObjetPtr,
+            [out, retval] LONG *pdwCookie);
+
+        HRESULT Unadvise(
+            [in] LONG dwCookie);
+
+        HRESULT EnumConnections(
+            [out, retval] IEnumConnections **ppEnum);
+    }
+
+
+    typedef enum {
+        TYMED_HGLOBAL = 1,
+        TYMED_FILE = 2,
+        TYMED_ISTREAM = 4,
+        TYMED_ISTORAGE = 8,
+        TYMED_GDI = 16,
+        TYMED_MFPICT = 32,
+        TYMED_ENHMF = 64,
+        TYMED_NULL = 0
+    } TYMED;
+
+    typedef enum {
+        DVASPECT_CONTENT = 1,
+        DVASPECT_THUMBNAIL = 2,
+        DVASPECT_ICON = 4,
+        DVASPECT_DOCPRINT = 8,
+        DVASPECT_OPAQUE = 16,
+        DVASPECT_TRANSPARENT = 32
+    } DVASPECT;
+
+    typedef struct tagFORMATETC {
+		short cfFormat;
+		long pDVTARGETDEVICE;
+		long dwAspect;
+		long lindex;
+		long TYMED;
+    } FORMATETC;
+
+    typedef struct tagSTGMEDIUM {
+		long TYMED;
+		long data;
+		long pUnkForRelease;
+    } STGMEDIUM;
+
+
+    [
+      odl,
+      uuid(00000103-0000-0000-C000-000000000046)
+    ]
+    interface IEnumFORMATETC : stdole.IUnknown {
+        HRESULT _stdcall Next(
+                        [in] long celt, 
+                        [in, out] FORMATETC* rgelt, 
+                        [in, out] long *pceltFetched);
+        HRESULT _stdcall Skip([in] long celt);
+        HRESULT _stdcall Reset();
+        HRESULT _stdcall Clone([out, retval] IEnumFORMATETC** ppenum);
+    };
+
+
+    [odl,uuid(0000010E-0000-0000-C000-000000000046)]
+    interface IDataObject : stdole.IUnknown {
+        HRESULT _stdcall GetData(
+                        [in, out] FORMATETC* pformatetcIn, 
+                        [in, out] STGMEDIUM* pmedium);
+        HRESULT _stdcall GetDataHere(
+                        [in, out] FORMATETC* pformatetc, 
+                        [in, out] STGMEDIUM* pmedium);
+        HRESULT _stdcall QueryGetData([in, out] FORMATETC* pformatetc);
+
+        HRESULT _stdcall GetCanonicalFormatEtc(
+                        [in, out] FORMATETC* pformatectIn, 
+                        [in, out] FORMATETC* pformatetcOut);
+        HRESULT _stdcall SetData(
+                        [in, out] FORMATETC* pformatetc, 
+                        [in, out] STGMEDIUM* pmedium, 
+                        [in] long fRelease);
+        HRESULT _stdcall EnumFormatEtc(
+                        [in] long dwDirection, 
+                        [out, retval] IEnumFORMATETC** ppenumFormatEtc);
+        HRESULT _stdcall DAdvise(
+                        [in, out] FORMATETC* pformatetc, 
+                        [in] long advf, 
+                        [in] long pAdvSink, 
+                        [in, out] long* pdwConnection);
+        HRESULT _stdcall DUnadvise([in] long dwConnection);
+        HRESULT _stdcall EnumDAdvise([in, out] long* pIEnumAdvise);
+    };
+
+
+    typedef enum {
+        DROPEFFECT_NONE = 0,
+        DROPEFFECT_COPY = 1,
+        DROPEFFECT_MOVE = 2,
+        DROPEFFECT_LINK = 4,
+        DROPEFFECT_SCROLL = -2147483648
+    } DROPEFFECTS;
+
+
+	typedef enum {
+		DRAGDROP_S_DROP=0x00040100,
+		DRAGDROP_S_CANCEL=0x00040101,
+		DRAGDROP_S_USEDEFAULTCURSORS=0x00040102
+    } DRAGDROP_S;
+
+
+
+
+    [
+      odl,
+      uuid(00000122-0000-0000-C000-000000000046)
+    ]
+    interface IDropTarget : stdole.IUnknown {
+        HRESULT _stdcall DragEnter(
+                        [in] IDataObject* pDataObj, 
+                        [in] long grfKeyState, 
+                        [in] long ptX, 
+                        [in] long ptY, 
+                        [in, out] DROPEFFECTS* pdwEffect);
+        HRESULT _stdcall DragOver(
+                        [in] long grfKeyState, 
+                        [in] long ptX, 
+                        [in] long ptY, 
+                        [in, out] DROPEFFECTS* pdwEffect);
+        HRESULT _stdcall DragLeave();
+        HRESULT _stdcall Drop(
+                        [in] IDataObject* pDataObj, 
+                        [in] long grfKeyState, 
+                        [in] long ptX, 
+                        [in] long ptY, 
+                        [in, out] DROPEFFECTS* pdwEffect);
+    };
+
+    [
+      odl,
+      uuid(00000121-0000-0000-C000-000000000046)
+    ]
+    interface IDropSource : stdole.IUnknown  {
+        HRESULT _stdcall QueryContinueDrag(
+                        [in] long fEscapePressed, 
+                        [in] long grfKeyState);
+        HRESULT _stdcall GiveFeedback([in] DROPEFFECTS dwEffect);
+    };
+
+
+
+
+
+
+typedef struct SHDRAGIMAGE {
+	SIZE sizeDragImage;
+	POINTAPI ptOffset;
+	LONG hbmpDragImage;
+	LONG crColorKey;
+} SHDRAGIMAGE;
+
+[
+	odl,
+    uuid(4657278B-411B-11D2-839A-00C04FD918D0),
+	helpstring("Create with CoCreateInstance CLSID_DragDropHelper")
+]
+interface IDropTargetHelper : stdole.IUnknown
+{
+    HRESULT DragEnter(
+        [in] long hwndTarget,
+        [in] IDataObject* pDataObject,
+        [in] POINTAPI* ppt,
+        [in] long dwEffect);
+
+    HRESULT DragLeave();
+
+    HRESULT DragOver(
+        [in] POINTAPI* ppt,
+        [in] long dwEffect);
+
+    HRESULT Drop(
+        [in] IDataObject* pDataObject,
+        [in] POINTAPI* ppt,
+        [in] long dwEffect);
+
+    HRESULT Show([in] long fShow);
+}
+
+[
+	odl,
+    uuid(DE5BF786-477A-11D2-839D-00C04FD918D0),
+	helpstring("Create with CoCreateInstance CLSID_DragDropHelper")
+]
+interface IDragSourceHelper : stdole.IUnknown
+{
+    // IDragSourceHelper
+    HRESULT InitializeFromBitmap(
+        [in] SHDRAGIMAGE *pshdi,
+        [in] IDataObject* pDataObject);
+
+    HRESULT InitializeFromWindow(
+        [in] long hwnd,
+        [in] POINTAPI* ppt,
+        [in] IDataObject* pDataObject);
+};
+typedef enum DSH_FLAGS
+{
+    DSH_ALLOWDROPDESCRIPTIONTEXT    = 0x0001,   // Allow text specified in DropDescription to be displayed on drag image
+} DSH_FLAGS;
+
+[
+	odl,
+    uuid(83E07D0D-0C5F-4163-BF1A-60B274051E40),
+	helpstring("Create with CoCreateInstance CLSID_DragDropHelper")
+]
+interface IDragSourceHelper2 : IDragSourceHelper
+{
+    HRESULT SetFlags(
+        [in] DSH_FLAGS dwFlags);
+};
+
+	typedef enum DROPIMAGETYPE
+	{
+	  DROPIMAGE_INVALID = -1,
+	  DROPIMAGE_NONE = 0,
+	  DROPIMAGE_COPY = 1,
+	  DROPIMAGE_MOVE = 2,
+	  DROPIMAGE_LINK = 4,
+	  DROPIMAGE_LABEL = 6,
+	  DROPIMAGE_WARNING = 7,
+	  DROPIMAGE_NOIMAGE = 8
+	} DROPIMAGETYPE;
+
+	typedef struct DROPDESCRIPTION
+	{
+		DROPIMAGETYPE type;
+		wchar_t szMessage[260];
+		wchar_t szInsert[260];
+	} DROPDESCRIPTION;
+
+
+//CLSID_DragDropHelper
+[ uuid(4657278A-411B-11D2-839A-00C04FD918D0) ]
+coclass DragDropHelper {
+	//interface IDragSourceHelper2;
+	interface IDragSourceHelper;
+	interface IDropTargetHelper;
+}
+
+
+
+    typedef struct tagPAINTSTRUCT {
+		long hDC;
+		long fErase;
+		RECT rcPaint;
+		long fRestore;
+		long fIncUpdate;
+		unsigned char rgbReserved[32];
+    } PAINTSTRUCT;
+
+    typedef struct tagSCROLLINFO {
+		long cbSize;
+		long fMask;
+		long nMin;
+		long nMax;
+		long nPage;
+		long nPos;
+		long nTrackPos;
+    } SCROLLINFO;
+
+    typedef struct tagLASTINPUTINFO {
+		long cbSize;
+		long dwTime;
+    } PLASTINPUTINFO;
+
+    typedef struct tagWNDCLASS {
+		long style;
+		long lpfnWndProc;
+		long cbClsExtra;
+		long cbWndExtra;
+		long hInstance;
+		long hIcon;
+		long hCursor;
+		long hbrBackground;
+		long lpszMenuName;
+		long lpszClassName;
+    } WNDCLASS;
+
+    typedef enum {
+        ST_DEFAULT = 0,
+        ST_KEEPUNDO = 1,
+        ST_SELECTION = 2,
+        ST_NEWCHARS = 4,
+        ST_UNICODE = 8
+    } SETEXTEXFlags;
+
+    typedef struct tagSETTEXTEX {
+		long Flags;
+		int codepage;
+    } SETTEXTEX;
+	typedef struct {
+		long   cbSize;
+		long   fMask;
+		long   dwStyle;
+		long    cyMax;
+		long  hbrBack;
+		long   dwContextHelpID;
+		long   dwMenuData;
+	}   MENUINFO;
+	typedef struct 	{
+		long   cbSize;
+		long   fMask;
+		long   fType;
+		long   fState;
+		long   wID;
+		long   hSubMenu;
+		long   hbmpChecked;
+		long   hbmpUnchecked;
+		long   dwItemData;
+		long   dwTypeData;
+		long   cch;
+		long   hbmpItem;
+	}   MENUITEMINFO;
+
+
+    [
+      dllname("USER32.DLL")
+    ]
+    module USER32 {
+        [entry("RegisterClassA")]
+        long _stdcall RegisterClass([in] WNDCLASS* lpWndClass);
+        [entry("UnregisterClassA")]
+        long _stdcall UnregisterClass(
+                        [in] LPSTR lpClassName, 
+                        [in] long hInstance);
+        [entry("GetScrollPos")]
+        long _stdcall GetScrollPos(
+                        [in] long hWnd, 
+                        [in] long nBar);
+        [entry("SetScrollPos")]
+        long _stdcall SetScrollPos(
+                        [in] long hWnd, 
+                        [in] long nBar, 
+                        [in] long nPos, 
+                        [in] long bRedraw);
+        [entry("SetScrollInfo")]
+        long _stdcall SetScrollInfo(
+                        [in] long hWnd, 
+                        [in] long nBar, 
+                        [in] SCROLLINFO* lpcScrollInfo, 
+                        [in] long bRedraw);
+        [entry("GetScrollInfo")]
+        long _stdcall GetScrollInfo(
+                        [in] long hWnd, 
+                        [in] long nBar, 
+                        [in, out] SCROLLINFO* lpcScrollInfo);
+        [entry("ScrollWindow")]
+        long _stdcall ScrollWindow(
+                        [in] long hWnd, 
+                        [in] long XAmount, 
+                        [in] long YAmount, 
+                        [in] long lpRect, 
+                        [in] long lpClipRect);
+        [entry("ShowScrollBar")]
+        long _stdcall ShowScrollBar(
+                        [in] long hWnd, 
+                        [in] long nBar, 
+                        [in] long bShow);
+        [entry("SendMessageA")]
+        long _stdcall SendMessage(
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in, out] void* lParam);
+        [entry("SendMessageA")]
+        long _stdcall SendMessageString(
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in, out] LPSTR lParam);
+        [entry("PostMessageA")]
+        long _stdcall PostMessage(
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in, out] void* lParam);
+        [entry("PeekMessageA")]
+        long _stdcall PeekMessage(
+                        [in, out] MSG* lpMsg, 
+                        [in] long hWnd, 
+                        [in] long wMsgFilterMin, 
+                        [in] long wMsgFilterMax, 
+                        [in] long wRemoveMsg);
+        [entry("GetMessageA")]
+        long _stdcall GetMessage(
+                        [in, out] MSG* lpMsg, 
+                        [in] long hWnd, 
+                        [in] long wMsgFilterMin, 
+                        [in] long wMsgFilterMax);
+        [entry("TranslateMessage")]
+        long _stdcall TranslateMessage([in, out] MSG* lpMsg);
+        [entry("DispatchMessageA")]
+        long _stdcall DispatchMessage([in, out] MSG* lpMsg);
+        [entry("PostQuitMessage")]
+        long _stdcall PostQuitMessage([in] long nExitCode);
+        [entry("AdjustWindowRectEx")]
+        long _stdcall AdjustWindowRectEx(
+                        [in, out] RECT* lpRect, 
+                        [in] long dsStyle, 
+                        [in] long bMenu, 
+                        [in] long dwEsStyle);
+        [entry("IsZoomed")]
+        long _stdcall IsZoomed([in] long hWnd);
+        [entry("IsIconic")]
+        long _stdcall IsIconic([in] long hWnd);
+        [entry("IsWindow")]
+        long _stdcall IsWindow([in] long hWnd);
+        [entry("IsWindowVisible")]
+        long _stdcall IsWindowVisible([in] long hWnd);
+
+
+//		[entry("SetWindowTextA")]
+//        long _stdcall SetWindowText(
+//                        [in] long hWnd, 
+//                        [in] LPSTR  lpString);
+//        [entry("GetWindowTextA")]
+//        long _stdcall GetWindowText(
+//                        [in] long hWnd, 
+//                        [in] LPSTR lpString, 
+//                        [in] int nMaxCount);
+
+
+        [entry("GetWindow")]
+        long _stdcall GetWindow(
+                        [in] long hWnd, 
+                        [in] long uCmd);
+        [entry("GetAncestor")]
+        long _stdcall GetAncestor(
+                        [in] long hWnd, 
+                        [in] long gaFlags);
+        [entry("GetDesktopWindow")]
+        long _stdcall GetDesktopWindow();
+        [entry("GetParent")]
+        long _stdcall GetParent([in] long hWnd);
+        [entry("SetParent")]
+        long _stdcall SetParent(
+                        [in] long hWndChild, 
+                        [in] long hWndNewParent);
+        [entry("ShowWindow")]
+        long _stdcall ShowWindow(
+                        [in] long hWnd, 
+                        [in] long nCmdShow);
+        [entry("CreateWindowExA")]
+        long _stdcall CreateWindowEx(
+                        [in] long dwExStyle, 
+                        [in] LPSTR lpClassName, 
+                        [in] LPSTR lpWindowName, 
+                        [in] long dwStyle, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long nWidth, 
+                        [in] long nHeight, 
+                        [in] long hWndParent, 
+                        [in] long hMenu, 
+                        [in] long hInstance, 
+                        [in] void* lpParam);
+        [entry("SetWindowPos")]
+        long _stdcall SetWindowPos(
+                        [in] long hWnd, 
+                        [in] long hWndInsertAfter, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long cx, 
+                        [in] long cy, 
+                        [in] long wFlags);
+        [entry("SetForegroundWindow")]
+        long _stdcall SetForegroundWindow([in] long hWnd);
+        [entry("BringWindowToTop")]
+        long _stdcall BringWindowToTop([in] long hWnd);
+        [entry("DestroyWindow")]
+        long _stdcall DestroyWindow([in] long hWnd);
+        [entry("ChildWindowFromPoint")]
+        long _stdcall ChildWindowFromPoint(
+                        [in] long hWndParent, 
+                        [in] long x, 
+                        [in] long y);
+        [entry("SetLayeredWindowAttributes")]
+        long _stdcall SetLayeredWindowAttributes(
+                        [in] long hWnd, 
+                        [in] long crKey, 
+                        [in] unsigned char bAlpha, 
+                        [in] long dwFlags);
+        [entry("GetClientRect")]
+        long _stdcall GetClientRect(
+                        [in] long hWnd, 
+                        [in] RECT* lpRect);
+        [entry("GetWindowRect")]
+        long _stdcall GetWindowRect(
+                        [in] long hWnd, 
+                        [in] RECT* lpRect);
+        [entry("EnumWindows")]
+        long _stdcall EnumWindows(
+                        [in] long lpEnumFunc, 
+                        [in] long lParam);
+        [entry("GetPropA")]
+        long _stdcall GetProp(
+                        [in] long hWnd, 
+                        [in] LPSTR lpPropName);
+        [entry("SetPropA")]
+        long _stdcall SetProp(
+                        [in] long hWnd, 
+                        [in] LPSTR lpPropName, 
+                        [in] long hData);
+        [entry("RemovePropA")]
+        long _stdcall RemoveProp(
+                        [in] long hWnd, 
+                        [in] LPSTR lpPropName);
+        [entry("CallWindowProcA")]
+        long _stdcall CallWindowProc(
+                        [in] long lpPrevWndFunc, 
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in] long lParam);
+
+        [entry("DefWindowProcA")]
+        long _stdcall DefWindowProc(
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in] long lParam);
+        [entry("GetWindowLongA")]
+        long _stdcall GetWindowLong(
+                        [in] long hWnd, 
+                        [in] long nIndex);
+        [entry("SetWindowLongA")]
+        long _stdcall SetWindowLong(
+                        [in] long hWnd, 
+                        [in] long nIndex, 
+                        [in] long dwNewLong);
+        [entry("GetClassLongA")]
+        long _stdcall GetClassLong(
+                        [in] long hWnd, 
+                        [in] long nIndex);
+        [entry("GetClassName")]
+        long _stdcall GetClassName(
+                        [in] long hWnd, 
+                        [in] LPSTR lpClassName, 
+                        [in] long nMaxCount);
+
+        [entry("GetMenu")]
+        long _stdcall GetMenu([in] long hWnd);
+        [entry("GetMenuItemCount")]
+        long _stdcall GetMenuItemCount([in] long hMenu);
+        [entry("SetMenu")]
+        long _stdcall SetMenu(
+                        [in] long hWnd, 
+                        [in] long hMenu);
+        [entry("DrawMenuBar")]
+        long _stdcall DrawMenuBar([in] long hWnd);
+        [entry("GetSubMenu")]
+        long _stdcall GetSubMenu(
+                        [in] long hMenu, 
+                        [in] long nPos);
+        [entry("IsMenu")]
+        long _stdcall IsMenu([in] long hMenu);
+        [entry("DestroyMenu")]
+        long _stdcall DestroyMenu([in] long hMenu);
+        [entry("CreateMenu")]
+        long _stdcall CreateMenu();
+        [entry("CreatePopupMenu")]
+        long _stdcall CreatePopupMenu();
+        [entry("TrackPopupMenuEx")]
+        long _stdcall TrackPopupMenuEx(
+                        [in] long hMenu, 
+                        [in] long wFlags,
+                        [in] long X,
+                        [in] long Y,
+                        [in] long hWnd,
+                        [in] void lptpm);
+        [entry("SetMenuInfo")]
+        long _stdcall SetMenuInfo(
+                        [in] long hMenu, 
+                        [in] MENUINFO* lpcmi);
+        [entry("AppendMenuA")]
+        long _stdcall AppendMenu(
+                        [in] long hMenu, 
+                        [in] long wFlags, 
+                        [in] long wIDNewItem, 
+                        [in] void lpNewItem);
+        [entry("GetMenuItemInfoA")]
+        long _stdcall GetMenuItemInfo(
+                        [in] long hMenu, 
+                        [in] long uItem, 
+                        [in] long fByPosition, 
+                        [in] MENUITEMINFO*  lpMenuItemInfo);
+        [entry("SetMenuItemInfoA")]
+        long _stdcall SetMenuItemInfo(
+                        [in] long hMenu, 
+                        [in] long uItem, 
+                        [in] long fByPosition, 
+                        [in] MENUITEMINFO*  lpMenuItemInfo);
+
+        [entry("SetWindowRgn")]
+        long _stdcall SetWindowRgn(
+                        [in] long hWnd, 
+                        [in] long hRgn, 
+                        [in] long bRedraw);
+
+        [entry("MapWindowPoints")]
+        long _stdcall MapWindowPoints(
+                        [in] long hwndFrom, 
+                        [in] long hWndTo, 
+                        [in, out] void* lpPoints, 
+                        [in] long cPoints);
+        [entry("ScreenToClient")]
+        long _stdcall ScreenToClient(
+                        [in] long hWnd, 
+                        [in] POINTAPI* lpPoint);
+        [entry("ClientToScreen")]
+        long _stdcall ClientToScreen(
+                        [in] long hWnd, 
+                        [in] POINTAPI* lpPoint);
+        [entry("PtInRect")]
+        long _stdcall PtInRect(
+                        [in] RECT* lprc, 
+                        [in] long x, 
+                        [in] long y);
+        [entry("EqualRect")]
+        long _stdcall EqualRect(
+                        [in] RECT* lprc1, 
+                        [in] RECT* lprc2);
+        [entry("IntersectRect")]
+        long _stdcall IntersectRect(
+                        [in] RECT* lprcDst, 
+                        [in] RECT* lprcSrc1, 
+                        [in] RECT* lprcSrc2);
+        [entry("SetRect")]
+        long _stdcall SetRect(
+                        [in] RECT* lprc, 
+                        [in] int xLeft, 
+                        [in] int yTop, 
+                        [in] int xRight, 
+                        [in] int yBottom);
+        [entry("OffsetRect")]
+        long _stdcall OffsetRect(
+                        [in] RECT* lprc, 
+                        [in] int dx, 
+                        [in] int dy);
+        [entry("SetFocus")]
+        long _stdcall aSetFocus([in] long hWnd);
+        [entry("GetFocus")]
+        long _stdcall GetFocus();
+        [entry("GetAsyncKeyState")]
+        long _stdcall GetAsyncKeyState([in] int vKey);
+        [entry("IsWindowEnabled")]
+        long _stdcall IsWindowEnabled([in] long hWnd);
+        [entry("EnableWindow")]
+        long _stdcall EnableWindow(
+                        [in] long hWnd, 
+                        [in] long fEnable);
+        [entry("DrawIcon")]
+        long _stdcall DrawIcon(
+                        [in] long hDC, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long hIcon);
+        [entry("DestroyIcon")]
+        long _stdcall DestroyIcon([in] long hIcon);
+        [entry("LoadCursorA")]
+        long _stdcall LoadCursor(
+                        [in] long hInstance, 
+                        [in] void* lpCursorName);
+        [entry("GetCursor")]
+        long _stdcall GetCursor();
+        [entry("SetCursor")]
+        long _stdcall SetCursor([in] long hCursor);
+        [entry("GetCursorPos")]
+        long _stdcall GetCursorPos([out] POINTAPI* lpPoint);
+        [entry("GetKeyboardLayout")]
+        long _stdcall GetKeyboardLayout([in] long dwLayout);
+        [entry("ActivateKeyboardLayout")]
+        long _stdcall ActivateKeyboardLayout(
+                        [in] long HKL, 
+                        [in] long flags);
+
+        [entry("GetDC")]
+        long _stdcall GetDC([in] long hWnd);
+        [entry("ReleaseDC")]
+        long _stdcall ReleaseDC(
+                        [in] long hWnd, 
+                        [in] long hDC);
+        [entry("DefFrameProcA")]
+        long _stdcall DefFrameProc(
+                        [in] long hWnd, 
+                        [in] long hWndMDIClient, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in] long lParam);
+        [entry("DefMDIChildProcA")]
+        long _stdcall DefMDIChildProc(
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long wParam, 
+                        [in] long lParam);
+
+        [entry("EnumThreadWindows")]
+        long _stdcall EnumThreadWindows(
+                        [in] long dwThreadId, 
+                        [in] long lpfn, 
+                        [in] long lParam);
+
+        [entry("GetWindowDC")]
+        long _stdcall GetWindowDC([in] long hWnd);
+        [entry("BeginPaint")]
+        long _stdcall BeginPaint(
+                        [in] long hWnd, 
+                        [in] PAINTSTRUCT* lpPaint);
+        [entry("EndPaint")]
+        long _stdcall EndPaint(
+                        [in] long hWnd, 
+                        [in, out] PAINTSTRUCT* lpPaint);
+        [entry("RedrawWindow")]
+        long _stdcall RedrawWindow(
+                        [in] long hWnd, 
+                        [in] long lprcUpdate, 
+                        [in] long hrgnUpdate, 
+                        [in] long Flags);
+        [entry("DrawFocusRect")]
+        long _stdcall DrawFocusRect(
+                        [in] long hDC, 
+                        [in] RECT* lprc);
+        [entry("DrawEdge")]
+        long _stdcall DrawEdge(
+                        [in] long hDC, 
+                        [in] RECT* qrc, 
+                        [in] long edge, 
+                        [in] long grfFlags);
+        [entry("UpdateWindow")]
+        long _stdcall UpdateWindow([in] long hWnd);
+        [entry("DrawFrameControl")]
+        long _stdcall DrawFrameControl32(
+                        [in] long hDC, 
+                        [in] RECT* lpRect, 
+                        [in] long un1, 
+                        [in] long un2);
+        [entry("DrawStateA")]
+        long _stdcall DrawStateIcon(
+                        [in] long hDC, 
+                        [in] long hBrush, 
+                        [in] long lpDrawStateProc, 
+                        [in] long hIcon, 
+                        [in] long wData, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long cx, 
+                        [in] long cy, 
+                        [in] long fuFlags);
+
+        [entry("DrawStateW")]
+        long _stdcall DrawStateText(
+                        [in] long hDC, 
+                        [in] long hBrush, 
+                        [in] long lpDrawStateProc, 
+                        [in] BSTR lpString, 
+                        [in] long lenString, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long cx, 
+                        [in] long cy, 
+                        [in] long fuFlags);
+
+
+        [entry("FillRect")]
+        long _stdcall FillRect(
+                        [in] long hDC, 
+                        [in] RECT* lprc, 
+                        [in] long hbr);
+        [entry("FrameRect")]
+        long _stdcall FrameRect(
+                        [in] long hDC, 
+                        [in] RECT* lprc, 
+                        [in] long hbr);
+        [entry("InvertRect")]
+        long _stdcall InvertRect(
+                        [in] long hDC, 
+                        [in] RECT* lpRect);
+
+
+        [entry("DrawTextW")]
+        long _stdcall DrawText(
+                        [in] long hDC, 
+                        [in] BSTR lpString, 
+                        [in] long nCount, 
+                        [in] RECT* lpRect, 
+                        [in] long uFormat);
+
+
+
+        [entry("ReleaseCapture")]
+        long _stdcall ReleaseCapture();
+        [entry("SetCapture")]
+        long _stdcall SetCapture([in] long hWnd);
+        [entry("GetLastInputInfo")]
+        long _stdcall GetLastInputInfo([in, out] PLASTINPUTINFO* plii);
+        [entry("GetSysColor")]
+        long _stdcall GetSysColor([in] long nIndex);
+        [entry("GetSystemMetrics")]
+        long _stdcall GetSystemMetrics([in] long nIndex);
+        [entry("SystemParametersInfoA")]
+        long _stdcall SystemParametersInfo(
+                        [in] long uiAction, 
+                        [in] long uiParam, 
+                        [in, out] void* pvParam, 
+                        [in] long fWinIni);
+        [entry("MessageBoxA")]
+        long _stdcall MessageBoxA(
+                        [in] long hWnd, 
+                        [in] LPSTR lpText, 
+                        [in] LPSTR lpCaption, 
+                        [in] long uType);
+        [entry("RegisterClipboardFormatA")]
+        short _stdcall RegisterClipboardFormat([in] LPSTR lpString);
+        [entry("GetSysColorBrush")]
+        long _stdcall GetSysColorBrush([in] long nIndex);
+
+        [entry("GetWindowInfo")]
+		long _stdcall GetWindowInfo([in] long hwnd, [in,out] WINDOWINFO* pwi);
+
+
+    };
+
+    typedef struct tagENHMETAHEADER {
+		long iType;
+		long nSize;
+		RECT rclBounds;
+		RECT rclFrame;
+		long dSignature;
+		long nVersion;
+		long nBytes;
+		long nRecords;
+		short nHandles;
+		short sReserved;
+		long nDescription;
+		long offDescription;
+		long nPalEntries;
+		SIZE szlDevice;
+		SIZE szlMillimeters;
+		long cbPixelFormat;
+		long offPixelFormat;
+		long bOpenGL;
+    } ENHMETAHEADER;
+
+    [
+      dllname("GDI32.DLL")
+    ]
+    module GDI32 {
+        [entry("GetDeviceCaps")]
+        long _stdcall GetDeviceCaps(
+                        [in] long hDC, 
+                        [in] long nIndex);
+        [entry("GetTextExtentPoint32A")]
+        long _stdcall GetTextExtentPoint32(
+                        [in] long hDC, 
+                        [in] LPSTR lpsz, 
+                        [in] long cbString, 
+                        [in] SIZE* lpSize);
+        [entry("SelectObject")]
+        long _stdcall SelectObject(
+                        [in] long hDC, 
+                        [in] long hObject);
+        [entry("GetObjectA")]
+        long _stdcall gdiGetObject(
+                        [in] long hObject, 
+                        [in] long nCount, 
+                        [in, out] void* lpObject);
+        [entry("DeleteObject")]
+        long _stdcall DeleteObject([in] long hObject);
+        [entry("GetStockObject")]
+        long _stdcall GetStockObject([in] long nIndex);
+
+        [entry("SetStretchBltMode")]
+        long _stdcall SetStretchBltMode(
+                        [in] long hDC, 
+                        [in] long nStretchMode);
+
+        [entry("StretchBlt")]
+        long _stdcall StretchBlt(
+                        [in] long hDestDC, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long nWidth, 
+                        [in] long nHeight, 
+                        [in] long hSrcDC, 
+                        [in] long xSrc, 
+                        [in] long ySrc, 
+                        [in] long nSrcWidth, 
+                        [in] long nSrcHeight, 
+                        [in] long dwRop);
+
+
+        [entry("BitBlt")]
+        long _stdcall BitBlt(
+                        [in] long hDestDC, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long nWidth, 
+                        [in] long nHeight, 
+                        [in] long hSrcDC, 
+                        [in] long xSrc, 
+                        [in] long ySrc, 
+                        [in] long dwRop);
+        [entry("PatBlt")]
+        long _stdcall PatBlt(
+                        [in] long hDestDC, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long nWidth, 
+                        [in] long nHeight, 
+                        [in] long dwRop);
+        [entry("CombineRgn")]
+        long _stdcall CombineRgn(
+                        [in] long hDestRgn, 
+                        [in] long hSrcRgn1, 
+                        [in] long hSrcRgn2, 
+                        [in] long nCombineMode);
+        [entry("CreateRectRgnIndirect")]
+        long _stdcall CreateRectRgnIndirect([in] RECT* lpRect);
+        [entry("SelectClipRgn")]
+        long _stdcall SelectClipRgn(
+                        [in] long hDC, 
+                        [in] long hRgn);
+        [entry("Rectangle")]
+        long _stdcall Rectangle(
+                        [in] long hDC, 
+                        [in] long X1, 
+                        [in] long Y1, 
+                        [in] long X2, 
+                        [in] long Y2);
+        [entry("SetBkColor")]
+        long _stdcall SetBkColor(
+                        [in] long hDC, 
+                        [in] long crColor);
+        [entry("SetBkMode")]
+        long _stdcall SetBkMode(
+                        [in] long hDC, 
+                        [in] long nBkMode);
+        [entry("SetTextColor")]
+        long _stdcall SetTextColor(
+                        [in] long hDC, 
+                        [in] long crColor);
+        [entry("Polyline")]
+        long _stdcall Polyline(
+                        [in] long hDC, 
+                        [in] POINTAPI* lpPoint, 
+                        [in] long nCount);
+        [entry("CreatePen")]
+        long _stdcall CreatePen(
+                        [in] long nPenStyle, 
+                        [in] long nWidth, 
+                        [in] long crColor);
+        [entry("CreateSolidBrush")]
+        long _stdcall CreateSolidBrush([in] long crColor);
+        [entry("CreatePatternBrush")]
+        long _stdcall CreatePatternBrush([in] long hBitmap);
+        [entry("SetBrushOrgEx")]
+        long _stdcall SetBrushOrgEx(
+                        [in] long hDC, 
+                        [in] int nXOrg, 
+                        [in] int nYOrg, 
+                        [in] void* lppt);
+        [entry("CreateFontIndirectA")]
+        long _stdcall CreateFontIndirect([in] LOGFONT* lpLogFont);
+        [entry("CreateCompatibleBitmap")]
+        long _stdcall CreateCompatibleBitmap(
+                        [in] long hDC, 
+                        [in] long nWidthg, 
+                        [in] long nHeight);
+        [entry("CreateBitmap")]
+        long _stdcall CreateBitmap(
+                        [in] long nWidth, 
+                        [in] long nHeight, 
+                        [in] long nPlanes, 
+                        [in] long nBitCount, 
+                        [in] void* lpBits);
+        [entry("CreateCompatibleDC")]
+        long _stdcall CreateCompatibleDC([in] long hDC);
+        [entry("CreateDCA")]
+        long _stdcall CreateDC(
+                        [in] LPSTR lpDriverName, 
+                        [in] LPSTR lpDeviceName, 
+                        [in] LPSTR lpOutput, 
+                        [in] void* lpInitData);
+        [entry("DeleteDC")]
+        long _stdcall DeleteDC([in] long hDC);
+        [entry("ExcludeClipRect")]
+        long _stdcall ExcludeClipRect(
+                        [in] long hDC, 
+                        [in] long X1, 
+                        [in] long Y1, 
+                        [in] long X2, 
+                        [in] long Y2);
+        [entry("IntersectClipRect")]
+        long _stdcall IntersectClipRect(
+                        [in] long hDC, 
+                        [in] long X1, 
+                        [in] long Y1, 
+                        [in] long X2, 
+                        [in] long Y2);
+        [entry("GetPixel")]
+        long _stdcall GetPixel(
+                        [in] long hDC, 
+                        [in] long x, 
+                        [in] long y);
+        [entry("GetBkColor")]
+        long _stdcall GetBkColor([in] long hDC);
+        [entry("GetEnhMetaFileHeader")]
+        long _stdcall GetEnhMetaFileHeader(
+                        [in] long hemf, 
+                        [in] long cbBuffer, 
+                        [in] ENHMETAHEADER* lpEMFH);
+        [entry("CloseEnhMetaFile")]
+        long _stdcall CloseEnhMetaFile([in] long hDC);
+        [entry("DeleteEnhMetaFile")]
+        long _stdcall DeleteEnhMetaFile([in] long hemf);
+        [entry("CreateEnhMetaFileA")]
+        long _stdcall CreateEnhMetaFile(
+                        [in] long hDCRef, 
+                        [in] LPSTR lpFilename, 
+                        [in] RECT* lpRect, 
+                        [in] LPSTR lpDescription);
+        [entry("PlayEnhMetaFile")]
+        long _stdcall PlayEnhMetaFile(
+                        [in] long hDC, 
+                        [in] long hemf, 
+                        [in] RECT* lpRect);
+        [entry("GetEnhMetaFileDescriptionA")]
+        long _stdcall GetEnhMetaFileDescription(
+                        [in] long hemf, 
+                        [in] long cchBuffer, 
+                        [in] LPSTR lpFilename);
+        [entry("StartDocW")]
+        long _stdcall StartDoc(
+                        [in] long hDC, 
+                        [in] void* pdi);
+        [entry("StartPage")]
+        long _stdcall StartPage([in] long hDC);
+        [entry("EndPage")]
+        long _stdcall EndPage([in] long hDC);
+        [entry("EndDoc")]
+        long _stdcall EndDoc([in] long hDC);
+    };
+
+    typedef struct {
+		long dwLowDateTime;
+		long dwHighDateTime;
+    } FILETIME;
+
+    typedef struct {
+		FILETIME ftCreationTime ;
+		FILETIME ftLastAccessTime ;
+		FILETIME ftLastWriteTime ;
+    } xFILETIMES;
+
+    typedef struct tagSYSTEMTIME {
+		short wYear;
+		short wMonth;
+		short wDayOfWeek;
+		short wDay;
+		short wHour;
+		short wMinute;
+		short wSecond;
+		short wMilliseconds;
+    } SYSTEMTIME;
+
+
+
+
+
+    typedef enum {
+        GMEM_FIXED = 0,
+        GMEM_MOVEABLE = 2,
+        GMEM_NOCOMPACT = 16,
+        GMEM_NODISCARD = 32,
+        GMEM_ZEROINIT = 64,
+        GMEM_MODIFY = 128,
+        GMEM_DISCARDABLE = 256,
+        GMEM_NOT_BANKED = 4096,
+        GMEM_SHARE = 8192,
+        GMEM_DDESHARE = 8192,
+        GMEM_NOTIFY = 16384,
+        GMEM_LOWER = 4096,
+        GMEM_VALID_FLAGS = 32626,
+        GMEM_INVALID_HANDLE = 32768,
+        GHND = 66,
+        GPTR = 64,
+        GMEM_DISCARDED = 16384,
+        GMEM_LOCKCOUNT = 255
+    } GMEM;
+
+    [
+      dllname("KERNEL32.DLL")
+    ]
+    module KERNEL32 {
+
+        [entry("SetLastError")]
+        void SetLastError([in] long dwError);
+
+        [entry("QueryPerformanceCounter")]
+        HRESULT _stdcall PerformanceCounterPT([out,retval] POINTAPI* pcur);
+		
+        [entry("GetTickCount")]
+        long _stdcall GetTickCount();
+
+
+        [entry("lstrcpyA")]
+        long _stdcall lstrcpy(
+                        [in] LPSTR Dest, 
+                        [in] long Src);
+        [entry("lstrcpyW")]
+        long _stdcall lstrcpyW(
+                        [in] LPWSTR Dest, 
+                        [in] long Src);
+        [entry("lstrcpyA")]
+        long _stdcall lstrcpy_str(
+                        [in] LPSTR Dest, 
+                        [in] LPSTR Src);
+        [entry("lstrlenA")]
+        long _stdcall lstrlen([in] long StringPtr);
+
+        [entry("lstrlenW")]
+        long _stdcall lstrlenW([in] long StringPtr);
+
+        [entry("LoadLibraryA")]
+        long _stdcall LoadLibrary([in] LPSTR lpLibFileName);
+        [entry("FreeLibrary")]
+        long _stdcall FreeLibrary([in] long hLibModule);
+
+		[entry("RtlMoveMemory")]
+        void CopyMemory(
+                        [in] void* pDest, 
+                        [in] void* pSource, 
+                        [in] long ByteLen);
+
+        [entry("RtlFillMemory")]
+        void FillMemory(
+                        [in, out] void* Destination, 
+                        [in] long Length, 
+                        [in] unsigned char Fill);
+
+        [entry("SetFileTime")]
+        long _stdcall SetFileTime(
+                        [in] long hFile, 
+                        [in] FILETIME* lpCreationTime, 
+                        [in] FILETIME* lpLastAccessTime, 
+                        [in] FILETIME* lpLastWriteTime);
+        [entry("GetFileTime")]
+        long _stdcall GetFileTime(
+                        [in] long hFile, 
+                        [out] FILETIME* lpCreationTime, 
+                        [out] FILETIME* lpLastAccessTime, 
+                        [out] FILETIME* lpLastWriteTime);
+        [entry("FileTimeToSystemTime")]
+        long _stdcall FileTimeToSystemTime(
+                        [in] FILETIME* lpFileTime, 
+                        [out] SYSTEMTIME* lpSystemTime);
+        [entry("SystemTimeToFileTime")]
+        long _stdcall SystemTimeToFileTime(
+                        [in] SYSTEMTIME* lpSystemTime, 
+                        [out] FILETIME* lpFileTime);
+        [entry("LocalFileTimeToFileTime")]
+        long _stdcall LocalFileTimeToFileTime(
+                        [in] FILETIME* lpLocalFileTime, 
+                        [out] FILETIME* lpFileTime);
+        [entry("SystemTimeToTzSpecificLocalTime")]
+        long _stdcall SystemTimeToTzSpecificLocalTime(
+                        [in] long lpTimeZoneInformation, 
+                        [in] SYSTEMTIME* lpUniversalTime, 
+                        [out] SYSTEMTIME* lpLocalTime);
+        [entry("CreateFileA")]
+        long _stdcall CreateFile(
+                        [in] LPSTR lpFilename, 
+                        [in] long dwDesiredAccess, 
+                        [in] long dwShareMode, 
+                        [in] void* lpSecurityAttributes, 
+                        [in] long dwCreationDisposition, 
+                        [in] long dwFlagsAndAttributes, 
+                        [in] long hTemplateFile);
+        [entry("CloseHandle")]
+        long _stdcall CloseHandle([in] long hObject);
+        [entry("MulDiv")]
+        long _stdcall MulDiv(
+                        [in] long nNumber, 
+                        [in] long nNumerator, 
+                        [in] long nDenominator);
+        [entry("WriteINI")]
+        long _stdcall WriteINI(
+                        [in] LPSTR lpSectionName, 
+                        [in] LPSTR lpKeyName, 
+                        [in] LPSTR lpString, 
+                        [in] LPSTR lpINIFileName);
+        [entry("ReadINI")]
+        long _stdcall ReadINI(
+                        [in] LPSTR lpSectionName, 
+                        [in] LPSTR lpKeyName, 
+                        [in] LPSTR lpDefault, 
+                        [in] LPSTR lpReturnedString, 
+                        [in] long nSize, 
+                        [in] LPSTR lpINIFileName);
+
+
+
+
+        [entry("GlobalAlloc")]
+        long GlobalAlloc(
+                        [in] GMEM uFlags, 
+                        [in] long dwBytes);
+
+
+        [entry("GlobalLock")]
+        long _stdcall GlobalLock([in] long hMem);
+        [entry("GlobalUnlock")]
+        long _stdcall GlobalUnlock([in] long hMem);
+        [entry("GetCurrentThreadId")]
+        long _stdcall GetCurrentThreadId();
+
+    [entry("GlobalFree")] LONG GlobalFree([in] LONG hMem);
+
+	[entry("SetEvent")] LONG SetEvent([in] LONG hEvent);
+	[entry("ResetEvent")] LONG ResetEvent([in] LONG hEvent);
+
+	[entry("CreateEventW")] LONG CreateEvent(
+						[in] long lpEventAttributes,
+						[in] long bManualReset,
+						[in] long bInitialState,
+						[in] long lpName);
+
+//Public Declare Function CreateEvent Lib "kernel32" Alias "CreateEventW" (lpEventAttributes As Any, ByVal bManualReset As Long, ByVal bInitialState As Long, ByVal lpName As Long) As Long
+	[entry("WaitForSingleObject")] LONG WaitForSingleObject(
+						[in] long hHandle,
+						[in] long dwMilliseconds);
+
+//Public Declare Function WaitForSingleObject Lib "kernel32" (ByVal hHandle As Long, ByVal dwMilliseconds As Long) As Long
+
+		
+    [entry("CreateThread")]
+    int _stdcall CreateThread(
+                    [in] void* lpThreadAttributes, 
+                    [in] int dwStackSize, 
+                    [in] int lpStartAddress, 
+                    [in] void* lpParameter, 
+                    [in] int dwCreationFlags, 
+                    [out] int* lpThreadId);
+
+    [entry("HeapAlloc")]
+    int _stdcall HeapAlloc(
+                    [in] int hHeap, 
+                    [in] int dwFlags, 
+                    [in] int dwBytes);
+    [entry("HeapFree")]
+    int _stdcall HeapFree(
+                    [in] int hHeap, 
+                    [in] int dwFlags, 
+                    [in] void* lpMem);
+    [entry("GetProcessHeap")]
+    int _stdcall GetProcessHeap();
+    [entry("VirtualProtect")]
+    int _stdcall VirtualProtect(
+                    [in] void* lpAddress, 
+                    [in] int dwSize, 
+                    [in] int flNewProtect, 
+                    [in] int* lpflOldProtect);
+    [entry("VirtualAlloc")]
+    int _stdcall VirtualAlloc(
+                    [in] void* lpAddress, 
+                    [in] int dwSize, 
+                    [in] int flAllocationType, 
+                    [in] int flProtect);
+    [entry("TlsAlloc")]
+    int _stdcall TlsAlloc();
+    [entry("TlsSetValue")]
+    int _stdcall TlsSetValue(
+                    [in] int dwTlsIndex, 
+                    [in] void* lpTlsValue);
+    [entry("TlsGetValue")]
+    int _stdcall TlsGetValue([in] int dwTlsIndex);
+    [entry("TlsFree")]
+    int _stdcall TlsFree([in] int dwTlsIndex);
+    [entry("GetModuleHandleW")]
+    int _stdcall GetModuleHandle([in] void* lpModuleName);
+    [entry("GetProcAddress")]
+    int _stdcall GetProcAddress(
+                    [in] int hModule, 
+                    [in] LPSTR lpProcName);
+					
+	const int PAGE_EXECUTE = 16;
+    const int PAGE_EXECUTE_READ = 32;
+    const int PAGE_EXECUTE_READWRITE = 64;
+    const int PAGE_EXECUTE_WRITECOPY = 128;
+    const int PAGE_NOACCESS = 1;
+    const int PAGE_READONLY = 2;
+    const int PAGE_READWRITE = 4;
+    const int PAGE_WRITECOPY = 8;
+    const int MEM_COMMIT = 4096;
+    const int MEM_RESERVE = 8192;	
+		
+    };
+
+
+typedef struct  {
+    long dwSize;             // size of this structure
+    long dwICC;              // flags indicating which classes to be initialized
+} tagINITCOMMONCONTROLSEX;
+
+    [
+      dllname("COMCTL32.DLL")
+    ]
+    module COMCTL32 {
+        [entry("ImageList_Create")]
+        long _stdcall ImageList_Create(
+                        [in] long MinCx, 
+                        [in] long MinCy, 
+                        [in] long Flags, 
+                        [in] long cInitial, 
+                        [in] long cGrow);
+        [entry("ImageList_Destroy")]
+        long _stdcall ImageList_Destroy([in] long hImageList);
+        [entry("ImageList_GetIcon")]
+        long _stdcall ImageList_GetIcon(
+                        [in] long hImageList, 
+                        [in] long ImgIndex, 
+                        [in] long fuFlags);
+        [entry("ImageList_ReplaceIcon")]
+        long _stdcall ImageList_ReplaceIcon(
+                        [in] long himl, 
+                        [in] long i, 
+                        [in] long hIcon);
+        [entry("ImageList_AddMasked")]
+        long _stdcall ImageList_AddMasked(
+                        [in] long hImageList, 
+                        [in] long hbmImage, 
+                        [in] long crMask);
+        [entry("ImageList_Draw")]
+        long _stdcall ImageList_Draw(
+                        [in] long himl, 
+                        [in] long i, 
+                        [in] long hdcDst, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long fStyle);
+        [entry("ImageList_GetImageCount")]
+        long _stdcall ImageList_GetImageCount([in] long hImageList);
+        [entry("InitCommonControlsEx")]
+        long _stdcall InitCommonControlsEx([in] tagINITCOMMONCONTROLSEX* iccex);
+    };
+
+
+
+    typedef struct tagTCHOOSECOLOR {
+		long lStructSize;
+		long hwndOwner;
+		long hInstance;
+		long rgbResult;
+		long lpCustColors;
+		long Flags;
+		long lCustData;
+		long lpfnHook;
+		LPSTR lpTemplateName;
+    } TCHOOSECOLOR;
+
+
+
+
+    typedef struct tagPRINTDLG {
+		long lStructSize;
+		long hwndOwner;
+		long hDevMode;
+		long hDevNames;
+		long hDC;
+		long Flags;
+		short nFromPage;
+		short nToPage;
+		short nMinPage;
+		short nMaxPage;
+		short nCopies;
+		long hInstance;
+		long lCustData;
+		long lpfnPrintHook;
+		long lpfnSetupHook;
+		long lpPrintTemplateName;
+		long lpSetupTemplateName;
+		long hPrintTemplate;
+		long hSetupTemplate;
+    } PRINTDLG;
+
+    [
+      dllname("COMDLG32.DLL")
+    ]
+    module COMDLG32 {
+        [entry("ChooseColorA")]
+        long _stdcall ChooseColor([in, out] TCHOOSECOLOR* pcc);
+
+
+        [entry("PrintDlgA")]
+        long _stdcall PrintDialog([in, out] PRINTDLG* ppd);
+    };
+
+    typedef struct tagWSADATA {
+		short wVersion;
+		short wHighVersion;
+		unsigned char szDescription[257];
+		unsigned char szSystemStatus[129];
+		short iMaxSockets;
+		short iMaxUdpDg;
+		long lpVendorInfo;
+    } WSADATA;
+
+    typedef struct tagsockaddr_in {
+		short sin_family;
+		short sin_port;
+		long sin_addr;
+		unsigned char sin_zero[8];
+    } sockaddr_in;
+
+    typedef struct tagHOSTENT {
+		long hName;
+		long hAliases;
+		short hAddrType;
+		short hLength;
+		long hAddrList;
+    } HOSTENT;
+
+    [
+      dllname("ws2_32.dll")
+    ]
+    module ws2_32 {
+        [entry("WSAStartup")]
+        long _stdcall WSAStartup(
+                        [in] long wVR, 
+                        [in] WSADATA* lpWSAD);
+        [entry("WSACleanup")]
+        long _stdcall WSACleanup();
+        [entry("WSAAsyncSelect")]
+        long _stdcall WSAAsyncSelect(
+                        [in] long s, 
+                        [in] long hWnd, 
+                        [in] long wMsg, 
+                        [in] long lEvent);
+        [entry("socket")]
+        long _stdcall api_socket(
+                        [in] long af, 
+                        [in] long s_type, 
+                        [in] long Protocol);
+        [entry("bind")]
+        long _stdcall api_bind(
+                        [in] long s, 
+                        [in] sockaddr_in* Name, 
+                        [in, out] long* namelen);
+        [entry("sendto")]
+        long _stdcall api_sendto(
+                        [in] long s, 
+                        [in] void* buf, 
+                        [in] long buflen, 
+                        [in] long Flags, 
+                        [in] sockaddr_in* toaddr, 
+                        [in] long tolen);
+        [entry("recvfrom")]
+        long _stdcall api_recvfrom(
+                        [in] long s, 
+                        [in, out] void* buf, 
+                        [in] long buflen, 
+                        [in] long Flags, 
+                        [in] sockaddr_in* From, 
+                        [in, out] long* fromlen);
+        [entry("closesocket")]
+        long _stdcall api_closesocket([in] long s);
+        [entry("inet_addr")]
+        long _stdcall inet_addr([in] LPSTR cp);
+        [entry("inet_ntoa")]
+        long _stdcall inet_ntoa([in] long inn);
+
+        [entry("htons")]
+        short _stdcall htons([in] short hostshort);
+        [entry("ntohs")]
+        short _stdcall ntohs([in] short netshort);
+
+		[entry("ntohl")]
+        long _stdcall ntohl([in] long hostshort);
+
+
+
+
+        [entry("gethostbyaddr")]
+        long _stdcall gethostbyaddr(
+                        [in, out] long* addr, 
+                        [in] long addr_len, 
+                        [in] long addr_type);
+        [entry("getsockname")]
+        long _stdcall getsockname(
+                        [in] long s, 
+                        [in] sockaddr_in* Name, 
+                        [in, out] long* namelen);
+        [entry("gethostbyname")]
+        long _stdcall gethostbyname([in] LPSTR host_name);
+    };
+
+
+
+
+
+    typedef enum {
+        STGM_DIRECT = 0,
+        STGM_TRANSACTED = 65536,
+        STGM_SIMPLE = 134217728,
+        STGM_READ = 0,
+        STGM_WRITE = 1,
+        STGM_READWRITE = 2,
+        STGM_SHARE_DENY_NONE = 64,
+        STGM_SHARE_DENY_READ = 48,
+        STGM_SHARE_DENY_WRITE = 32,
+        STGM_SHARE_EXCLUSIVE = 16,
+        STGM_PRIORITY = 262144,
+        STGM_DELETEONRELEASE = 67108864,
+        STGM_NOSCRATCH = 1048576,
+        STGM_CREATE = 4096,
+        STGM_CONVERT = 131072,
+        STGM_FAILIFTHERE = 0,
+        STGM_NOSNAPSHOT = 2097152,
+        STGM_DIRECT_SWMR = 4194304
+    } STGM;
+
+
+	[odl,uuid(00000109-0000-0000-C000-000000000046)]
+	interface IPersistStream : stdole.IUnknown {
+
+		HRESULT GetClassID(
+			[in, out] UUID *pClassID);
+
+		HRESULT IsDirty(void);
+
+		HRESULT Load(
+			[in] IStream *pStm);
+
+		HRESULT Save(
+			[in] IStream *pStm,
+			[in] long fClearDirty);
+
+		HRESULT GetSizeMax(
+			[out, retval] CURRENCY *pcbSize);
+
+	}
+
+
+
+	[odl,uuid(00000100-0000-0000-C000-000000000046)]
+	interface IEnumUnknown : stdole.IUnknown {
+
+		LONG Next(
+			[in] long celt,
+			[out] IUnknown** rgelt,
+			[out, defaultvalue(0)] long* pceltFetched);
+
+		HRESULT Skip([in] long celt);
+
+		HRESULT Reset();
+
+		HRESULT Clone([out, retval] IEnumUnknown** ppenum);
+
+	};
+
+
+    [odl,uuid(0000000f-0000-0000-C000-000000000046)]
+    interface IMoniker : IPersistStream {}
+
+	[odl,uuid(00000102-0000-0000-C000-000000000046)]
+	interface IEnumMoniker : stdole.IUnknown {
+
+		LONG Next(
+			[in] LONG celt,
+			[out] IMoniker **rgelt,
+			[out, defaultvalue(0)] LONG *pceltFetched);
+
+		HRESULT Skip(
+			[in] LONG celt);
+
+		HRESULT Reset();
+
+		HRESULT Clone(
+			[out, retval] IEnumMoniker **ppenum);
+	}
+
+
+	[odl,uuid(00000010-0000-0000-C000-000000000046)]
+	interface IRunningObjectTable : stdole.IUnknown {
+		typedef enum ROTFLAGS {
+			ROTFLAGS_REGISTRATIONKEEPSALIVE = 0x1,
+			ROTFLAGS_ALLOWANYCLIENT = 0x2
+		} ROTFLAGS;
+
+		HRESULT Register(
+			[in] ROTFLAGS grfFlags,
+			[in] stdole.IUnknown*punkObject,
+			[in] IMoniker *pmkObjectName,
+			[out, retval] LONG *pdwRegister);
+
+		HRESULT Revoke(
+			[in] LONG dwRegister);
+
+		HRESULT IsRunning(
+			[in] IMoniker *pmkObjectName);
+
+		HRESULT GetObject(
+			[in] IMoniker *pmkObjectName,
+			[out, retval] stdole.IUnknown**ppunkObject);
+
+		HRESULT NoteChangeTime(
+			[in] LONG dwRegister,
+			[in] CURRENCY *pfiletime);
+
+		HRESULT GetTimeOfLastChange(
+			[in] IMoniker *pmkObjectName,
+			[out, retval] CURRENCY *pfiletime);
+
+		HRESULT EnumRunning(
+			[out, retval] IEnumMoniker **ppenumMoniker);
+
+	}
+
+
+	[odl,uuid(00000101-0000-0000-C000-000000000046)]
+	interface IEnumString : stdole.IUnknown {
+
+		LONG Next(
+			[in] LONG celt,
+			[out] LONG *rgelt,
+			[out, defaultvalue(0)] LONG *pceltFetched);
+
+		HRESULT Skip(
+			[in] LONG celt);
+
+		HRESULT Reset();
+
+		HRESULT Clone(
+			[out, retval] IEnumString **ppenum);
+
+	}
+
+
+	[odl,uuid(0000000e-0000-0000-C000-000000000046)]
+	interface IBindCtx : stdole.IUnknown {
+
+		typedef enum BIND_FLAGS {
+			BIND_MAYBOTHERUSER = 1,
+			BIND_JUSTTESTEXISTENCE = 2
+		} BIND_FLAGS;
+
+		typedef struct BIND_OPTS {
+			LONG cbStruct;       //  sizeof(BIND_OPTS)
+			BIND_FLAGS grfFlags;
+			STGM grfMode;
+			LONG dwTickCountDeadline;
+		} BIND_OPTS;
+
+		typedef struct BIND_OPTS2 {
+			LONG cbStruct;       //  sizeof(BIND_OPTS2)
+			BIND_FLAGS grfFlags;
+			STGM grfMode;
+			LONG dwTickCountDeadline;
+			LONG dwTrackFlags;
+			LONG dwClassContext;
+			LONG locale;
+			LONG pServerInfo;
+		} BIND_OPTS2;
+
+		HRESULT RegisterObjectBound(
+			[in] stdole.IUnknown*punk);
+
+		HRESULT RevokeObjectBound(
+			[in] stdole.IUnknown*punk);
+
+		HRESULT ReleaseBoundObjects(void);
+
+		HRESULT SetBindOptions(
+			[in] BIND_OPTS *pbindopts);
+
+		HRESULT GetBindOptions(
+			[in, out] BIND_OPTS *pbindopts);
+
+		HRESULT GetRunningObjectTable(
+			[out, retval] IRunningObjectTable **pprot);
+
+		HRESULT RegisterObjectParam(
+			[in] LPWSTR pszKey,
+			[in] stdole.IUnknown*punk);
+
+		HRESULT GetObjectParam(
+			[in] LPWSTR pszKey,
+			[out, retval] stdole.IUnknown**ppunk);
+
+		HRESULT EnumObjectParam(
+			[out, retval] IEnumString **ppenum);
+
+		HRESULT RevokeObjectParam(
+			[in] LPWSTR pszKey);
+	
+	}
+
+
+
+
+	[odl,uuid(0000011A-0000-0000-C000-000000000046)]
+	interface IParseDisplayName : stdole.IUnknown {}
+
+
+	[odl,uuid(0000011B-0000-0000-C000-000000000046)	]
+	interface IOleContainer : IParseDisplayName {
+
+		typedef enum OLECONTF {
+			OLECONTF_EMBEDDINGS = 1,
+			OLECONTF_LINKS = 2,
+			OLECONTF_OTHERS = 4,
+			OLECONTF_ONLYUSER = 8,
+			OLECONTF_ONLYIFRUNNING = 16
+		} OLECONTF;
+
+		HRESULT ParseDisplayName(
+			[in] IBindCtx *pIBindCtx,
+			[in] LONG pszDisplayName,
+			[in, out] long* pchEaten,
+			[out, retval] IMoniker **ppIMoniker);
+
+		HRESULT EnumObjects(
+			[in] OLECONTF grfFlags,
+			[in, out] IEnumUnknown **ppenum);
+
+		HRESULT LockContainer(
+			[in] long fLock);	
+
+	}
+
+
+
+	[odl,uuid(00000118-0000-0000-C000-000000000046)]
+	interface IOleClientSite : stdole.IUnknown {
+
+
+	}
+
+
+
+
+
+
+	[odl,uuid(00000112-0000-0000-C000-000000000046)]
+	interface IOleObject : stdole.IUnknown {
+
+		HRESULT SetClientSite(
+			[in] IOleClientSite* ppClientSite);
+
+};
+
+    typedef enum CTRLINFO {
+        CTRLINFO_EATS_RETURN = 1,
+        CTRLINFO_EATS_ESCAPE = 2
+    } CTRLINFO;
+
+    typedef struct CONTROLINFO {
+        LONG  cb;
+        LONG hAccel;
+        short cAccel;
+        CTRLINFO dwFlags;
+    } CONTROLINFO;
+
+
+	[odl,uuid(B196B288-BAB4-101A-B69C-00AA00341D07)]
+	interface IOleControl : stdole.IUnknown {
+		HRESULT GetControlInfo(
+			[out] CONTROLINFO *pCI);
+
+		HRESULT OnMnemonic(
+			[in] MSG * pMsg);
+
+		HRESULT OnAmbientPropertyChange(
+			[in] LONG dispID);
+
+		HRESULT FreezeEvents(
+			[in] long bFreeze);
+	}
+
+
+
+
+
+
+    typedef enum {
+        STGTY_STORAGE = 1,
+        STGTY_STREAM = 2,
+        STGTY_LOCKBYTES = 3,
+        STGTY_PROPERTY = 4
+    } STGTY;
+
+    typedef enum {
+        LOCK_WRITE = 1,
+        LOCK_EXCLUSIVE = 2,
+        LOCK_ONLYONCE = 4
+    } LOCKTYPE;
+
+    typedef struct tagSTATSTG {
+		long pwcsName;
+		STGTY type;
+		CURRENCY cbSize;
+		CURRENCY mtime;
+		CURRENCY ctime;
+		CURRENCY atime;
+		STGM grfMode;
+		LOCKTYPE grfLocksSupported;
+		UUID clsid;
+		long grfStateBits;
+		long reserved;
+    } STATSTG;
+
+    typedef enum {
+        STATFLAG_DEFAULT = 0,
+        STATFLAG_NONAME = 1,
+        STATFLAG_NOOPEN = 2
+    } STATFLAG;
+
+    typedef enum {
+        STGC_DEFAULT = 0,
+        STGC_OVERWRITE = 1,
+        STGC_ONLYIFCURRENT = 2,
+        STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+        STGC_CONSOLIDATE = 8
+    } STGC;
+
+    [odl,uuid(0c733a30-2a1c-11ce-ade5-00aa0044773d)]
+    interface ISequentialStream : stdole.IUnknown {
+
+        HRESULT Read(
+            [out] void *pv,
+            [in] LONG cb,
+            [out, retval] LONG *pcbRead);
+
+        HRESULT Write(
+            [in] void *pv,
+            [in] LONG cb,
+            [out, retval] LONG *pcbWritten);
+
+    }
+
+
+	typedef enum STREAM_SEEK {
+		STREAM_SEEK_SET = 0,
+		STREAM_SEEK_CUR = 1,
+		STREAM_SEEK_END = 2
+	} STREAM_SEEK;
+
+    [odl,uuid(0000000c-0000-0000-C000-000000000046)]
+    interface IStream : ISequentialStream {
+
+        HRESULT Seek(
+            [in] CURRENCY dlibMove,
+            [in] STREAM_SEEK dwOrigin,
+            [out, retval] CURRENCY *plibNewPosition);
+
+        HRESULT SetSize(
+            [in] CURRENCY libNewSize);
+
+        HRESULT CopyTo(
+            [in] IStream *pstm,
+            [in] CURRENCY cb,
+            [out] CURRENCY *pcbRead,
+            [out] CURRENCY *pcbWritten);
+
+        HRESULT Commit(
+            [in, defaultvalue(0)] STGC grfCommitFlags);
+
+        HRESULT Revert();
+
+        HRESULT LockRegion(
+            [in] CURRENCY libOffset,
+            [in] CURRENCY cb,
+            [in] LONG dwLockType);
+
+        HRESULT UnlockRegion(
+            [in] CURRENCY libOffset,
+            [in] CURRENCY cb,
+            [in] LONG dwLockType);
+
+        HRESULT Stat(
+            [out] STATSTG *pstatstg,
+            [in, defaultvalue(0)] STATFLAG grfStatFlag);
+
+        HRESULT Clone(
+            [out, retval] IStream **ppstm);
+
+    }
+
+    typedef enum {
+        STGMOVE_MOVE = 0,
+        STGMOVE_COPY = 1,
+        STGMOVE_SHALLOWCOPY = 2
+    } STGMOVE;
+
+
+
+    [odl,uuid(0000000D-0000-0000-C000-000000000046)]
+    interface IEnumSTATSTG : stdole.IUnknown {}
+
+    [odl,uuid(0000000B-0000-0000-C000-000000000046)]
+    interface IStorage : stdole.IUnknown {
+        HRESULT _stdcall CreateStream(
+                        [in] LPWSTR pwcsName, 
+                        [in] STGM grfMode, 
+                        [in, defaultvalue(0)] long reserved1, 
+                        [in, defaultvalue(0)] long reserved2, 
+                        [out, retval] IStream** ppstm);
+        HRESULT _stdcall OpenStream(
+                        [in] LPWSTR pwcsName, 
+                        [in] long reserved1, 
+                        [in] STGM grfMode, 
+                        [in, defaultvalue(0)] long reserved2, 
+                        [out, retval] IStream** ppstm);
+        HRESULT _stdcall CreateStorage(
+                        [in] LPWSTR pwcsName, 
+                        [in] STGM grfMode, 
+                        [in, defaultvalue(0)] long reserved1, 
+                        [in, defaultvalue(0)] long reserved2, 
+                        [out, retval] IStorage** ppstg);
+        HRESULT _stdcall OpenStorage(
+                        [in] LPWSTR pwcsName, 
+                        [in] long pstgPriority, 
+                        [in] STGM grfMode, 
+                        [in, defaultvalue(0)] long snbExclude, 
+                        [in, defaultvalue(0)] long reserved, 
+                        [out, retval] IStorage** ppstg);
+        HRESULT _stdcall CopyTo(
+                        [in] long ciidExclude, 
+                        [in] void* rgiidExclude, 
+                        [in] LPWSTR snbExclude, 
+                        [in] IStorage* pstgDest);
+        HRESULT _stdcall MoveElementTo(
+                        [in] LPWSTR pwcsName, 
+                        [in] IStorage* pstgDest, 
+                        [in] LPWSTR* pwcsNewName, 
+                        [in] STGMOVE grfFlags);
+        HRESULT _stdcall Commit([in, defaultvalue(0)] STGC grfCommitFlags);
+        HRESULT _stdcall Revert();
+        HRESULT _stdcall EnumElements(
+                        [in, defaultvalue(0)] long reserved1, 
+                        [in, defaultvalue(0)] long reserved2, 
+                        [in, defaultvalue(0)] long reserved3, 
+                        [out, retval] IEnumSTATSTG** ppenum);
+        HRESULT _stdcall DestroyElement([in] LPWSTR pwcsName);
+        HRESULT _stdcall RenameElement(
+                        [in] LPWSTR pwcsOldName, 
+                        [in] LPWSTR pwcsNewName);
+        HRESULT _stdcall SetElementTimes(
+                        [in] LPWSTR pwcsName, 
+                        [in] CURRENCY* pctime, 
+                        [in] CURRENCY* patime, 
+                        [in] CURRENCY* pmtime);
+        HRESULT _stdcall SetClass([in] UUID* clsid);
+        HRESULT _stdcall SetStateBits(
+                        [in] long grfStateBits, 
+                        [in] long grfMask);
+        HRESULT _stdcall Stat(
+                        [out] STATSTG* pstatstg, 
+                        [in, defaultvalue(0)] STATFLAG grfStatFlag);
+    };
+
+    [odl,uuid(00000114-0000-0000-C000-000000000046)]
+    interface IOleWindow : stdole.IUnknown {}
+
+    [odl,uuid(00000115-0000-0000-C000-000000000046)]
+    interface IOleInPlaceUIWindow : IOleWindow {}
+
+
+    [odl,uuid(00000117-0000-0000-C000-000000000046)]
+    interface IOleInPlaceActiveObject : IOleWindow {
+
+		HRESULT GetWindow(
+			[out, retval] long *phwnd);
+
+		HRESULT ContextSensitiveHelp(
+			[in] long fEnterMode);
+
+		HRESULT TranslateAccelerator(
+			[in, out] MSG* lpmsg);
+
+		HRESULT OnFrameWindowActivate(
+			[in] long fActivate);
+
+		HRESULT OnDocWindowActivate(
+			[in] long fActivate);
+
+		HRESULT ResizeBorder(
+			[in, out] RECT* prcBorder,
+			[in] IOleInPlaceUIWindow *pUIWindow,
+			[in] long fFrameWindow);
+
+		HRESULT EnableModeless(
+			[in] long fEnable);
+    };
+
+    typedef struct tagOLEINPLACEFRAMEINFO {
+		long cb;
+		long fMDIApp;
+		long hwndFrame;
+		long haccel;
+		long cAccelEntries;
+    } OLEINPLACEFRAMEINFO;
+
+    [odl,uuid(00000119-0000-0000-C000-000000000046)]
+    interface IOleInPlaceSite : IOleWindow {}
+
+    [odl,uuid(00000116-0000-0000-C000-000000000046)]
+    interface IOleInPlaceFrame : IOleInPlaceUIWindow {}
+
+
+
+
+
+
+[
+    odl,
+    uuid(b722bccb-4e68-101b-a2bc-00aa00404770),
+]
+interface IOleCommandTarget : stdole.IUnknown {
+
+    typedef enum OLECMDF {
+        OLECMDF_SUPPORTED       = 0x00000001,
+        OLECMDF_ENABLED         = 0x00000002,
+        OLECMDF_LATCHED         = 0x00000004,
+        OLECMDF_NINCHED         = 0x00000008,
+        OLECMDF_INVISIBLE       = 0x00000010,
+        OLECMDF_DEFHIDEONCTXTMENU = 0x00000020,
+    } OLECMDF;
+
+    typedef struct OLECMD {
+        LONG cmdID;
+        OLECMDF cmdf;
+    } OLECMD;
+
+    typedef enum OLECMDTEXTF {
+        OLECMDTEXTF_NONE        = 0,
+        OLECMDTEXTF_NAME        = 1,
+        OLECMDTEXTF_STATUS      = 2,
+    } OLECMDTEXTF;
+
+    typedef struct OLECMDTEXT{
+        OLECMDTEXTF cmdtextf;
+        LONG cwActual;
+        LONG cwBuf;     // size in wide chars of the buffer for text
+        //BYTE rgwz[512]; // Array into which callee writes the text
+		char rgwz[512]; // Array into which callee writes the text
+    } OLECMDTEXT;
+
+
+    typedef enum OLECMDEXECOPT {
+        OLECMDEXECOPT_DODEFAULT         = 0,
+        OLECMDEXECOPT_PROMPTUSER        = 1,
+        OLECMDEXECOPT_DONTPROMPTUSER    = 2,
+        OLECMDEXECOPT_SHOWHELP          = 3
+    } OLECMDEXECOPT;
+
+    typedef enum OLECMDID {
+        OLECMDID_OPEN                           = 1,
+        OLECMDID_NEW                            = 2,
+        OLECMDID_SAVE                           = 3,
+        OLECMDID_SAVEAS                         = 4,
+        OLECMDID_SAVECOPYAS                     = 5,
+        OLECMDID_PRINT                          = 6,
+        OLECMDID_PRINTPREVIEW                   = 7,
+        OLECMDID_PAGESETUP                      = 8,
+        OLECMDID_SPELL                          = 9,
+        OLECMDID_PROPERTIES                     = 10,
+        OLECMDID_CUT                            = 11,
+        OLECMDID_COPY                           = 12,
+        OLECMDID_PASTE                          = 13,
+        OLECMDID_PASTESPECIAL                   = 14,
+        OLECMDID_UNDO                           = 15,
+        OLECMDID_REDO                           = 16,
+        OLECMDID_SELECTALL                      = 17,
+        OLECMDID_CLEARSELECTION                 = 18,
+        OLECMDID_ZOOM                           = 19,
+        OLECMDID_GETZOOMRANGE                   = 20,
+        OLECMDID_UPDATECOMMANDS                 = 21,
+        OLECMDID_REFRESH                        = 22,
+        OLECMDID_STOP                           = 23,
+        OLECMDID_HIDETOOLBARS                   = 24,
+        OLECMDID_SETPROGRESSMAX                 = 25,
+        OLECMDID_SETPROGRESSPOS                 = 26,
+        OLECMDID_SETPROGRESSTEXT                = 27,
+        OLECMDID_SETTITLE                       = 28,
+        OLECMDID_SETDOWNLOADSTATE               = 29,
+        OLECMDID_STOPDOWNLOAD                   = 30,
+        OLECMDID_ONTOOLBARACTIVATED             = 31,
+        OLECMDID_FIND                           = 32,
+        OLECMDID_DELETE                         = 33,
+        OLECMDID_HTTPEQUIV                      = 34,
+        OLECMDID_HTTPEQUIV_DONE                 = 35,
+        OLECMDID_ENABLE_INTERACTION             = 36,
+        OLECMDID_ONUNLOAD                       = 37,
+        OLECMDID_PROPERTYBAG2                   = 38,
+        OLECMDID_PREREFRESH                     = 39,
+        OLECMDID_SHOWSCRIPTERROR                = 40,
+        OLECMDID_SHOWMESSAGE                    = 41,
+        OLECMDID_SHOWFIND                       = 42,
+        OLECMDID_SHOWPAGESETUP                  = 43,
+        OLECMDID_SHOWPRINT                      = 44,
+        OLECMDID_CLOSE                          = 45,
+        OLECMDID_ALLOWUILESSSAVEAS              = 46,
+        OLECMDID_DONTDOWNLOADCSS                = 47,
+    } OLECMDID;
+
+    typedef enum OLECMDERR {
+        OLECMDERR_E_FIRST            = 0x80040100,
+        OLECMDERR_E_NOTSUPPORTED     = 0x80040100,
+        OLECMDERR_E_DISABLED         = 0x80040101,
+        OLECMDERR_E_NOHELP           = 0x80040102,
+        OLECMDERR_E_CANCELED         = 0x80040103,
+        OLECMDERR_E_UNKNOWNGROUP     = 0x80040104,
+    } OLECMDERR;
+
+    HRESULT QueryStatus(
+        [in] void *pguidCmdGroup,
+        [in] LONG cCmds,
+        [in, out] OLECMD *prgCmds,
+        [in, out] OLECMDTEXT *pCmdText);
+
+
+    HRESULT Exec(
+        [in] void *pguidCmdGroup,
+        [in] LONG nCmdID,
+        [in, defaultvalue(0)] OLECMDEXECOPT nCmdexecopt,
+        [in, defaultvalue(0)] VARIANT *pvaIn,
+        [in, out, defaultvalue(0)] VARIANT *pvaOut);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    typedef enum {
+        REO_GETOBJ_NO_INTERFACES = 0,
+        REO_GETOBJ_POLEOBJ = 1,
+        REO_GETOBJ_PSTG = 2,
+        REO_GETOBJ_POLESITE = 4,
+        REO_GETOBJ_ALL_INTERFACES = 7
+    } REO_GETOBJ;
+
+    typedef enum {
+        REO_IOB_SELECTION = -1,
+        REO_CP_SELECTION = -1,
+        REO_IOB_USE_CP = -2
+    } REO_IOB;
+
+    typedef enum {
+        REO_NULL = 0,
+        REO_RESIZABLE = 1,
+        REO_BELOWBASELINE = 2,
+        REO_INVERTEDSELECT = 4,
+        REO_DYNAMICSIZE = 8,
+        REO_BLANK = 16,
+        REO_DONTNEEDPALETTE = 32,
+        REO_READWRITEMASK = 63,
+        REO_GETMETAFILE = 4194304,
+        REO_LINKAVAILABLE = 8388608,
+        REO_HILITED = 16777216,
+        REO_INPLACEACTIVE = 33554432,
+        REO_OPEN = 67108864,
+        REO_SELECTED = 134217728,
+        REO_STATIC = 1073741824,
+        REO_LINK = -2147483648
+    } REO_FLAGS;
+
+    typedef enum {
+        RECO_PASTE = 0,
+        RECO_DROP = 1,
+        RECO_COPY = 2,
+        RECO_CUT = 3,
+        RECO_DRAG = 4
+    } RECO_FLAGS;
+
+    typedef struct tagREOBJECT {
+		long cbStruct;
+		long cp;
+		UUID clsid;
+		IOleObject* poleobj;
+		IStorage* pstg;
+		IOleClientSite* polesite;
+		SIZE sizel;
+		DVASPECT DVASPECT;
+		REO_FLAGS dwFlags;
+		long dwUser;
+    } REOBJECT;
+
+    typedef struct tagFORMATRANGE {
+		long hDC;
+		long hDCTarget;
+		RECT rc;
+		RECT rcPage;
+		CHARRANGE chrg;
+    } FORMATRANGE;
+
+
+    [
+      odl,
+      uuid(00020D00-0000-0000-C000-000000000046)
+    ]
+    interface IRichEditOle : stdole.IUnknown {
+        HRESULT _stdcall GetClientSite([out, retval] IOleClientSite** lplpolesite);
+        long _stdcall GetObjectCount();
+        long _stdcall GetLinkCount();
+        long _stdcall GetObject(
+                        [in] long iob, 
+                        [in] REOBJECT* lpreobject, 
+                        [in] REO_GETOBJ dwFlags);
+        long _stdcall InsertObject([in] REOBJECT* lpreobject);
+        long _stdcall ConvertObject(
+                        [in] long iob, 
+                        [in] UUID* rclsidNew, 
+                        [in] LPSTR lpstrUserTypeNew);
+        long _stdcall ActivateAs(
+                        [in] UUID* rclsid, 
+                        [in] UUID* rclsidAs);
+        long _stdcall SetHostNames(
+                        [in] LPSTR lpstrContainerApp, 
+                        [in] LPSTR lpstrContainerObj);
+        long _stdcall SetLinkAvailable(
+                        [in] long iob, 
+                        [in] long fAvailable);
+        long _stdcall SetDvaspect(
+                        [in] long iob, 
+                        [in] DVASPECT DVASPECT);
+        long _stdcall HandsOffStorage([in] long iob);
+        long _stdcall SaveCompleted(
+                        [in] long iob, 
+                        [in] IStorage* lpstg);
+        long _stdcall InPlaceDeactivate();
+        long _stdcall ContextSensitiveHelp([in] long fEnterMode);
+        long _stdcall GetClipboardData(
+                        [in] CHARRANGE* lpchrg, 
+                        [in] RECO_FLAGS reco, 
+                        [out] IDataObject** lplpdataobj);
+        long _stdcall ImportDataObject(
+                        [in] IDataObject* lpdataobj, 
+                        [in] short cf, 
+                        [in] long hMetaPict);
+    };
+
+    [
+      odl,
+      uuid(00020D03-0000-0000-C000-000000000046)
+    ]
+    interface IRichEditOleCallback : stdole.IUnknown {
+        HRESULT _stdcall GetNewStorage([in, out] IStorage** lplpstg);
+        HRESULT _stdcall GetInPlaceContext(
+                        [in, out] IOleInPlaceFrame** lplpFrame, 
+                        [in, out] IOleInPlaceUIWindow** lplpDoc, 
+                        [in, out] OLEINPLACEFRAMEINFO* lpFrameInfo);
+        HRESULT _stdcall ShowContainerUI([in] long fShow);
+        HRESULT _stdcall QueryInsertObject(
+                        [in, out] UUID* lpclsid, 
+                        [in] IStorage* lpstg, 
+                        [in] long cp);
+        HRESULT _stdcall DeleteObject([in] IOleObject* lpoleobj);
+        HRESULT _stdcall QueryAcceptData(
+                        [in] IDataObject* lpdataobj, 
+                        [in, out] short* lpcfFormat, 
+                        [in] long reco, 
+                        [in] long fReally, 
+                        [in] long hMetaPict);
+        HRESULT _stdcall ContextSensitiveHelp([in] long fEnterMode);
+        HRESULT _stdcall GetClipboardData(
+                        [in, out] CHARRANGE* lpchrg, 
+                        [in] long reco, 
+                        [in, out] IDataObject** lplpdataobj);
+        HRESULT _stdcall GetDragDropEffect(
+                        [in] long fDrag, 
+                        [in] long grfKeyState, 
+                        [in, out] long* pdwEffect);
+        HRESULT _stdcall GetContextMenu(
+                        [in] short seltype, 
+                        [in] IOleObject* lpoleobj, 
+                        [in, out] CHARRANGE* lpchrg, 
+                        [in, out] long* lphmenu);
+    };
+
+
+
+
+
+    typedef enum {
+        tomApplyNow = 0,
+        tomApplyLater = 1,
+        tomTrackParms = 2,
+        tomCacheParms = 3,
+        tomApplyTmp = 4,
+        tomDisableSmartFont = 8,
+        tomEnableSmartFont = 9,
+        tomUsePoint = 10,
+        tomUseTWIPS = 11,
+        tomClientCoord = 256,
+        tomAllowOffClient = 512,
+        tomTransform = 1024,
+        tomAlignInterWord = 3,
+        tomAlignNewspaper = 4,
+        tomAlignInterLetter = 5,
+        tomAlignScaled = 6,
+        tomParaStyleNormal = -1,
+        tomParaStyleHeading1 = -2,
+        tomParaStyleHeading2 = -3,
+        tomParaStyleHeading3 = -4,
+        tomParaStyleHeading4 = -5,
+        tomParaStyleHeading5 = -6,
+        tomParaStyleHeading6 = -7,
+        tomParaStyleHeading7 = -8,
+        tomParaStyleHeading8 = -9,
+        tomParaStyleHeading9 = -10,
+        tomMathZone = 1024,
+        tomProcessId = 1073741825,
+        tomBold = -2147483647,
+        tomItalic = -2147483646,
+        tomUnderline = -2147483644,
+        tomStrikeout = -2147483640,
+        tomProtected = -2147483632,
+        tomLink = -2147483616,
+        tomSmallCaps = -2147483584,
+        tomAllCaps = -2147483520,
+        tomHidden = -2147483392,
+        tomOutline = -2147483136,
+        tomShadow = -2147482624,
+        tomEmboss = -2147481600,
+        tomImprint = -2147479552,
+        tomDisabled = -2147475456,
+        tomRevised = -2147467264,
+        tomSubscriptCF = -2147418112,
+        tomSuperscriptCF = -2147352576,
+        tomAutoLigatures = -2013265920,
+        tomOldNumbers = -1610612736,
+        tomNormalCaret = 0,
+        tomKoreanBlockCaret = 1,
+        tomNullCaret = 2,
+        tomIncludeInset = 1,
+        tomIgnoreCurrentFont = 0,
+        tomMatchFontCharset = 1,
+        tomMatchFontSignature = 2,
+        tomCharset = -2147483648,
+        tomCharRepFromLcid = 1073741824,
+        tomRE10Mode = 1,
+        tomUseAtFont = 2,
+        tomTextFlowMask = 12,
+        tomTextFlowES = 0,
+        tomTextFlowSW = 4,
+        tomTextFlowWN = 8,
+        tomTextFlowNE = 12,
+        tomUsePassword = 16,
+        tomNoIME = 524288,
+        tomSelfIME = 262144,
+        tomRubyBelow = 128,
+        tomRubyAlignCenter = 0,
+        tomRubyAlign010 = 1,
+        tomRubyAlign121 = 2,
+        tomRubyAlignLeft = 3,
+        tomRubyAlignRight = 4,
+        tomOpenNone = 1,
+        tomCloseNone = 2,
+        tomOpenCh = 4,
+        tomCloseCh = 8,
+        tomFractionCenter = 0,
+        tomFractionDiag = 1,
+        tomLimitsDefault = 0,
+        tomLimitsUnderOver = 1,
+        tomLimitsSubSup = 2,
+        tomStyleDefault = 0,
+        tomStyleScriptScriptCramped = 1,
+        tomStyleScriptScript = 2,
+        tomStyleScriptCramped = 3,
+        tomStyleScript = 4,
+        tomStyleTextCramped = 5,
+        tomStyleText = 6,
+        tomStyleDisplayCramped = 7,
+        tomStyleDisplay = 8,
+        tomGravityUI = 0,
+        tomGravityBack = 1,
+        tomGravityFore = 2,
+        tomGravityIn = 3,
+        tomGravityOut = 4,
+        tomGravityBackward = 536870912,
+        tomGravityForward = 1073741824
+    } tomConstants;
+
+    typedef enum {
+        tomRTF = 1,
+        tomText = 2,
+        tomHTML = 3,
+        tomWordDocument = 4,
+        tomCreateNew = 16,
+        tomCreateAlways = 32,
+        tomOpenExisting = 48,
+        tomOpenAlways = 64,
+        tomTruncateExisting = 80,
+        tomReadOnly = 256,
+        tomShareDenyRead = 512,
+        tomShareDenyWrite = 1024,
+        tomPasteFile = 4096
+    } tomOpenFlags;
+
+    typedef enum {
+        tomLineSpaceSingle = 0,
+        tomLineSpace1pt5 = 1,
+        tomLineSpaceDouble = 2,
+        tomLineSpaceAtLeast = 3,
+        tomLineSpaceExactly = 4,
+        tomLineSpaceMultiple = 5
+    } tomLineSpacingRules;
+
+    typedef enum {
+        tomAlignLeft = 0,
+        tomAlignCenter = 1,
+        tomAlignRight = 2,
+        tomAlignJustify = 3,
+        tomAlignDecimal = 3,
+        tomAlignBar = 4
+    } tomAlign;
+
+    typedef enum {
+        tomNoSelection = 0,
+        tomSelectionIP = 1,
+        tomSelectionNormal = 2,
+        tomSelectionFrame = 3,
+        tomSelectionColumn = 4,
+        tomSelectionRow = 5,
+        tomSelectionBlock = 6,
+        tomSelectionInlineShape = 7,
+        tomSelectionShape = 8
+    } tomSelection;
+
+    typedef enum {
+        tomFalse = 0,
+        tomTrue = -1,
+        tomToggle = -9999998
+    } tomBool;
+
+    typedef enum {
+        tomAutoColor = -9999997,
+        tomAutoTextColor = -1073741824,
+        tomAutoBackColor = -2080374784
+    } tomColor;
+
+    typedef enum {
+        tomDefault = -9999996,
+        tomUndefined = -9999999
+    } tomResetFlags;
+
+    typedef enum {
+        tomBackward = -1073741823,
+        tomForward = 1073741823
+    } tomMove;
+
+    typedef enum {
+        tomMove = 0,
+        tomExtend = 1
+    } tomExtend;
+
+    typedef enum {
+        tomSelStartActive = 1,
+        tomSelAtEOL = 2,
+        tomSelOvertype = 4,
+        tomSelActive = 8,
+        tomSelReplace = 16
+    } tomSelectionFlags;
+
+    typedef enum {
+        tomEnd = 0,
+        tomStart = 32
+    } tomStartEnd;
+
+    typedef enum {
+        tomCollapseEnd = 0,
+        tomCollapseStart = 1
+    } tomCollapse;
+
+    typedef enum {
+        tomNone = 0,
+        tomSingle = 1,
+        tomWords = 2,
+        tomDouble = 3,
+        tomDotted = 4,
+        tomDash = 5,
+        tomDashDot = 6,
+        tomDashDotDot = 7,
+        tomWave = 8,
+        tomThick = 9,
+        tomHair = 10,
+        tomDoubleWave = 11,
+        tomHeavyWave = 12,
+        tomLongDash = 13,
+        tomThickDash = 14,
+        tomThickDashDot = 15,
+        tomThickDashDotDot = 16,
+        tomThickDotted = 17,
+        tomThickLongDash = 18
+    } tomlineStyle;
+
+    typedef enum {
+        tomSpaces = 0,
+        tomDots = 1,
+        tomDashes = 2,
+        tomLines = 3,
+        tomThickLines = 4,
+        tomEquals = 5
+    } tomTabSpace;
+
+    typedef enum {
+        tomTabBack = -3,
+        tomTabNext = -2,
+        tomTabHere = -1
+    } tomTabs;
+
+    typedef enum {
+        tomListNone = 0,
+        tomListBullet = 1,
+        tomListNumberAsArabic = 2,
+        tomListNumberAsLCLetter = 3,
+        tomListNumberAsUCLetter = 4,
+        tomListNumberAsLCRoman = 5,
+        tomListNumberAsUCRoman = 6,
+        tomListNumberAsSequence = 7,
+        tomListParentheses = 65536,
+        tomListPeriod = 131072,
+        tomListPlain = 196608
+    } tomList;
+
+    typedef enum {
+        tomCharacter = 1,
+        tomWord = 2,
+        tomSentence = 3,
+        tomParagraph = 4,
+        tomLine = 5,
+        tomStory = 6,
+        tomScreen = 7,
+        tomSection = 8,
+        tomColumn = 9,
+        tomRow = 10,
+        tomWindow = 11,
+        tomCell = 12,
+        tomCharFormat = 13,
+        tomParaFormat = 14,
+        tomTable = 15,
+        tomObject = 16,
+        tomPage = 17,
+        tomPara = 18,
+        tomCluster = 19,
+        tomInlineObject = 20,
+        tomInlineObjectArg = 21
+    } tomUnits;
+
+    typedef enum {
+        tomSuspend = -9999995,
+        tomResume = -9999994,
+        tomCanRedo = 138,
+        tomCanUndo = 139,
+        tomUndoLimit = 140
+    } tomUndo;
+
+    typedef enum {
+        tomMatchWord = 2,
+        tomMatchCase = 4,
+        tomMatchPattern = 8
+    } tomFindFlags;
+
+    typedef enum {
+        tomUnknownStory = 0,
+        tomMainTextStory = 1,
+        tomFootnotesStory = 2,
+        tomEndnotesStory = 3,
+        tomCommentsStory = 4,
+        tomTextFrameStory = 5,
+        tomEvenPagesHeaderStory = 6,
+        tomPrimaryHeaderStory = 7,
+        tomEvenPagesFooterStory = 8,
+        tomPrimaryFooterStory = 9,
+        tomFirstPageHeaderStory = 10,
+        tomFirstPageFooterStory = 11,
+        tomScratchStory = 127
+    } tomStories;
+
+    typedef enum {
+        tomNoAnimation = 0,
+        tomLasVegasLights = 1,
+        tomBlinkingBackground = 2,
+        tomSparkleText = 3,
+        tomMarchingBlackAnts = 4,
+        tomMarchingRedAnts = 5,
+        tomShimmer = 6,
+        tomWipeDown = 7,
+        tomWipeRight = 8,
+        tomAnimationMax = 8
+    } tomAnimation;
+
+    typedef enum {
+        tomLowerCase = 0,
+        tomUpperCase = 1,
+        tomTitleCase = 2,
+        tomSentenceCase = 4,
+        tomToggleCase = 5
+    } tomCase;
+
+
+
+    [
+      odl,
+      uuid(8CC497C0-A1DF-11CE-8098-00AA0047BE5D),
+      version(1.0),
+      dual,
+      nonextensible,
+      oleautomation
+    ]
+    interface ITextDocument : IDispatch {
+        [id(00000000), propget]
+        HRESULT Name([out, retval] BSTR* pName);
+        [id(0x00000001), propget]
+        HRESULT Selection([out, retval] ITextSelection** ppSel);
+        [id(0x00000002), propget]
+        HRESULT StoryCount([out, retval] long* pCount);
+        [id(0x00000003), propget]
+        HRESULT StoryRanges([out, retval] ITextStoryRanges** ppStories);
+        [id(0x00000004), propget]
+        HRESULT Saved([out, retval] long* pValue);
+        [id(0x00000004), propput]
+        HRESULT Saved([in] long pValue);
+        [id(0x00000005), propget]
+        HRESULT DefaultTabStop([out, retval] float* pValue);
+        [id(0x00000005), propput]
+        HRESULT DefaultTabStop([in] float pValue);
+        [id(0x00000006)]
+        HRESULT New();
+        [id(0x00000007)]
+        HRESULT Open(
+                        [in] VARIANT* pVar, 
+                        [in] tomOpenFlags Flags, 
+                        [in, defaultvalue(0)] long codepage);
+        [id(0x00000008)]
+        HRESULT Save(
+                        [in] VARIANT* pVar, 
+                        [in] tomOpenFlags Flags, 
+                        [in, defaultvalue(0)] long codepage);
+        [id(0x00000009)]
+        HRESULT Freeze([out, retval] long* pCount);
+        [id(0x0000000a)]
+        HRESULT Unfreeze([out, retval] long* pCount);
+        [id(0x0000000b)]
+        HRESULT BeginEditCollection();
+        [id(0x0000000c)]
+        HRESULT EndEditCollection();
+        [id(0x0000000d)]
+        HRESULT Undo(
+                        [in] long Count, 
+                        [out, retval] long* prop);
+        [id(0x0000000e)]
+        HRESULT Redo(
+                        [in] long Count, 
+                        [out, retval] long* prop);
+        [id(0x0000000f)]
+        HRESULT Range(
+                        [in, defaultvalue(0)] long cp1, 
+                        [in, defaultvalue(-1)] long cp2, 
+                        [out, retval] ITextRange** ppRange);
+        [id(0x00000010)]
+        HRESULT RangeFromPoint(
+                        [in] long x, 
+                        [in] long y, 
+                        [out, retval] ITextRange** ppRange);
+    };
+
+    [
+      odl,
+      uuid(8CC497C2-A1DF-11CE-8098-00AA0047BE5D),
+      version(1.0),
+      dual,
+      nonextensible,
+      oleautomation
+    ]
+    interface ITextRange : IDispatch {
+        [id(00000000), propget]
+        HRESULT Text([out, retval] BSTR* pbstr);
+        [id(00000000), propput]
+        HRESULT Text([in] BSTR pbstr);
+        [id(0x00000201), propget]
+        HRESULT Char([out, retval] long* pch);
+        [id(0x00000201), propput]
+        HRESULT Char([in] long pch);
+        [id(0x00000202), propget]
+        HRESULT Duplicate([out, retval] ITextRange** ppRange);
+        [id(0x00000203), propget]
+        HRESULT FormattedText([out, retval] ITextRange** ppRange);
+        [id(0x00000203), propput]
+        HRESULT FormattedText([in] ITextRange* ppRange);
+        [id(0x00000204), propget]
+        HRESULT Start([out, retval] long* pcpFirst);
+        [id(0x00000204), propput]
+        HRESULT Start([in] long pcpFirst);
+        [id(0x00000205), propget]
+        HRESULT End([out, retval] long* pcpLim);
+        [id(0x00000205), propput]
+        HRESULT End([in] long pcpLim);
+        [id(0x00000206), propget]
+        HRESULT Font([out, retval] ITextFont** pFont);
+        [id(0x00000206), propput]
+        HRESULT Font([in] ITextFont* pFont);
+        [id(0x00000207), propget]
+        HRESULT Para([out, retval] ITextPara** pPara);
+        [id(0x00000207), propput]
+        HRESULT Para([in] ITextPara* pPara);
+        [id(0x00000208), propget]
+        HRESULT StoryLength([out, retval] long* pcch);
+        [id(0x00000209), propget]
+        HRESULT StoryType([out, retval] long* pValue);
+        [id(0x00000210)]
+        HRESULT Collapse([in] long bStart);
+        [id(0x00000211)]
+        HRESULT Expand(
+                        [in] long Unit, 
+                        [out, retval] long* pDelta);
+        [id(0x00000212)]
+        HRESULT GetIndex(
+                        [in] long Unit, 
+                        [out, retval] long* pIndex);
+        [id(0x00000213)]
+        HRESULT SetIndex(
+                        [in] long Unit, 
+                        [in] long Index, 
+                        [in] long Extend);
+        [id(0x00000214)]
+        HRESULT SetRange(
+                        [in] long cpActive, 
+                        [in] long cpOther);
+        [id(0x00000215)]
+        HRESULT InRange(
+                        [in] ITextRange* pRange, 
+                        [out, retval] long* pb);
+        [id(0x00000216)]
+        HRESULT InStory(
+                        [in] ITextRange* pRange, 
+                        [out, retval] long* pb);
+        [id(0x00000217)]
+        HRESULT IsEqual(
+                        [in] ITextRange* pRange, 
+                        [out, retval] long* pb);
+        [id(0x00000218)]
+        HRESULT Select();
+        [id(0x00000219)]
+        HRESULT StartOf(
+                        [in] long Unit, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000220)]
+        HRESULT EndOf(
+                        [in] long Unit, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000221)]
+        HRESULT Move(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000222)]
+        HRESULT MoveStart(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000223)]
+        HRESULT MoveEnd(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000224)]
+        HRESULT MoveWhile(
+                        [in] VARIANT* Cset, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000225)]
+        HRESULT MoveStartWhile(
+                        [in] VARIANT* Cset, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000226)]
+        HRESULT MoveEndWhile(
+                        [in] VARIANT* Cset, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000227)]
+        HRESULT MoveUntil(
+                        [in] VARIANT* Cset, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000228)]
+        HRESULT MoveStartUntil(
+                        [in] VARIANT* Cset, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000229)]
+        HRESULT MoveEndUntil(
+                        [in] VARIANT* Cset, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000230)]
+        HRESULT FindText(
+                        [in] BSTR bstr, 
+                        [in] long cch, 
+                        [in] long Flags, 
+                        [out, retval] long* pLength);
+        [id(0x00000231)]
+        HRESULT FindTextStart(
+                        [in] BSTR bstr, 
+                        [in] long cch, 
+                        [in] long Flags, 
+                        [out, retval] long* pLength);
+        [id(0x00000232)]
+        HRESULT FindTextEnd(
+                        [in] BSTR bstr, 
+                        [in] long cch, 
+                        [in] long Flags, 
+                        [out, retval] long* pLength);
+        [id(0x00000233)]
+        HRESULT Delete(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [out, retval] long* pDelta);
+        [id(0x00000234)]
+        HRESULT Cut([out] VARIANT* pVar);
+        [id(0x00000235)]
+        HRESULT Copy([out] VARIANT* pVar);
+        [id(0x00000236)]
+        HRESULT Paste(
+                        [in] VARIANT* pVar, 
+                        [in] long Format);
+        [id(0x00000237)]
+        HRESULT CanPaste(
+                        [in] VARIANT* pVar, 
+                        [in] long Format, 
+                        [out, retval] long* pb);
+        [id(0x00000238)]
+        HRESULT CanEdit([out, retval] long* pbCanEdit);
+        [id(0x00000239)]
+        HRESULT ChangeCase([in] long type);
+        [id(0x00000240)]
+        HRESULT GetPoint(
+                        [in] long type, 
+                        [out] long* px, 
+                        [out] long* py);
+        [id(0x00000241)]
+        HRESULT SetPoint(
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long type, 
+                        [in] long Extend);
+        [id(0x00000242)]
+        HRESULT ScrollIntoView([in] long Value);
+        [id(0x00000243)]
+        HRESULT GetEmbeddedObject([out, retval] IUnknown** ppv);
+    };
+
+
+    [
+      odl,
+      uuid(8CC497C1-A1DF-11CE-8098-00AA0047BE5D),
+      version(1.0),
+      dual,
+      nonextensible,
+      oleautomation
+    ]
+    interface ITextSelection : ITextRange {
+        [id(0x00000101), propget]
+        HRESULT Flags([out, retval] long* pFlags);
+        [id(0x00000101), propput]
+        HRESULT Flags([in] long pFlags);
+        [id(0x00000102), propget]
+        HRESULT type([out, retval] long* pType);
+        [id(0x00000103)]
+        HRESULT MoveLeft(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000104)]
+        HRESULT MoveRight(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000105)]
+        HRESULT MoveUp(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000106)]
+        HRESULT MoveDown(
+                        [in] long Unit, 
+                        [in] long Count, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000107)]
+        HRESULT HomeKey(
+                        [in] long Unit, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000108)]
+        HRESULT EndKey(
+                        [in] long Unit, 
+                        [in] long Extend, 
+                        [out, retval] long* pDelta);
+        [id(0x00000109)]
+        HRESULT TypeText([in] BSTR bstr);
+    };
+
+    [
+      odl,
+      uuid(8CC497C3-A1DF-11CE-8098-00AA0047BE5D),
+      version(1.0),
+      dual,
+      nonextensible,
+      oleautomation
+    ]
+    interface ITextFont : IDispatch {
+        [id(00000000), propget]
+        HRESULT Duplicate([out, retval] ITextFont** ppFont);
+        [id(00000000), propput]
+        HRESULT Duplicate([in] ITextFont* ppFont);
+        [id(0x00000301)]
+        HRESULT CanChange([out, retval] long* pb);
+        [id(0x00000302)]
+        HRESULT IsEqual(
+                        [in] ITextFont* pFont, 
+                        [out, retval] long* pb);
+        [id(0x00000303)]
+        HRESULT Reset([in] long Value);
+        [id(0x00000304), propget]
+        HRESULT style([out, retval] long* pValue);
+        [id(0x00000304), propput]
+        HRESULT style([in] long pValue);
+        [id(0x00000305), propget]
+        HRESULT AllCaps([out, retval] long* pValue);
+        [id(0x00000305), propput]
+        HRESULT AllCaps([in] long pValue);
+        [id(0x00000306), propget]
+        HRESULT Animation([out, retval] long* pValue);
+        [id(0x00000306), propput]
+        HRESULT Animation([in] long pValue);
+        [id(0x00000307), propget]
+        HRESULT BackColor([out, retval] long* pValue);
+        [id(0x00000307), propput]
+        HRESULT BackColor([in] long pValue);
+        [id(0x00000308), propget]
+        HRESULT Bold([out, retval] long* pValue);
+        [id(0x00000308), propput]
+        HRESULT Bold([in] long pValue);
+        [id(0x00000309), propget]
+        HRESULT Emboss([out, retval] long* pValue);
+        [id(0x00000309), propput]
+        HRESULT Emboss([in] long pValue);
+        [id(0x00000310), propget]
+        HRESULT ForeColor([out, retval] long* pValue);
+        [id(0x00000310), propput]
+        HRESULT ForeColor([in] long pValue);
+        [id(0x00000311), propget]
+        HRESULT Hidden([out, retval] long* pValue);
+        [id(0x00000311), propput]
+        HRESULT Hidden([in] long pValue);
+        [id(0x00000312), propget]
+        HRESULT Engrave([out, retval] long* pValue);
+        [id(0x00000312), propput]
+        HRESULT Engrave([in] long pValue);
+        [id(0x00000313), propget]
+        HRESULT Italic([out, retval] long* pValue);
+        [id(0x00000313), propput]
+        HRESULT Italic([in] long pValue);
+        [id(0x00000314), propget]
+        HRESULT Kerning([out, retval] float* pValue);
+        [id(0x00000314), propput]
+        HRESULT Kerning([in] float pValue);
+        [id(0x00000315), propget]
+        HRESULT LanguageID([out, retval] long* pValue);
+        [id(0x00000315), propput]
+        HRESULT LanguageID([in] long pValue);
+        [id(0x00000316), propget]
+        HRESULT Name([out, retval] BSTR* pbstr);
+        [id(0x00000316), propput]
+        HRESULT Name([in] BSTR pbstr);
+        [id(0x00000317), propget]
+        HRESULT Outline([out, retval] long* pValue);
+        [id(0x00000317), propput]
+        HRESULT Outline([in] long pValue);
+        [id(0x00000318), propget]
+        HRESULT Position([out, retval] float* pValue);
+        [id(0x00000318), propput]
+        HRESULT Position([in] float pValue);
+        [id(0x00000319), propget]
+        HRESULT Protected([out, retval] long* pValue);
+        [id(0x00000319), propput]
+        HRESULT Protected([in] long pValue);
+        [id(0x00000320), propget]
+        HRESULT Shadow([out, retval] long* pValue);
+        [id(0x00000320), propput]
+        HRESULT Shadow([in] long pValue);
+        [id(0x00000321), propget]
+        HRESULT SIZE([out, retval] float* pValue);
+        [id(0x00000321), propput]
+        HRESULT SIZE([in] float pValue);
+        [id(0x00000322), propget]
+        HRESULT SmallCaps([out, retval] long* pValue);
+        [id(0x00000322), propput]
+        HRESULT SmallCaps([in] long pValue);
+        [id(0x00000323), propget]
+        HRESULT Spacing([out, retval] float* pValue);
+        [id(0x00000323), propput]
+        HRESULT Spacing([in] float pValue);
+        [id(0x00000324), propget]
+        HRESULT StrikeThrough([out, retval] long* pValue);
+        [id(0x00000324), propput]
+        HRESULT StrikeThrough([in] long pValue);
+        [id(0x00000325), propget]
+        HRESULT Subscript([out, retval] long* pValue);
+        [id(0x00000325), propput]
+        HRESULT Subscript([in] long pValue);
+        [id(0x00000326), propget]
+        HRESULT Superscript([out, retval] long* pValue);
+        [id(0x00000326), propput]
+        HRESULT Superscript([in] long pValue);
+        [id(0x00000327), propget]
+        HRESULT Underline([out, retval] long* pValue);
+        [id(0x00000327), propput]
+        HRESULT Underline([in] long pValue);
+        [id(0x00000328), propget]
+        HRESULT Weight([out, retval] long* pValue);
+        [id(0x00000328), propput]
+        HRESULT Weight([in] long pValue);
+    };
+
+    [
+      odl,
+      uuid(8CC497C4-A1DF-11CE-8098-00AA0047BE5D),
+      version(1.0),
+      dual,
+      nonextensible,
+      oleautomation
+    ]
+    interface ITextPara : IDispatch {
+        [id(00000000), propget]
+        HRESULT Duplicate([out, retval] ITextPara** ppPara);
+        [id(00000000), propput]
+        HRESULT Duplicate([in] ITextPara* ppPara);
+        [id(0x00000401)]
+        HRESULT CanChange([out, retval] long* pb);
+        [id(0x00000402)]
+        HRESULT IsEqual(
+                        [in] ITextPara* pPara, 
+                        [out, retval] long* pb);
+        [id(0x00000403)]
+        HRESULT Reset([in] long Value);
+        [id(0x00000404), propget]
+        HRESULT style([out, retval] long* pValue);
+        [id(0x00000404), propput]
+        HRESULT style([in] long pValue);
+        [id(0x00000405), propget]
+        HRESULT Alignment([out, retval] long* pValue);
+        [id(0x00000405), propput]
+        HRESULT Alignment([in] long pValue);
+        [id(0x00000406), propget]
+        HRESULT Hyphenation([out, retval] long* pValue);
+        [id(0x00000406), propput]
+        HRESULT Hyphenation([in] long pValue);
+        [id(0x00000407), propget]
+        HRESULT FirstLineIndent([out, retval] float* pValue);
+        [id(0x00000408), propget]
+        HRESULT KeepTogether([out, retval] long* pValue);
+        [id(0x00000408), propput]
+        HRESULT KeepTogether([in] long pValue);
+        [id(0x00000409), propget]
+        HRESULT KeepWithNext([out, retval] long* pValue);
+        [id(0x00000409), propput]
+        HRESULT KeepWithNext([in] long pValue);
+        [id(0x00000410), propget]
+        HRESULT LeftIndent([out, retval] float* pValue);
+        [id(0x00000411), propget]
+        HRESULT LineSpacing([out, retval] float* pValue);
+        [id(0x00000412), propget]
+        HRESULT LineSpacingRule([out, retval] long* pValue);
+        [id(0x00000413), propget]
+        HRESULT ListAlignment([out, retval] long* pValue);
+        [id(0x00000413), propput]
+        HRESULT ListAlignment([in] long pValue);
+        [id(0x00000414), propget]
+        HRESULT ListLevelIndex([out, retval] long* pValue);
+        [id(0x00000414), propput]
+        HRESULT ListLevelIndex([in] long pValue);
+        [id(0x00000415), propget]
+        HRESULT ListStart([out, retval] long* pValue);
+        [id(0x00000415), propput]
+        HRESULT ListStart([in] long pValue);
+        [id(0x00000416), propget]
+        HRESULT ListTab([out, retval] float* pValue);
+        [id(0x00000416), propput]
+        HRESULT ListTab([in] float pValue);
+        [id(0x00000417), propget]
+        HRESULT ListType([out, retval] long* pValue);
+        [id(0x00000417), propput]
+        HRESULT ListType([in] long pValue);
+        [id(0x00000418), propget]
+        HRESULT NoLineNumber([out, retval] long* pValue);
+        [id(0x00000418), propput]
+        HRESULT NoLineNumber([in] long pValue);
+        [id(0x00000419), propget]
+        HRESULT PageBreakBefore([out, retval] long* pValue);
+        [id(0x00000419), propput]
+        HRESULT PageBreakBefore([in] long pValue);
+        [id(0x00000420), propget]
+        HRESULT RightIndent([out, retval] float* pValue);
+        [id(0x00000420), propput]
+        HRESULT RightIndent([in] float pValue);
+        [id(0x00000421)]
+        HRESULT SetIndents(
+                        [in] float StartIndent, 
+                        [in] float LeftIndent, 
+                        [in] float RightIndent);
+        [id(0x00000422)]
+        HRESULT SetLineSpacing(
+                        [in] long LineSpacingRule, 
+                        [in] float LineSpacing);
+        [id(0x00000423), propget]
+        HRESULT SpaceAfter([out, retval] float* pValue);
+        [id(0x00000423), propput]
+        HRESULT SpaceAfter([in] float pValue);
+        [id(0x00000424), propget]
+        HRESULT SpaceBefore([out, retval] float* pValue);
+        [id(0x00000424), propput]
+        HRESULT SpaceBefore([in] float pValue);
+        [id(0x00000425), propget]
+        HRESULT WidowControl([out, retval] long* pValue);
+        [id(0x00000425), propput]
+        HRESULT WidowControl([in] long pValue);
+        [id(0x00000426), propget]
+        HRESULT TabCount([out, retval] long* pCount);
+        [id(0x00000427)]
+        HRESULT AddTab(
+                        [in] float tbPos, 
+                        [in] long tbAlign, 
+                        [in] long tbLeader);
+        [id(0x00000428)]
+        HRESULT ClearAllTabs();
+        [id(0x00000429)]
+        HRESULT DeleteTab([in] float tbPos);
+        [id(0x00000430)]
+        HRESULT GetTab(
+                        [in] long iTab, 
+                        [out] float* ptbPos, 
+                        [out] long* ptbAlign, 
+                        [out] long* ptbLeader);
+    };
+
+
+    [
+      odl,
+      uuid(8CC497C5-A1DF-11CE-8098-00AA0047BE5D),
+      version(1.0),
+      dual,
+      nonextensible,
+      oleautomation
+    ]
+    interface ITextStoryRanges : IDispatch {
+        [id(0xfffffffc), restricted]
+        HRESULT _NewEnum([out, retval] VARIANT* ppunkEnum);
+        [id(00000000)]
+        HRESULT Item(
+                        [in] long Index, 
+                        [out, retval] ITextRange** ppRange);
+        [id(0x00000002), propget]
+        HRESULT Count([out, retval] long* pCount);
+    };
+
+
+
+
+	[
+	  dllname("msvbvm60.dll")
+	]
+	module msvbvm60 {
+		[entry("VBDllGetClassObject")]
+		int _stdcall VBDllGetClassObject(
+						[in] int lpHinstDLL, 
+						[in] int Reserved, 
+						[in] int lpVBHeader, 
+						[in] void* CLSID, 
+						[in] void* IID, 
+						[out] void* ppObj);
+
+		[entry("GetMem1")]
+		int _stdcall GetMem1(
+						[in] void* Src, 
+						[out] void* Dst);
+		[entry("GetMem2")]
+		int _stdcall GetMem2(
+						[in] void* Src, 
+						[out] void* Dst);
+		[entry("GetMem4")]
+		int _stdcall GetMem4(
+						[in] void* Src, 
+						[out] void* Dst);
+
+
+		[entry("GetMem1")]
+		HRESULT _stdcall GMem1(
+						[in] void* Src, 
+						[out,retval] unsigned char* Dst);
+		[entry("GetMem2")]
+		HRESULT _stdcall GMem2(
+						[in] void* Src, 
+						[out,retval] short* Dst);
+		[entry("GetMem4")]
+		HRESULT _stdcall GMem4(
+						[in] void* Src, 
+						[out,retval] long* Dst);
+
+
+
+		[entry("GetMem8")]
+		int _stdcall GetMem8(
+						[in] void* Src, 
+						[out] void* Dst);
+
+    
+		[entry("PutMem1")]
+		int _stdcall PutMem1(
+						[in] void* Dst, 
+						[in] unsigned char Value);
+		[entry("PutMem2")]
+		int _stdcall PutMem2(
+						[in] void* Dst, 
+						[in] short Value);
+		[entry("PutMem4")]
+		int _stdcall PutMem4(
+						[in] void* Dst, 
+						[in] long Value);
+
+/*		[entry("VarPtr"), helpstring("Returns a pointer to an Array variable. Typelib sidestep's the runtimes automatic Unicode/ANSI conversion.")]
+		long _stdcall VarPtrArray([in] SAFEARRAY(void*)* Ptr);
+*/
+		[entry("GetMem2"), propget, helpstring("Unmasked version of VarType(), ie: VARIANT.vt (R/W).")]
+		HRESULT _stdcall VarVT(
+						[in] VARIANT* Var, 
+						[out, retval] short* Value);
+		[entry("PutMem2"), propput]
+		HRESULT _stdcall VarVT(
+						[in] VARIANT* Var, 
+						[in] short Value);
+
+
+
+	};
+
+
+	
+    [
+      dllname("OLE32.DLL")
+    ]
+    module ole32 {
+
+
+    // Interface IDs
+    const LPSTR IIDSTR_IUnknown       = "{00000000-0000-0000-C000-000000000046}";
+    const LPSTR IIDSTR_IDispatch      = "{00020400-0000-0000-C000-000000000046}";
+    const LPSTR IIDSTR_IDataObject    = "{0000010e-0000-0000-C000-000000000046}";
+
+    const LPSTR CATID_ActiveScript           = "{F0B7A1A1-9847-11cf-8F20-00805F2CD064}";
+    const LPSTR CATID_ActiveScriptParse      = "{F0B7A1A2-9847-11cf-8F20-00805F2CD064}";  
+    const LPSTR IID_IActiveScript            = "{BB1A2AE1-A4F9-11cf-8F20-00805F2CD064}";
+    const LPSTR IID_IActiveScriptParse       = "{BB1A2AE2-A4F9-11cf-8F20-00805F2CD064}"; 
+    const LPSTR IID_IActiveScriptSite        = "{DB01A1E3-A42B-11cf-8F20-00805F2CD064}"; 
+    const LPSTR IID_IActiveScriptSiteWindow  = "{D10F6761-83E9-11cf-8F20-00805F2CD064}"; 
+    const LPSTR IID_IActiveScriptError       = "{EAE1BA61-A4ED-11cf-8F20-00805F2CD064}";
+
+
+	const LPSTR CFSTR_DROPDESCRIPTION			 = "DropDescription";
+
+
+
+        [entry("StgCreateDocfile")]
+        HRESULT _stdcall StgCreateDocfile(
+            [in] LPWSTR pwcsName, 
+            [in] STGM grfMode, 
+            [in] long reserved, 
+            [out, retval] IStorage** ppstgOpen);
+        [entry("ReleaseStgMedium")]
+        void _stdcall ReleaseStgMedium(
+			[in] STGMEDIUM* STM);
+
+		[entry("CreateStreamOnHGlobal")]
+		HRESULT CreateStreamOnHGlobal(
+			[in] LONG hGlobal,
+			[in] LONG fDeleteOnRelease,
+			[out, retval] IStream **ppstm);
+
+		[entry("GetHGlobalFromStream")]
+		HRESULT GetHGlobalFromStream(
+			[in] IStream *pstm,
+			[out, retval] LONG *phglobal);
+
+		[entry("CoInitialize")]
+		int _stdcall CoInitialize([in] void* pvReserved);
+		[entry("CoUninitialize")]
+		void _stdcall CoUninitialize();
+			
+		[entry("RegisterDragDrop")]
+		HRESULT RegisterDragDrop(
+			[in] LONG hwnd,
+			[in] IDropTarget *pDropTarget);
+
+			
+		[entry("RevokeDragDrop")]
+		HRESULT RevokeDragDrop(
+			[in] LONG hwnd);
+			
+		[entry("DoDragDrop")]
+		long _stdcall DoDragDrop(
+			[in] IDataObject *pDataObj,
+			[in] IDropSource *pDropSource,
+			[in] LONG dwOKEffects, 
+			[in] LONG *pdwEffect);
+
+    // Apartment model inter-thread interface passing helpers
+    [entry("CoMarshalInterThreadInterfaceInStream")]
+    HRESULT CoMarshalInterThreadInterfaceInStream(
+        [in] UUID *riid,
+        [in] stdole.IUnknown *pUnk,
+        [out, retval] long *ppStm);
+//Public Declare Function CoMarshalInterThreadInterfaceInStream Lib "ole32.dll" (riid As UUID, ByVal pUnk As IUnknown, ppStm As Long) As Long
+
+    [entry("CoGetInterfaceAndReleaseStream")]
+    HRESULT CoGetInterfaceAndReleaseStream(
+        [in] long pStm,
+        [in] UUID *iid,
+        [out] void *ppv);
+//Public Declare Function CoGetInterfaceAndReleaseStream Lib "ole32.dll" (ByVal pStm As Long, riid As UUID, pUnk As Any) As Long
+
+
+		[entry("CLSIDFromString")]
+		HRESULT CLSIDFromString(
+			[in] LPWSTR lpszProgID,
+			[in, out] UUID *lpclsid);
+
+		[entry("IIDFromString")]
+		HRESULT IIDFromString(
+			[in] LPWSTR lpszIID,
+			[in, out] UUID *lpiid);
+//Public Declare Function IIDFromString Lib "ole32" (ByVal lpsz As Long, lpiid As UUID) As Long
+		[entry("CLSIDFromProgID")]
+		HRESULT CLSIDFromProgID(
+			[in] LPWSTR lpszProgID,
+			[in, out] UUID *lpclsid);
+
+
+		[entry("IsEqualGUID")]
+		long IsEqualGUID(
+			[in] UUID *rguid1,
+			[in] UUID *rguid2);
+
+        [entry("StringFromCLSID")]
+        HRESULT _stdcall StringFromCLSID(
+            [in] UUID* rclsid, 
+            [out, retval] long* ppsz);
+        [entry("ProgIDFromCLSID")]
+        HRESULT _stdcall ProgIDFromCLSID(
+            [in] UUID* clsid, 
+            [out, retval] long* lplpszProgID);
+        [entry("CoTaskMemFree")]
+        long _stdcall CoTaskMemFree([in] long Ptr);
+
+		[entry("CoCreateGuid")]
+		HRESULT CoCreateGuid(
+			[out] UUID *pguid);
+
+		[entry("CoCreateInstance")]
+		LONG CoCreateInstance(
+			[in] UUID *CLSID,
+			[in] stdole.IUnknown *pUnkOuter,
+			[in] CLSCTX dwClsContext,
+			[in] UUID *IID,
+			[out] void *ppv);
+
+
+
+						
+    };
+
+
+
+typedef enum VCT_FLAGS {
+    VARIANT_NOVALUEPROP = 0x01,
+
+[helpstring("For VT_BOOL to VT_BSTR conversions convert to True/False instead of -1/0")]
+    VARIANT_ALPHABOOL = 0x02,      // For VT_BOOL to VT_BSTR conversions
+                                   // convert to "True"/"False" instead of
+                                   // "-1"/"0"
+[helpstring("For conversions to/from VT_BSTR,,passes LOCALE_NOUSEROVERRIDE to core coercion routines")]
+    VARIANT_NOUSEROVERRIDE = 0x04, // For conversions to/from VT_BSTR,,
+                                   // passes LOCALE_NOUSEROVERRIDE
+                                   // to core coercion routines
+    VARIANT_CALENDAR_HIJRI = 0x08,
+[helpstring("For VT_BOOL to VT_BSTR and back convert to local language rather than English")]
+    VARIANT_LOCALBOOL = 0x10,      // For VT_BOOL to VT_BSTR and back
+                                   // convert to local language rather than
+                                   // English
+} VCT_FLAGS;
+
+typedef enum {
+    CC_FASTCALL = 0,
+    CC_CDECL = 1,
+    CC_MSCPASCAL = 2,
+    CC_PASCAL = 2,
+    CC_MACPASCAL = 3,
+    CC_STDCALL = 4,
+    CC_FPFASTCALL = 5,
+    CC_SYSCALL = 6,
+    CC_MPWCDECL = 7,
+    CC_MPWPASCAL = 8,
+    CC_MAX = 9
+} CALLCONV;
+
+[
+    dllname("OLEAUT32.DLL")
+]
+module oleaut32 {
+
+
+    [entry("SysFreeString")]
+    void SysFreeStringPtr(
+        [in] LONG bstrString);
+
+
+    [entry("SysAllocString")]
+    BSTR SysAllocString(
+        [in] LONG pStr);
+
+    [entry("SysAllocString")]
+    LONG SysAllocStringPtr(
+        [in] LPWSTR pStr);
+			
+    [entry("SysAllocString")]
+    LONG SysAllocStringPtrPtr(
+        [in] LONG pStr);
+
+    [entry("SysReAllocString")]
+    LONG SysReAllocString(
+        [in] LONG pStr,
+        [in] LONG pStrNew);
+
+    [entry("SysAllocStringLen")]
+    LONG SysAllocStringLen(
+        [in] LONG pStr,
+        [in] LONG cb);
+
+    [entry("SysAllocStringLen")]
+    BSTR SysAllocStringLenS(
+        [in] LONG pStr,
+        [in] LONG cb);
+
+    [entry("SysAllocStringByteLen")]
+    BSTR SysAllocStringByteLenS(
+        [in] LONG pStr,
+        [in] LONG cb);
+
+    [entry("SysAllocStringByteLen")]
+    LONG SysAllocStringByteLen(
+        [in] LONG pStr,
+        [in] LONG cb);
+
+    [entry("VariantChangeType"),helpstring("Converts a variant from one type to another, using an LCID. wFlags = VCT_FLAGS")]
+    HRESULT VariantChangeType( 
+        [in] VARIANT *pvargDest,  
+        [in] VARIANT *pvarSrc,  
+        [in] short wFlags,  
+        [in] short toVartype);
+
+    [entry("VariantChangeType"),helpstring("Converts a variant from one type to another, using an LCID. wFlags = VCT_FLAGS")]
+    HRESULT VariantChangeTypePtr( 
+        [in] long pvargDest,  
+        [in] long pvarSrc,  
+        [in] short wFlags,  
+        [in] short toVartype);
+
+
+
+    [entry("VariantCopyInd")]
+    HRESULT VariantCopyIndPtr( 
+        [in] LONG pvargDest,
+        [in] LONG pvargSrc);
+
+    [entry("VariantCopyInd")]
+    HRESULT VariantCopyIndPtrVar( 
+        [in] LONG pvargDest,
+        [in] VARIANT *pvargSrc);
+
+    [entry("CreateTypeLib")]
+	HRESULT CreateTypeLib(
+        [in] SYSKIND syskind,
+        [in] LPWSTR szFile,
+        [out, retval] ICreateTypeLib **ppctlib);
+
+
+    [entry("CreateTypeLib2")]
+    HRESULT CreateTypeLib2(
+        [in] SYSKIND syskind,
+        [in] LPWSTR szFile,
+        [out, retval] ICreateTypeLib2 **ppctlib);
+
+    [entry("LoadRegTypeLib")]
+    HRESULT LoadRegTypeLib(
+        [in] UUID *rguid,
+        [in] short wVerMajor,
+        [in] short wVerMinor,
+        [in] LONG lcid,
+        [out, retval] ITypeLib ** pptlib);
+
+
+    [entry("LoadTypeLibEx")]
+    HRESULT LoadTypeLibEx(
+        [in, string] LPWSTR szFile,
+        [in] REGKIND regkind,
+        [out, retval] ITypeLib **pptlib);
+
+    [entry("LoadTypeLib")]
+    HRESULT LoadTypeLib(
+        [in, string] LPWSTR szFile,
+        [out, retval] ITypeLib **pptlib);
+
+    [entry("QueryPathOfRegTypeLib")]
+    HRESULT QueryPathOfRegTypeLib(
+        [in] UUID *GUID,
+        [in] short wVerMajor,
+        [in] short wVerMinor,
+        [in] long LCID,
+        [out, retval] BSTR *lpbstrPathName);
+
+
+    [entry("RegisterTypeLib")]
+    HRESULT RegisterTypeLib(
+        [in] ITypeLib * ptlib,
+        [in] LPWSTR szFullPath,
+        [in] LPWSTR szHelpDir);
+
+    [entry("UnRegisterTypeLib")]
+    HRESULT UnRegisterTypeLib(
+        [in] UUID *libID,
+        [in] short wVerMajor,
+        [in] short wVerMinor,
+        [in] LONG lcid,
+        [in] SYSKIND syskind);
+
+    [entry("DispCallFunc")]
+    long _stdcall DispCallFunc(
+                    [in] long pvInstance, 
+                    [in] long oVft, 
+                    [in] CALLCONV cc, 
+                    [in] short vtReturn, 
+                    [in] long cActuals, 
+                    [in] void* prgvt, 
+                    [in] void* prgpvarg, 
+                    [in] VARIANT* pvargResult);
+
+
+
+}
+
+
+
+[
+    odl,
+    uuid(79eac9c0-baf9-11ce-8c82-00aa004ba90b),
+]
+interface IBinding: stdole.IUnknown {
+
+    HRESULT Abort();
+    HRESULT Suspend();
+    HRESULT Resume();
+    HRESULT SetPriority(
+        [in] long nPriority);
+    HRESULT GetPriority(
+        [out] long *pnPriority);
+    HRESULT GetBindResult(
+        [out] UUID *pclsidProtocol,
+        [out] long *pdwResult,
+        [out] long *pszResult,
+        [in, out] long *pdwReserved);
+}
+
+
+
+
+
+
+[
+    odl,
+    uuid(79eac9c1-baf9-11ce-8c82-00aa004ba90b)
+]
+interface IBindStatusCallback: stdole.IUnknown {
+    HRESULT OnStartBinding(
+        [in] long dwReserved,
+        [in] IBinding *pib);
+    HRESULT GetPriority(
+        [out, retval] long *pnPriority);
+    HRESULT OnLowResource(
+        [in] long reserved);
+    HRESULT OnProgress(
+        [in] long ulProgress,
+        [in] long ulProgressMax,
+        [in] long ulStatusCode,
+        [in] long szStatusText);
+    HRESULT OnStopBinding(
+        [in] LONG hresult,
+        [in] LONG szError);
+    HRESULT GetBindInfo(
+        [in, out] long *grfBINDF,
+        [in, out] long *pbindinfo);
+    HRESULT OnDataAvailable(
+        [in] long grfBSCF,
+        [in] long dwSize,
+        [in, out] FORMATETC *pformatetc,
+        [in, out] STGMEDIUM *pstgmed);
+    HRESULT OnObjectAvailable(
+        [in, out] UUID *riid,
+        [in] stdole.IUnknown *punk);
+}
+
+
+
+
+
+    [
+	  dllname("oleaut32.dll"),
+      uuid(91209AC0-60F6-11CF-9C5D-00AA00C1489E),
+      helpstring("Functions for Standard OLE Objects")
+    ]
+    module StdFunctions {
+        [entry("OleLoadPictureFileEx"), helpstring("Loads a picture from a file")]
+        HRESULT _stdcall LoadPicture(
+                        [in, optional] VARIANT filename, 
+                        [in, defaultvalue(0)] int widthDesired, 
+                        [in, defaultvalue(0)] int heightDesired, 
+                        [in, defaultvalue(0)] LoadPictureConstants flags, 
+                        [out, retval] IPictureDisp** retval);
+        [entry("OleSavePictureFile"), helpstring("Saves a picture to a file")]
+        HRESULT _stdcall SavePicture(
+                        [in] IPictureDisp* Picture, 
+                        [in] BSTR filename);
+    };
+
+
+
+
+typedef long DWORD;
+typedef unsigned char BYTE;
+
+[odl,uuid(69d14c80-c18e-11d0-a9ce-006097942311)]
+interface IDataFilter: stdole.IUnknown
+{
+
+        HRESULT DoEncode(
+            [in]    DWORD                   dwFlags,
+            [in]    LONG                    lInBufferSize,
+            [in]    void*                   pbInBuffer,
+            [in]    LONG                    lOutBufferSize,
+            [out]   void*                   pbOutBuffer,
+            [in]    LONG                    lInBytesAvailable,
+            [out]   LONG*                   plInBytesRead,
+            [out]   LONG*                   plOutBytesWritten, 
+            [in]    DWORD                   dwReserved 
+            );
+
+        HRESULT DoDecode(
+            [in]    DWORD                   dwFlags,
+            [in]    LONG                    lInBufferSize,
+            [in]    void*                   pbInBuffer,
+            [in]    LONG                    lOutBufferSize,
+            [out]   void*                   pbOutBuffer,
+            [in]    LONG                    lInBytesAvailable,
+            [out]   LONG*                   plInBytesRead,
+            [out]   LONG*                   plOutBytesWritten, 
+            [in]    DWORD                   dwReserved 
+            );
+
+        HRESULT SetEncodingLevel(
+            [in]   DWORD                    dwEncLevel
+            );
+
+}
+
+typedef long ULONG;
+
+[odl,uuid(70bdde00-c18e-11d0-a9ce-006097942311)]
+interface IEncodingFilterFactory : stdole.IUnknown
+{
+        typedef struct _tagDATAINFO
+        {
+            ULONG   ulTotalSize;
+            ULONG   ulavrPacketSize;
+            ULONG   ulConnectSpeed;     
+            ULONG   ulProcessorSpeed;
+        } DATAINFO ;
+
+
+        HRESULT FindBestFilter(
+            [in]    LPWSTR                 pwzCodeIn,
+            [in]    LPWSTR                 pwzCodeOut,
+            [in]    DATAINFO                info,
+            [out]   IDataFilter**           ppDF 
+            );
+
+        HRESULT GetDefaultFilter(
+            [in]    LPWSTR                 pwzCodeIn,
+            [in]    LPWSTR                 pwzCodeOut,
+            [out]   IDataFilter**           ppDF 
+            );
+
+}
+
+
+
+
+//=================ActiveSCRIPT==============
+
+
+typedef enum HRESULTS {
+    S_OK = 0,
+    S_FALSE = 1,
+
+    E_NOTIMPL = 0x80004001,
+    E_OUTOFMEMORY = 0x8007000E,
+    E_INVALIDARG = 0x80070057,
+    E_NOINTERFACE = 0x80004002,
+    E_POINTER = 0x80004003,
+    E_HANDLE = 0x80070006,
+    E_ABORT = 0x80004004,
+    E_FAIL = 0x80004005,
+    E_ACCESSDENIED = 0x80070005,
+} HRESULTS;
+
+
+ 
+/*
+typedef [helpstring("DISP_E_EXCEPTION Error info")] struct EXCEPINFO {
+        [helpstring("Error number")]
+        short wCode;
+        short wReserved;
+        [helpstring("Source")]
+        BSTR Source;
+        [helpstring("Description")]
+        BSTR Description;
+        [helpstring("Help file")]
+        BSTR HelpFile;
+        [helpstring("Help context")]
+        BSTR dwHelpContext;
+        LONG pvReserved;
+        [helpstring("HRESULT (__stdcall *pfnDeferredFillIn)(struct EXCEPINFO *);")]
+        LONG pfnDeferredFillIn;
+        LONG scode;
+} EXCEPINFO;
+*/
+
+typedef LONG SCRIPTTHREADID;
+//typedef [public] LONG BOOL;
+
+typedef enum tagSCRIPTSTATE {
+        SCRIPTSTATE_UNINITIALIZED       = 0,
+        SCRIPTSTATE_INITIALIZED         = 5,
+        SCRIPTSTATE_STARTED             = 1,
+        SCRIPTSTATE_CONNECTED           = 2,
+        SCRIPTSTATE_DISCONNECTED        = 3,
+        SCRIPTSTATE_CLOSED              = 4,
+} SCRIPTSTATE ;
+
+typedef enum tagSCRIPTTEXT{
+	SCRIPTTEXT_DELAYEXECUTION = 0x1,
+	SCRIPTTEXT_ISVISIBLE = 0x2,
+	SCRIPTTEXT_ISEXPRESSION = 0x20,
+	SCRIPTTEXT_ISPERSISTENT = 0x40,
+	SCRIPTTEXT_HOSTMANAGESSOURCE = 0x80,
+} SCRIPTTEXT;
+
+typedef enum tagSCRIPTITEM{
+	SCRIPTITEM_ISVISIBLE = 0x2,
+	SCRIPTITEM_ISSOURCE = 0x4,
+	SCRIPTITEM_GLOBALMEMBERS = 0x8,
+	SCRIPTITEM_ISPERSISTENT = 0x40,
+	SCRIPTITEM_CODEONLY = 0x200,
+	SCRIPTITEM_NOCODE = 0x400,
+} SCRIPTITEM;
+
+typedef enum tagSCRIPTINFO{
+	SCRIPTINFO_IUNKNOWN = 1,
+	SCRIPTINFO_ITYPEINFO = 2
+} SCRIPTINFO;
+
+typedef enum tagSCRIPTTHREADSTATE {
+        SCRIPTTHREADSTATE_NOTINSCRIPT   = 0,
+        SCRIPTTHREADSTATE_RUNNING       = 1,
+} SCRIPTTHREADSTATE ;
+
+       
+
+
+//this one we have to implement so that makes it extra picky
+[
+        odl,
+        uuid(DB01A1E3-A42B-11cf-8F20-00805F2CD064),
+]
+interface IActiveScriptSite : stdole.IUnknown
+{
+        HRESULT GetLCID(
+                [out,retval] LONG *plcid);
+
+        HRESULT GetItemInfo(
+                [in] BSTR pstrName,
+                [in] SCRIPTINFO     dwReturnMask,
+                [in,out] LONG  *ppiunkItem,
+                [in,out] LONG *ppti
+        );
+
+
+        HRESULT GetDocVersionString(
+                [out,retval] BSTR      *pbstrVersion
+        );
+
+        HRESULT OnScriptTerminate(
+                [in]  VARIANT     *pvarResult,
+                [in]  xstdole.EXCEPINFO   *pexcepinfo
+        );
+
+        HRESULT OnStateChange(
+                [in]  SCRIPTSTATE       ssScriptState
+        );
+
+        HRESULT OnScriptError(
+                [in] IActiveScriptError *pscripterror
+        );
+
+        HRESULT OnEnterScript(void);
+
+        HRESULT OnLeaveScript(void);
+
+
+}
+
+
+[
+        odl,
+        uuid(EAE1BA61-A4ED-11cf-8F20-00805F2CD064),
+]
+interface IActiveScriptError : stdole.IUnknown
+{
+        HRESULT GetExceptionInfo(
+                [out] xstdole.EXCEPINFO  *pexcepinfo
+        );
+        HRESULT GetSourcePosition(
+                [out] LONG     *pdwSourceContext,
+                [out] LONG     *pulLineNumber,
+                [out] LONG      *plCharacterPosition    // -1 --> unknown
+        );
+        HRESULT GetSourceLineText(
+                [out] BSTR      *pbstrSourceLine
+        );
+}
+
+//we have to implement this one too to see visual elements like messageboxes
+//or else we get error access denied on msgbox 
+[
+        odl,
+        uuid(D10F6761-83E9-11cf-8F20-00805F2CD064),
+]
+interface IActiveScriptSiteWindow : stdole.IUnknown
+{
+        HRESULT GetWindow(
+                [out,retval] LONG      *phwnd
+        );
+
+        HRESULT EnableModeless(
+                [in]  LONG      fEnable
+        );
+}
+
+
+[
+        odl,
+        uuid(51973C11-CB0C-11d0-B5C9-00A0244A0E7A),
+]
+interface IActiveScriptSiteDebug : stdole.IUnknown
+{
+		HRESULT GetDocumentContextFromPosition( 
+            [in] LONG *dwSourceContext,
+            [in] LONG *uCharacterOffset,
+            [in] LONG *uNumChars,
+            [out,retval] LONG *ppsc
+        );
+        
+        HRESULT GetApplication( 
+            [out,retval] LONG *ppda
+        );
+       
+        //IDebugApplication        
+        HRESULT GetRootApplicationNode( 
+			[out,retval] LONG *ppdanRoot
+        );
+
+        HRESULT OnScriptErrorDebug( 
+            [in] LONG *pErrorDebug,
+            [in,out] LONG *pfEnterDebugger,
+            [out,retval] LONG *pfCallOnScriptErrorWhenContinuing
+            
+        );
+        
+};
+
+
+/*
+typedef enum tagBREAKREASON{ 
+   BREAKREASON_STEP,// Caused by the stepping mode 
+   BREAKREASON_BREAKPOINT,// Caused by an explicit breakpoint 
+   BREAKREASON_DEBUGGER_BLOCK,// Caused by another thread breaking 
+   BREAKREASON_HOST_INITIATED,// Caused by host requested break 
+   BREAKREASON_LANGUAGE_INITIATED,// Caused by a scripted break 
+   BREAKREASON_DEBUGGER_HALT,// Caused by debugger IDE requested break 
+   BREAKREASON_ERROR// Caused by an execution error 
+} BREAKREASON;
+
+typedef enum tagBREAKRESUME_ACTION{ 
+   BREAKRESUMEACTION_ABORT,// Abort the application 
+   BREAKRESUMEACTION_CONTINUE,// Continue running 
+   BREAKRESUMEACTION_STEP_INTO,// Step into a procedure 
+   BREAKRESUMEACTION_STEP_OVER,// Step over a procedure 
+   BREAKRESUMEACTION_STEP_OUT// Step out of the current procedure 
+} BREAKRESUMEACTION;
+
+typedef enum tagERRORRESUMEACTION { 
+   ERRORRESUMEACTION_ReexecuteErrorStatement,// try executing the erroneous line again 
+   ERRORRESUMEACTION_AbortCallAndReturnErrorToCaller,// let the language engine handle the error 
+   ERRORRESUMEACTION_SkipErrorStatement,// resume execution from beyond the error 
+} ERRORRESUMEACTION;
+typedef DWORD APPBREAKFLAGS; 
+
+// IRemoteDebugApplication Interface
+// (51973C30-CB0C-11d0-B5C9-00A0244A0E7A), 
+[
+     	odl,
+        uuid(51973C30-CB0C-11d0-B5C9-00A0244A0E7A)
+ ]
+interface IRemoteDebugApplication : stdole.IUnknown
+{ 
+   // Continue an application which is currently in a breakpoint. 
+   HRESULT ResumeFromBreakPoint( 
+      // For stepping modes, the thread which is to be affected by the stepping mode. 
+      //[in] IRemoteDebugApplicationThread *prptFocus, 
+	  [in] long *prptFocus, 
+      // The action to take (step mode, etc.) upon resuming the application 
+      [in] BREAKRESUMEACTION bra, 
+      // the action to take in the case that we stopped because of an error 
+      [in] ERRORRESUMEACTION era); 
+
+   // Causes the application to break into the debugger at the earliest opportunity. Note 
+   // that a long time may elapse before the application actually breaks, particularly if 
+   // the application is not currently executing script code. 
+   HRESULT CauseBreak(void); 
+
+   // Connects a debugger to the application. Only one debugger may be connected at a 
+   // time; this method fails if there is already a debugger connected 
+   HRESULT ConnectDebugger( 
+   //   [in] IApplicationDebugger *pad); 
+	   [in] long *pad); 
+
+   // Disconnects the current debugger from the application. 
+   HRESULT DisconnectDebugger(void); 
+
+   // Returns the current debugger connected to the application. 
+   HRESULT GetDebugger( 
+   //   [out,retval] IApplicationDebugger **pad); 
+      [out,retval] long **pad); 
+
+   // Provides a mechanism for the debugger IDE, running out-of-process to the 
+   // application, to create objects in the application process. 
+   // This method simply delegates to CoCreateInstance. 
+   HRESULT CreateInstanceAtApplication( 
+   //   [in] REFCLSID rclsid,// Class identifier (CLSID) of the object 
+      [in] UUID rclsid,// Class identifier (CLSID) of the object 
+      // Note: This parameter may have to be removed. 
+      [in] IUnknown *pUnkOuter,// Object is or isn't part of an aggregate 
+      [in] DWORD dwClsContext,// Context for running executable code 
+      //[in] REFIID riid,// Interface identifier 
+      [in] UUID riid,// Interface identifier 
+      [out,retval] IUnknown **ppvObject); 
+
+   // Points to requested interface pointer 
+   // Indicates if the application is alive. Should always return S_OK. If the application 
+   // process has rudely shut down COM will return an error from the marshalling proxy. 
+   HRESULT QueryAlive(void); 
+
+   // Enumerates all threads known to be associated with the application. 
+   // New threads may be added at any time. 
+   HRESULT EnumThreads( 
+   //   [out,retval] IEnumRemoteDebugApplicationThreads **pperdat); 
+      [out,retval] long **pperdat); 
+
+   // Returns the application node under which all nodes associated with the 
+   // application are added. 
+   HRESULT GetName( 
+      [out,retval] BSTR *pbstrName); 
+
+   // Returns a node for the application 
+   HRESULT GetRootNode( 
+   //   [out,retval] IDebugApplicationNode **ppdanRoot); 
+      [out,retval] long **ppdanRoot); 
+
+   // Returns an enumerator that lists the global expression 
+   // contexts for all languages running in this application 
+   HRESULT EnumGlobalExpressionContexts ( 
+   //   [out,retval] IEnumDebugExpressionContexts **ppedec); 
+      [out,retval] long **ppedec); 
+}; 
+
+
+
+
+
+
+	[
+     	odl,
+        uuid(51973C32-CB0C-11d0-B5C9-00A0244A0E7A)
+     ]
+    interface IDebugApplication : IRemoteDebugApplication
+    {
+    
+        HRESULT SetName( 
+            [in] LPSTR  pstrName);
+        
+        HRESULT StepOutComplete( void);
+        
+        HRESULT DebugOutput( 
+            [in] LPSTR  pstr);
+        
+        HRESULT StartDebugSession( void);
+        
+        HRESULT HandleBreakPoint( 
+            [in] BREAKREASON br,
+            [in,out] BREAKRESUMEACTION  *pbra);
+        
+        HRESULT Close( void);
+        
+        HRESULT GetBreakFlags( 
+            [in,out] APPBREAKFLAGS  *pabf,
+            //[in,out] IRemoteDebugApplicationThread  *pprdatSteppingThread);
+            [in,out] long  *pprdatSteppingThread);
+        
+        HRESULT GetCurrentThread( 
+            //[in,out] IDebugApplicationThread  *pat);
+            [in,out] long  *pat);
+        
+        HRESULT CreateAsyncDebugOperation( 
+            //[in] IDebugSyncOperation  *psdo,
+            [in] long  *psdo,
+            //[in,out] IDebugAsyncOperation  *ppado);
+            [in,out] long  *ppado);
+        
+        HRESULT AddStackFrameSniffer( 
+            //[in] IDebugStackFrameSniffer  *pdsfs,
+            [in] long  *pdsfs,
+            [in,out] LONG  *pdwCookie);
+        
+        HRESULT RemoveStackFrameSniffer( 
+            [in] LONG dwCookie);
+        
+        HRESULT QueryCurrentThreadIsDebuggerThread( void);
+        
+        HRESULT SynchronousCallInDebuggerThread( 
+            //[in] IDebugThreadCall  *pptc,
+            [in] long  *pptc,
+            [in] LONG dwParam1,
+            [in] LONG dwParam2,
+            [in] LONG dwParam3);
+        
+        HRESULT CreateApplicationNode( 
+            //[in,out] IDebugApplicationNode  *ppdanNew);
+            [in,out] long  *ppdanNew);
+        
+        HRESULT FireDebuggerEvent( 
+            //[in] REFGUID riid,
+            [in] UUID riid,
+            [in] IUnknown  *punk);
+        
+        HRESULT HandleRuntimeError( 
+            [in] IActiveScriptErrorDebug  *pErrorDebug,
+            [in] IActiveScriptSite  *pScriptSite,
+            [in,out] BREAKRESUMEACTION  *pbra,
+            [in,out] ERRORRESUMEACTION  *perra,
+            [in,out] BOOL  *pfCallOnScriptError);
+        
+        BOOL FCanJitDebug( void);
+        
+        BOOL FIsAutoJitDebugEnabled( void);
+        
+        HRESULT AddGlobalExpressionContextProvider( 
+            [in] IProvideExpressionContexts  *pdsfs,
+            [in,out] LONG  *pdwCookie);
+        
+        HRESULT RemoveGlobalExpressionContextProvider( 
+            [in] LONG dwCookie);
+        
+    };
+    
+
+
+
+
+[
+        odl,
+        uuid(51973C2f-CB0C-11d0-B5C9-00A0244A0E7A),
+]
+interface IProcessDebugManager : stdole.IUnknown 
+{ 
+   // Creates a new debug application object. The new object is not added to the 
+   // running application list and has no name. 
+   HRESULT CreateApplication( 
+      [out,retval] IDebugApplication **ppda); 
+
+   // Returns a default application object for the current process, creating one and adding 
+   // it to the running application list if necessary. Language engines should use this 
+   // application if they are running on a host that does not provide an application. 
+   HRESULT GetDefaultApplication( 
+      [out,retval] IDebugApplication **ppda); 
+
+   // Adds an application to the running application list in the machine debug manager. 
+   HRESULT AddApplication( 
+      [in] IDebugApplication *pda, 
+      // Returns a cookie used to remove the application from the machine debug manager. 
+      [out,retval] DWORD *pdwAppCookie); 
+
+   // Removes an application from the running application list. 
+   HRESULT RemoveApplication( 
+      // The cookie provided by AddApplication. 
+      [in] DWORD dwAppCookie); 
+   
+   HRESULT CreateDebugDocumentHelper( 
+      [in] IUnknown *punkOuter, 
+      [out,retval] IDebugDocumentHelper** pddh); 
+}; 
+
+ */  
+
+//these ones we just have to use in our vb code not as picky
+//still need to tweak the default IDL though to make it compile with Mktyplib.exe
+
+
+[
+        odl,
+        uuid(BB1A2AE1-A4F9-11cf-8F20-00805F2CD064),
+]
+interface IActiveScript : stdole.IUnknown
+{
+        HRESULT SetScriptSite(
+                [in]  IActiveScriptSite *pass
+        );
+
+        HRESULT GetScriptSite(
+                [in]                UUID riid,
+                [out, retval] void **ppvObject
+        );
+
+        HRESULT SetScriptState(
+                [in]  SCRIPTSTATE ss
+        );
+
+        HRESULT GetScriptState(
+                [out] SCRIPTSTATE *pssState
+        );
+
+        HRESULT Close(void);
+
+        HRESULT AddNamedItem(
+                [in]  BSTR pstrName,
+                [in]  SCRIPTITEM    dwFlags
+        );
+
+        HRESULT AddTypeLib(
+                [in]  UUID   rguidTypeLib,
+                [in]  LONG    dwMajor,
+                [in]  LONG    dwMinor,
+                [in]  LONG    dwFlags
+        );
+
+        HRESULT GetScriptDispatch(
+                [in]  LPSTR pstrItemName,
+                [out] IDispatch **ppdisp
+        );
+
+        HRESULT GetCurrentScriptThreadID(
+                [out] SCRIPTTHREADID *pstidThread
+        );
+
+        HRESULT GetScriptThreadID(
+                [in]  LONG            dwWin32ThreadId,
+                [out] SCRIPTTHREADID    *pstidThread
+        );
+
+        HRESULT GetScriptThreadState(
+                [in]  SCRIPTTHREADID    stidThread,
+                [out] SCRIPTTHREADSTATE *pstsState
+        );
+
+        HRESULT InterruptScriptThread(
+                [in]  SCRIPTTHREADID    stidThread,
+                [in]  xstdole.EXCEPINFO   *pexcepinfo,
+                [in]  LONG        dwFlags
+        );
+
+        HRESULT Clone(
+                [out] IActiveScript     **ppscript
+        );
+
+}
+
+[
+        odl,
+        uuid(BB1A2AE2-A4F9-11cf-8F20-00805F2CD064),
+]
+interface IActiveScriptParse : stdole.IUnknown
+{
+        HRESULT InitNew(void);
+
+        HRESULT AddScriptlet(
+                [in]  LONG         pstrDefaultName,
+                [in]  LONG         pstrCode,
+                [in]  LONG         pstrItemName,
+                [in]  LONG         pstrSubItemName,
+                [in]  LONG         pstrEventName,
+                [in]  LONG         pstrDelimiter,
+                [in]  LONG            dwSourceContextCookie,
+                [in]  LONG             ulStartingLineNumber,
+                [in]  LONG            dwFlags,
+                [out] BSTR              *pbstrName,
+                [out] xstdole.EXCEPINFO         *pexcepinfo
+        );
+
+        HRESULT ParseScriptText(
+                [in]  BSTR         pstrCode,
+                [in]  BSTR         pstrItemName,
+                [in]  stdole.IUnknown          *punkContext,
+                [in]  BSTR         pstrDelimiter,
+                [in]  LONG            dwSourceContextCookie,
+                [in]  LONG             ulStartingLineNumber,
+                [in]  SCRIPTTEXT            dwFlags,
+                [out] VARIANT           *pvarResult,
+                [out] xstdole.EXCEPINFO         *pexcepinfo
+        );
+
+	
+
+}
+
+
+	[
+		odl,
+		uuid(539698A0-CDCA-11CF-A5EB-00AA0047A063),
+	]
+	interface IActiveScriptSiteInterruptPoll: stdole.IUnknown
+	{
+		HRESULT QueryContinue (void);
+	};
+
+
+//=================ActiveSCRIPT==============
+
+
+
+
+
+}
+

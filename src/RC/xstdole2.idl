@@ -1,0 +1,1177 @@
+// typelib filename: xstdole.tlb
+
+[
+  uuid(D396D8E0-7B82-4F49-AD0E-14EBE78A068B),
+  version(1.0),
+  helpstring("OLE Automation for VB6")
+]
+library xstdole
+{
+    // TLib :     // Forward declare all types defined in this typelib
+	//importlib ("stdole2.tlb")
+
+
+    interface IUnknown;
+    interface IDispatch;
+
+    interface ITypeComp;
+    interface ITypeInfo;
+    interface ITypeInfo2;
+    interface ITypeLib;
+    interface ITypeLib2;
+	interface ICreateTypeInfo;
+	interface ICreateTypeInfo2;
+	interface ICreateTypeLib;
+	interface ICreateTypeLib2;
+
+
+    interface IEnumVARIANT;
+    interface IFont;
+    dispinterface Font;
+    interface IPicture;
+    dispinterface Picture;
+    dispinterface FontEvents;
+
+
+    typedef struct {
+		 long Data1;
+		 short Data2;
+		 short Data3;
+		 unsigned char Data4[8];
+    } UUID;
+
+    typedef struct {
+        [helpstring("Parameters")]
+        LONG rgPointerToVariantArray;
+        [helpstring("Named parameters")]
+        LONG rgPointerToLONGNamedArgs;
+        [helpstring("Parameter count")]
+        LONG cArgs;
+        [helpstring("Named parameter count")]
+        LONG cNamedArgs;
+    } DISPPARAMS;
+
+
+    typedef [helpstring("DISP_E_EXCEPTION Error info")] struct {
+        [helpstring("Error number")]
+        short wCode;
+        short wReserved;
+        [helpstring("Source")]
+        BSTR Source;
+        [helpstring("Description")]
+        BSTR Description;
+        [helpstring("Help file")]
+        BSTR HelpFile;
+        [helpstring("Help context")]
+        LONG dwHelpContext;
+        LONG pvReserved;
+        [helpstring("HRESULT (__stdcall *pfnDeferredFillIn)(struct EXCEPINFO *);")]
+        LONG pfnDeferredFillIn;
+        LONG scode;
+    } EXCEPINFO;
+
+
+    [
+      odl,hidden,
+      uuid(00000000-0000-0000-C000-000000000046)
+    ]
+    interface IUnknown {
+		[restricted]
+        HRESULT _stdcall QueryInterface(
+                        [in] UUID* riid, 
+                        [out] void** ppvObj);
+		[restricted]
+        long _stdcall AddRef();
+ 		[restricted]
+        long _stdcall Release();
+    };
+
+
+    [odl,hidden,uuid(00020400-0000-0000-C000-000000000046)]
+    interface IDispatch : IUnknown {
+		[hidden]
+        HRESULT _stdcall GetTypeInfoCount(
+            [out, retval] int* pctinfo);
+		[hidden]
+        HRESULT _stdcall GetTypeInfo(
+            [in, defaultvalue(0)] int itinfo,
+            [in, defaultvalue(0)] long lcid,
+            [out, retval] ITypeInfo **pptinfo);
+		[hidden]
+		HRESULT _stdcall GetIDsOfNames(
+            [in] UUID* riid,
+            [in] LPWSTR *rgszNames,
+            [in] int cNames,
+            [in] long lcid,
+            [out,retval] long *rgdispid);
+		[hidden]
+		HRESULT _stdcall Invoke(
+            [in] long dispidMember,
+            [in] UUID* riid,
+            [in] long lcid,
+            [in] short wFlags,
+            [in] DISPPARAMS *pdispparams,
+            [in] long pvarResult,
+            [out] EXCEPINFO *pexcepinfo,
+            [out] int *puArgErr);
+    };
+
+
+    [
+      odl,
+      uuid(00020404-0000-0000-C000-000000000046)
+    ]
+    interface IEnumVARIANT : IUnknown {
+        HRESULT _stdcall Next(
+                        [in] unsigned long celt, 
+                        [in] VARIANT* rgvar, 
+                        [out] unsigned long* pceltFetched);
+        HRESULT _stdcall Skip([in] unsigned long celt);
+        HRESULT _stdcall Reset();
+        HRESULT _stdcall Clone([out] IEnumVARIANT** ppenum);
+    };
+
+	typedef short VARIANT_BOOL;
+
+    typedef [uuid(66504313-BE0F-101A-8BBB-00AA00300CAB), public]
+    int OLE_HANDLE;
+
+
+    typedef [uuid(6650430A-BE0F-101A-8BBB-00AA00300CAB)]
+    enum {
+        Unchecked = 0,
+        Checked = 1,
+        Gray = 2
+    } OLE_TRISTATE;
+
+
+    [
+      odl,
+      uuid(BEF6E002-A874-101A-8BBA-00AA00300CAB),
+      helpstring("Font Object"),
+      hidden
+    ]
+    interface IFont : IUnknown {
+        [propget]        HRESULT _stdcall Name([out, retval] BSTR* pname);
+        [propput]        HRESULT _stdcall Name([in] BSTR pname);
+        [propget]        HRESULT _stdcall Size([out, retval] CURRENCY* psize);
+        [propput]        HRESULT _stdcall Size([in] CURRENCY psize);
+        [propget]        HRESULT _stdcall Bold([out, retval] VARIANT_BOOL* pbold);
+        [propput]        HRESULT _stdcall Bold([in] VARIANT_BOOL pbold);
+        [propget]        HRESULT _stdcall Italic([out, retval] VARIANT_BOOL* pitalic);
+        [propput]        HRESULT _stdcall Italic([in] VARIANT_BOOL pitalic);
+        [propget]        HRESULT _stdcall Underline([out, retval] VARIANT_BOOL* punderline);
+        [propput]        HRESULT _stdcall Underline([in] VARIANT_BOOL punderline);
+        [propget]        HRESULT _stdcall Strikethrough([out, retval] VARIANT_BOOL* pstrikethrough);
+        [propput]        HRESULT _stdcall Strikethrough([in] VARIANT_BOOL pstrikethrough);
+        [propget]        HRESULT _stdcall Weight([out, retval] short* pweight);
+        [propput]        HRESULT _stdcall Weight([in] short pweight);
+        [propget]        HRESULT _stdcall Charset([out, retval] short* pcharset);
+        [propput]        HRESULT _stdcall Charset([in] short pcharset);
+        [propget]        HRESULT _stdcall hFont([out, retval] OLE_HANDLE* phfont);
+        HRESULT _stdcall Clone([out] IFont** ppfont);
+        HRESULT _stdcall IsEqual([in] IFont* pfontOther);
+        HRESULT _stdcall SetRatio(
+                        [in] long cyLogical, 
+                        [in] long cyHimetric);
+        HRESULT _stdcall AddRefHfont([in] OLE_HANDLE hFont);
+        HRESULT _stdcall ReleaseHfont([in] OLE_HANDLE hFont);
+    };
+
+    [
+      uuid(BEF6E003-A874-101A-8BBA-00AA00300CAB)
+    ]
+    dispinterface Font {
+        properties:
+            [id(00000000)]            BSTR Name;
+            [id(0x00000002)]            CURRENCY Size;
+            [id(0x00000003)]            VARIANT_BOOL Bold;
+            [id(0x00000004)]            VARIANT_BOOL Italic;
+            [id(0x00000005)]            VARIANT_BOOL Underline;
+            [id(0x00000006)]            VARIANT_BOOL Strikethrough;
+            [id(0x00000007)]            short Weight;
+            [id(0x00000008)]            short Charset;
+        methods:
+    };
+
+    typedef [public]    Font IFontDisp;
+
+    [
+      uuid(0BE35203-8F91-11CE-9DE3-00AA004BB851)
+    ]
+    coclass StdFont {
+        [default] dispinterface Font;
+        [default, source] dispinterface FontEvents;
+        interface IFont;
+    };
+
+    [
+      odl,
+      uuid(7BF80980-BF32-101A-8BBB-00AA00300CAB),
+      helpstring("Picture Object"),
+      hidden
+    ]
+    interface IPicture : IUnknown {
+        [propget]        HRESULT _stdcall Handle([out, retval] OLE_HANDLE* phandle);
+        [propget]        HRESULT _stdcall hPal([out, retval] OLE_HANDLE* phpal);
+        [propget]        HRESULT _stdcall Type([out, retval] short* ptype);
+        [propget]        HRESULT _stdcall Width([out, retval] long* pwidth);
+        [propget]        HRESULT _stdcall Height([out, retval] long* pheight);
+        HRESULT _stdcall Render(
+                        [in] int hdc, 
+                        [in] long x, 
+                        [in] long y, 
+                        [in] long cx, 
+                        [in] long cy, 
+                        [in] long xSrc, 
+                        [in] long ySrc, 
+                        [in] long cxSrc, 
+                        [in] long cySrc, 
+                        [in] void* prcWBounds);
+        [propput]        HRESULT _stdcall hPal([in] OLE_HANDLE phpal);
+        [propget]        HRESULT _stdcall CurDC([out, retval] int* phdcOut);
+        HRESULT _stdcall SelectPicture(
+                        [in] int hdcIn, 
+                        [out] int* phdcOut, 
+                        [out] OLE_HANDLE* phbmpOut);
+        [propget]        HRESULT _stdcall KeepOriginalFormat([out, retval] VARIANT_BOOL* pfkeep);
+        [propput]        HRESULT _stdcall KeepOriginalFormat([in] VARIANT_BOOL pfkeep);
+        HRESULT _stdcall PictureChanged();
+        HRESULT _stdcall SaveAsFile(
+                        [in] void* pstm, 
+                        [in] VARIANT_BOOL fSaveMemCopy, 
+                        [out] long* pcbSize);
+        [propget]        HRESULT _stdcall Attributes([out, retval] long* pdwAttr);
+        HRESULT _stdcall SetHdc([in] OLE_HANDLE hdc);
+    };
+
+    [
+      uuid(7BF80981-BF32-101A-8BBB-00AA00300CAB)
+    ]
+    dispinterface Picture {
+        properties:
+            [id(00000000), readonly]            OLE_HANDLE Handle;
+            [id(0x00000002)]            OLE_HANDLE hPal;
+            [id(0x00000003), readonly]            short Type;
+            [id(0x00000004), readonly]            long Width;
+            [id(0x00000005), readonly]            long Height;
+        methods:
+            [id(0x00000006)]
+            void Render(
+                            int hdc, 
+                            long x, 
+                            long y, 
+                            long cx, 
+                            long cy, 
+                            long xSrc, 
+                            long ySrc, 
+                            long cxSrc, 
+                            long cySrc, 
+                            void* prcWBounds);
+    };
+
+    typedef [public]    Picture IPictureDisp;
+
+    [uuid(0BE35204-8F91-11CE-9DE3-00AA004BB851)]
+    coclass StdPicture {
+        [default] dispinterface Picture;
+        interface IPicture;
+    };
+
+    typedef [uuid(E6C8FA08-BD9F-11D0-985E-00C04FC29993)]
+    enum {
+        Default = 0,
+        Monochrome = 1,
+        VgaColor = 2,
+        Color = 4
+    } LoadPictureConstants;
+
+    [
+	  dllname("oleaut32.dll"),
+      uuid(91209AC0-60F6-11CF-9C5D-00AA00C1489E),
+      helpstring("Functions for Standard OLE Objects")
+    ]
+    module StdFunctions {
+        [entry("OleLoadPictureFileEx"), helpstring("Loads a picture from a file")]
+        HRESULT _stdcall LoadPicture(
+                        [in, optional] VARIANT filename, 
+                        [in, defaultvalue(0)] int widthDesired, 
+                        [in, defaultvalue(0)] int heightDesired, 
+                        [in, defaultvalue(0)] LoadPictureConstants flags, 
+                        [out, retval] IPictureDisp** retval);
+        [entry("OleSavePictureFile"), helpstring("Saves a picture to a file")]
+        HRESULT _stdcall SavePicture(
+                        [in] IPictureDisp* Picture, 
+                        [in] BSTR filename);
+    };
+
+    [
+      uuid(4EF6100A-AF88-11D0-9846-00C04FC29993),
+      helpstring("Event interface for the Font object"),
+      hidden
+    ]
+    dispinterface FontEvents {
+        properties:
+        methods:
+            [id(0x00000009)]            void FontChanged([in] BSTR PropertyName);
+    };
+
+    typedef [public]    FontEvents IFontEventsDisp;
+
+
+	typedef struct {
+		[helpstring("number of custom data items in rgCustData")]
+		LONG cCustData;
+		LONG prgCustData;
+	} CUSTDATA;
+
+    typedef enum {
+        DESCKIND_NONE = 0,
+        DESCKIND_FUNCDESC,
+        DESCKIND_VARDESC,
+        DESCKIND_TYPECOMP,
+        DESCKIND_IMPLICITAPPOBJ,
+        DESCKIND_MAX
+    } DESCKIND;
+
+
+    typedef struct {
+        LONG cBytes;
+		LONG ignore;
+        VARIANT varDefaultValue;
+    } PARAMDESCEX;
+
+    typedef struct {
+        [helpstring("valid if PARAMFLAG_FHASDEFAULT bit is set")]
+        LONG pPARAMDESCEX;
+        short wParamFlags;
+    } PARAMDESC;
+
+
+    typedef enum {
+       PARAMFLAG_NONE = 0x00,
+       PARAMFLAG_FIN = 0x01,
+       PARAMFLAG_FOUT = 0x02,
+       PARAMFLAG_FLONG = 0x04,
+       PARAMFLAG_FRETVAL = 0x08,
+       PARAMFLAG_FOPT = 0x10,
+       PARAMFLAG_FHASDEFAULT = 0x20,
+
+       PARAMFLAG_ALL = 0x3F,
+       PARAMFLAG_PARAMARRAY = 0x40,
+
+    } PARAMFLAGS;
+
+    typedef enum {
+        SYS_WIN16 = 0,
+        SYS_WIN32,
+        SYS_MAC
+    } SYSKIND;
+
+    typedef enum {
+        LIBFLAG_FRESTRICTED = 1,
+        LIBFLAG_FCONTROL = 2,
+        LIBFLAG_FHIDDEN = 4,
+        LIBFLAG_FHASDISKIMAGE = 8
+    } LIBFLAGS;
+
+    typedef struct {
+        UUID IID;
+        LONG lcid;
+        SYSKIND syskind;
+        short wMajorVerNum;
+        short wMinorVerNum;
+        short wLibFlags;
+    } TLIBATTR;
+
+
+    typedef struct {
+        LONG pTypeDesc;
+        short vt;
+    } TYPEDESC;
+
+    typedef struct {
+        LONG cElements;
+        LONG lLbound;
+    } SAFEARRAYBOUND;
+
+    typedef struct {
+        TYPEDESC tdescElem;
+        short cDims;
+		SAFEARRAYBOUND rgbounds[1];
+    } ARRAYDESC;
+
+
+    typedef struct {
+        TYPEDESC tdesc;
+        PARAMDESC paramdesc;
+    } ELEMDESC;
+
+    typedef struct {
+        LONG dwReserved;
+        short wIDLFlags;
+    } IDLDESC;
+
+
+    typedef enum {
+        TKIND_ENUM = 0,
+        TKIND_RECORD,
+        TKIND_MODULE,
+        TKIND_INTERFACE,
+        TKIND_DISPATCH,
+        TKIND_COCLASS,
+        TKIND_ALIAS,
+        TKIND_UNION,
+        TKIND_MAX
+    } TYPEKIND;
+
+
+	typedef enum {
+		TYPEFLAG_FAPPOBJECT = 0x01,
+		TYPEFLAG_FCANCREATE = 0x02,
+		TYPEFLAG_FLICENSED = 0x04,
+		TYPEFLAG_FPREDECLID = 0x08,
+		TYPEFLAG_FHIDDEN = 0x10,
+		TYPEFLAG_FCONTROL = 0x20,
+		TYPEFLAG_FDUAL = 0x40,
+		TYPEFLAG_FNONEXTENSIBLE = 0x80,
+		TYPEFLAG_FOLEAUTOMATION = 0x100,
+		TYPEFLAG_FRESTRICTED = 0x200,
+		TYPEFLAG_FAGGREGATABLE = 0x400,
+		TYPEFLAG_FREPLACEABLE = 0x800,
+		TYPEFLAG_FDISPATCHABLE = 0x1000,
+		TYPEFLAG_FREVERSEBIND = 0x2000
+	} TYPEFLAGS;
+
+    typedef struct {
+        [helpstring("the IID of the TypeInfo")]
+        UUID IID;
+        [helpstring("locale of member names and doc strings")]
+        LONG lcid;
+        LONG dwReserved;
+        [helpstring("ID of constructor, LONG_NIL if none")]
+        LONG memidConstructor;
+        [helpstring("ID of destructor, LONG_NIL if none")]
+        LONG memidDestructor;
+        LONG lpstrSchema;
+        [helpstring("the size of an instance of this type")]
+        LONG cbSizeInstance;
+        [helpstring("the kind of type this typeinfo describes")]
+        TYPEKIND typekind;
+        [helpstring("number of functions")]
+        short cFuncs;
+        [helpstring("number of variables / data members")]
+        short cVars;
+        [helpstring("number of implemented interfaces")]
+        short cImplTypes;
+        [helpstring("the size of this types virtual func table")]
+        short cbSizeVft;
+        [helpstring("specifies the alignment requirements for an instance of this type,\n0 = align on 64k boundary\n1 = byte align\n2 = word align\n4 = dword align")]
+        short cbAlignment;
+        short wTypeFlags;
+        [helpstring("major version number")]
+        short wMajorVerNum;
+        [helpstring("minor version number")]
+        short wMinorVerNum;
+        [helpstring("if typekind = = TKIND_ALIAS this field specifies the type for which this type is an alias")]
+        TYPEDESC tdescAlias;
+        [helpstring("IDL attributes of the described type")]
+        IDLDESC idldescType;
+    } TYPEATTR;
+
+	typedef enum {
+		CC_FASTCALL = 0,
+		CC_CDECL = 1,
+		CC_MSCPASCAL,
+		CC_PASCAL = 2,
+		CC_MACPASCAL,
+		CC_STDCALL,
+		CC_FPFASTCALL,
+		CC_SYSCALL,
+		CC_MPWCDECL,
+		CC_MPWPASCAL,
+		CC_MAX
+	} CALLCONV;
+
+	typedef enum {
+		FUNC_VIRTUAL,
+		FUNC_PUREVIRTUAL,
+		FUNC_NONVIRTUAL,
+		FUNC_STATIC,
+		FUNC_DISPATCH
+	} FUNCKIND;
+
+	typedef enum {
+		INVOKE_FUNC = 1,
+		INVOKE_PROPERTYGET = 2,
+		INVOKE_PROPERTYPUT = 4,
+		INVOKE_PROPERTYPUTREF = 8
+	} INVOKEKIND;
+
+	typedef enum {
+		IMPLTYPEFLAG_FDEFAULT = 0x1,
+		IMPLTYPEFLAG_FSOURCE = 0x2,
+		IMPLTYPEFLAG_FRESTRICTED = 0x4,
+		IMPLTYPEFLAG_FDEFAULTVTABLE= 0x8,
+	} IMPLTYPE;
+
+	typedef struct {
+		LONG memid;
+		LONG lprgscode;
+		 [helpstring("array of param types")]
+		LONG lprgELEMDESCParam;
+		FUNCKIND funckind;
+		INVOKEKIND invkind;
+		CALLCONV callconv;
+		short cParams;
+		short cParamsOpt;
+		short oVft;
+		short cScodes;
+		ELEMDESC elemdescFunc;
+		short wFuncFlags;
+	} FUNCDESC;
+
+	typedef enum {
+		FUNCFLAG_FRESTRICTED = 0x1,
+		FUNCFLAG_FSOURCE = 0x2,
+		FUNCFLAG_FBINDABLE = 0x4,
+		FUNCFLAG_FREQUESTEDIT = 0x8,
+		FUNCFLAG_FDISPLAYBIND = 0x10,
+		FUNCFLAG_FDEFAULTBIND = 0x20,
+		FUNCFLAG_FHIDDEN = 0x40,
+		FUNCFLAG_FUSESGETLASTERROR = 0x80,
+		FUNCFLAG_FDEFAULTCOLLELEM = 0x100,
+		FUNCFLAG_FUIDEFAULT = 0x200,
+		FUNCFLAG_FNONBROWSABLE = 0x400,
+		FUNCFLAG_FREPLACEABLE = 0x800,
+		FUNCFLAG_FIMMEDIATEBIND = 0x1000,
+
+
+		FUNCFLAG_ALL = 0x1FFF,
+		FUNCFLAG_PARAMARRAY = 0x2000
+
+	} FUNCFLAGS;
+
+	typedef enum {
+		VAR_PERINSTANCE,
+		VAR_STATIC,
+		VAR_CONST,
+		VAR_DISPATCH
+	} VARKIND;
+
+
+	typedef enum {
+		VARFLAG_FREADONLY = 0x1,
+		VARFLAG_FSOURCE = 0x2,
+		VARFLAG_FBINDABLE = 0x4,
+		VARFLAG_FREQUESTEDIT = 0x8,
+		VARFLAG_FDISPLAYBIND = 0x10,
+		VARFLAG_FDEFAULTBIND = 0x20,
+		VARFLAG_FHIDDEN = 0x40,
+		VARFLAG_FRESTRICTED = 0x80,
+		VARFLAG_FDEFAULTCOLLELEM = 0x100,
+		VARFLAG_FUIDEFAULT = 0x200,
+		VARFLAG_FNONBROWSABLE = 0x400,
+		VARFLAG_FREPLACEABLE = 0x800,
+		VARFLAG_FIMMEDIATEBIND = 0x1000
+	} VARFLAGS;
+
+	typedef struct {
+		UUID IID;
+		VARIANT varValue;
+	} CUSTDATAITEM;
+
+	typedef struct {
+		LONG memid;
+		LONG lpstrSchema;
+		LONG oInst_varValue;
+		ELEMDESC elemdescVar;
+		short wVarFlags;
+		VARKIND varkind;
+	} VARDESC;
+
+
+	typedef enum {
+		VT_EMPTY = 0,
+		VT_NULL = 1,
+		VT_I2 = 2,
+		VT_I4 = 3,
+		VT_R4 = 4,
+		VT_R8 = 5,
+		VT_CY = 6,
+		VT_DATE = 7,
+		VT_BSTR = 8,
+		VT_DISPATCH = 9,
+		VT_ERROR = 10,
+		VT_BOOL = 11,
+		VT_VARIANT = 12,
+		VT_UNKNOWN = 13,
+		VT_DECIMAL = 14,
+		VT_I1 = 16,
+		VT_UI1 = 17,
+		VT_UI2 = 18,
+		VT_UI4 = 19,
+		VT_I8 = 20,
+		VT_UI8 = 21,
+		VT_INT = 22,
+		VT_UINT = 23,
+		VT_VOID = 24,
+		VT_HRESULT = 25,
+		VT_PTR = 26,
+		VT_SAFEARRAY = 27,
+		VT_CARRAY = 28,
+		VT_USERDEFINED = 29,
+		VT_LPSTR = 30,
+		VT_LPWSTR = 31,
+		VT_FILETIME = 64,
+		VT_BLOB = 65,
+		VT_STREAM = 66,
+		VT_STORAGE = 67,
+		VT_STREAMED_OBJECT = 68,
+		VT_STORED_OBJECT = 69,
+		VT_BLOB_OBJECT = 70,
+		VT_CF = 71,
+		VT_CLSID = 72,
+		VT_STREAMED_PROPSET = 73,
+		VT_STORED_PROPSET = 74,
+		VT_BLOB_PROPSET = 75,
+		VT_VERBOSE_ENUM = 76,
+		VT_BSTR_BLOB = 0xFFF,
+		VT_VECTOR = 0x1000,
+		VT_ARRAY = 0x2000,
+		VT_BYREF = 0x4000,
+		VT_RESERVED = 0x8000,
+		VT_ILLEGAL = 0xffff,
+		VT_ILLEGALMASKED = 0x0fff,
+		VT_TYPEMASK = 0x0fff
+	} VARENUM;
+
+    typedef [helpstring("DEFAULT_DISPIDS")]
+    enum {
+        DISPID_UNKNOWN = -1,
+        DISPID_VALUE = 0,
+        DISPID_PROPERTYPUT = -3,
+        DISPID_NEWENUM = -4,
+        DISPID_EVALUATE = -5,
+        DISPID_CONSTRUCTOR = -6,
+        DISPID_DESTRUCTOR = -7,
+        DISPID_COLLECT = -8
+    } DEFAULT_DISPIDS;
+
+
+	typedef enum {
+		REGKIND_DEFAULT,
+		REGKIND_REGISTER,
+		REGKIND_NONE
+	} REGKIND;
+
+
+    typedef enum {
+        S_OK = 0,
+        S_FALSE = 1,
+        E_NOTIMPL = -2147467263,
+        E_OUTOFMEMORY = -2147024882,
+        E_INVALIDARG = -2147024809,
+        E_NOINTERFACE = -2147467262,
+        E_POINTER = -2147467261,
+        E_HANDLE = -2147024890,
+        E_ABORT = -2147467260,
+        E_FAIL = -2147467259,
+        E_ACCESSDENIED = -2147024891
+    } HRESULTS;
+
+
+
+	typedef enum {
+		CLSCTX_INPROC_SERVER = 0x1,
+		CLSCTX_INPROC_HANDLER = 0x2,
+		CLSCTX_LOCAL_SERVER = 0x4,
+		CLSCTX_INPROC_SERVER16 = 0x8,
+		CLSCTX_REMOTE_SERVER = 0x10,
+		CLSCTX_INPROC_HANDLER16 = 0x20,
+		CLSCTX_INPROC_SERVERX86 = 0x40,
+		CLSCTX_INPROC_HANDLERX86 = 0x80,
+		CLSCTX_ESERVER_HANDLER = 0x100,
+		CLSCTX_RESERVED = 0x200,
+		CLSCTX_NO_CODE_DOWNLOAD = 0x400,
+		CLSCTX_NO_WX86_TRANSLATION = 0x800,
+		CLSCTX_NO_CUSTOM_MARSHAL = 0x1000,
+		CLSCTX_ENABLE_CODE_DOWNLOAD = 0x2000,
+		CLSCTX_NO_FAILURE_LOG = 0x4000
+	} CLSCTX;
+
+
+
+    [odl,uuid(00020402-0000-0000-C000-000000000046)]
+    interface ITypeLib : IUnknown {
+
+        LONG GetTypeInfoCount(
+                void);
+
+        HRESULT GetTypeInfo(
+            [in]  LONG index,
+            [out, retval] ITypeInfo ** ppTInfo);
+
+        HRESULT GetTypeInfoType(
+            [in]  LONG index,
+            [out, retval] TYPEKIND * pTKind);
+
+        HRESULT GetTypeInfoOfIID(
+            [in] UUID *IID,
+            [out, retval] ITypeInfo ** ppTinfo);
+
+        HRESULT GetLibAttr(
+            [out, retval] LONG *ppTLibAttr);
+
+        HRESULT GetTypeComp(
+            [out, retval] ITypeComp ** ppTComp);
+
+        HRESULT GetDocumentation(
+            [in] LONG index,
+            [out] BSTR * pBstrName,
+            [out] BSTR * pBstrDocString,
+            [out] LONG * pdwHelpContext,
+            [out] BSTR * pBstrHelpFile);
+
+        HRESULT IsName(
+            [in, out] LPWSTR szNameBuf,
+            [in] LONG lHashVal,
+            [out, retval] long * pfName);
+
+       HRESULT FindName(
+            [in, out] LPWSTR szNameBuf,
+            [in] LONG lHashVal,
+            [in, out] ITypeInfo **ppTInfo,
+            [in, out] LONG *rgMemId,
+            [in, out] short *pcFound);
+
+       void ReleaseTLibAttr(
+            [in]  LONG pTLibAttr);
+
+    }
+
+
+    [odl,uuid(00020411-0000-0000-C000-000000000046)]
+    interface ITypeLib2 : ITypeLib {
+
+        HRESULT GetCustData(
+            [in] UUID *IID,
+            [out, retval] VARIANT * pVarVal);
+
+        HRESULT GetLibStatistics(
+            [out] LONG * pcUniqueNames,
+            [out] LONG * pcchUniqueNames);
+
+        HRESULT GetDocumentation2(
+            [in]  INT index,
+            [in]  LONG lcid,
+            [out] BSTR *pbstrHelpString,
+            [out] LONG *pdwHelpStringContext,
+            [out] BSTR *pbstrHelpStringDll);
+
+        HRESULT GetAllCustData(
+            [out] CUSTDATA * pCustData);
+    }
+
+
+    [odl,uuid(00020403-0000-0000-C000-000000000046)]
+    interface ITypeComp : IUnknown {
+
+
+        HRESULT Bind(
+            [in] LPWSTR szName,
+            [in] LONG lHashVal,
+            [in] short wFlags,
+            [out] ITypeInfo ** ppTInfo,
+            [out] DESCKIND * pDescKind,
+            [out] long * pBindPtr);
+
+        HRESULT BindType(
+            [in] LPWSTR szName,
+            [in] LONG lHashVal,
+            [out] ITypeInfo ** ppTInfo,
+            [out] ITypeComp ** ppTComp);
+
+    }
+
+
+    [odl,uuid(00020401-0000-0000-C000-000000000146)]
+    interface ITypeInfo : IUnknown {
+
+        HRESULT GetTypeAttr(
+                [out, retval] LONG * ppTypeAttr);
+
+        HRESULT GetTypeComp(
+                [out, retval] ITypeComp ** ppTComp);
+
+        HRESULT GetFuncDesc(
+                [in] long index,
+                [out, retval] long * ppFuncDesc);
+
+        HRESULT GetVarDesc(
+                [in] LONG index,
+                [out, retval] long * ppVarDesc);
+
+        HRESULT GetNames(
+                [in] LONG memid,
+                [in, out] BSTR * rgBstrNames,
+                [in] LONG cMaxNames,
+                [out, retval] LONG * pcNames);
+
+        HRESULT GetRefTypeOfImplType(
+                [in] LONG index,
+                [out, retval] LONG *pRefType);
+
+        HRESULT GetImplTypeFlags(
+                [in] LONG index,
+                [out, retval] LONG *pImplTypeFlags);
+
+        HRESULT GetIDsOfNames(
+                [in] LPWSTR *rgszNames,
+                [in] long cNames,
+                [in, out] long *pMemId);
+
+        HRESULT Invoke(
+                [in] IDispatch *pvInstance,
+                [in] LONG memid,
+                [in] short wFlags,
+                [in, out] DISPPARAMS * pDispParams,
+                [in] LONG pVarResult,
+                [in, out] EXCEPINFO * pExcepInfo,
+                [in, out] LONG * puArgErr);
+
+        HRESULT GetDocumentation(
+                [in] LONG memid,
+                [in, out] BSTR * pBstrName,
+                [in, out] BSTR * pBstrDocString,
+                [in, out] LONG * pdwHelpContext,
+                [in, out] BSTR * pBstrHelpFile);
+
+        HRESULT GetDllEntry(
+                [in] LONG memid,
+                [in] INVOKEKIND invKind,
+                [in, out] BSTR * pBstrDllName,
+                [in, out] BSTR * pBstrName,
+                [in, out] short * pwOrdinal);
+
+        HRESULT GetRefTypeInfo(
+                [in] LONG hRefType,
+                [out, retval] ITypeInfo **ppTInfo);
+
+        HRESULT AddressOfMember(
+                [in] LONG memid,
+                [in] INVOKEKIND invKind,
+                [out, retval] LONG *ppv);
+
+        HRESULT CreateInstance(
+                [in] void *pUnkOuter,
+                [in] UUID *riid,
+                [out, retval] IDispatch **ppvObj);
+
+        HRESULT GetMops(
+                [in] LONG memid,
+                [in, out] BSTR * pBstrMops);
+
+        HRESULT GetContainingTypeLib(
+                [out] ITypeLib **ppTLib,
+                [out, retval] LONG * pIndex);
+
+        void ReleaseTypeAttr(
+                [in] LONG pTypeAttr);
+
+        void ReleaseFuncDesc(
+                [in] LONG pFuncDesc);
+
+        void ReleaseVarDesc(
+                [in] LONG pVarDesc);
+
+    }
+
+
+
+    [odl,uuid(00020412-0000-0000-C000-000000000046)]
+    interface ITypeInfo2 : ITypeInfo {
+
+        HRESULT GetTypeKind(
+                [out, retval] TYPEKIND* pTypeKind);
+
+        HRESULT GetTypeFlags(
+                [out, retval] TYPEFLAGS* pTypeFlags);
+
+        HRESULT GetFuncIndexOfMemId(
+                [in] LONG memid,
+                [in] INVOKEKIND invKind,
+                [out, retval] LONG* pFuncIndex);
+
+        HRESULT GetVarIndexOfMemId(
+                [in] LONG memid,
+                [out, retval] LONG* pVarIndex);
+
+        HRESULT GetCustData(
+                [in] UUID *IID,
+                [out, retval] VARIANT* pVarVal);
+
+        HRESULT GetFuncCustData(
+                [in] LONG index,
+                [in] UUID *riid,
+                [out, retval] VARIANT* pVarVal);
+
+        HRESULT GetParamCustData(
+                [in] LONG indexFunc,
+                [in] LONG indexParam,
+                [in] UUID *riid,
+                [out, retval] VARIANT* pVarVal);
+
+        HRESULT GetVarCustData(
+                [in] LONG index,
+                [in] UUID * riid,
+                [out, retval] VARIANT * pVarVal);
+
+       HRESULT GetImplTypeCustData(
+                [in] LONG index,
+                [in] UUID *riid,
+                [out, retval] VARIANT * pVarVal);
+
+       HRESULT GetDocumentation2(
+                [in] LONG memid,
+                [in] LONG lcid,
+                [out] BSTR *pbstrHelpString,
+                [out] LONG *pdwHelpStringContext,
+                [out] BSTR *pbstrHelpStringDll);
+
+       HRESULT GetAllCustData(
+                [in, out] CUSTDATA * pCustData);
+
+       HRESULT GetAllFuncCustData(
+                [in] LONG index,
+                [in, out] CUSTDATA * pCustData);
+
+       HRESULT GetAllParamCustData(
+                [in] LONG indexFunc,
+                [in] LONG indexParam,
+                [in, out] CUSTDATA * pCustData);
+
+       HRESULT GetAllVarCustData(
+                [in] LONG index,
+                [in, out] CUSTDATA * pCustData);
+
+       HRESULT GetAllImplTypeCustData(
+                [in] LONG index,
+                [in, out] CUSTDATA * pCustData);
+    }
+
+	
+	[odl,uuid(00020405-0000-0000-C000-000000000046)]
+	interface ICreateTypeInfo: IUnknown {
+
+		HRESULT SetGuid(
+			[in] UUID *guid);
+
+		HRESULT SetTypeFlags(
+			[in] LONG uTypeFlags);
+
+		HRESULT SetDocString(
+			[in] LPWSTR pStrDoc);
+
+		HRESULT SetHelpContext(
+			[in] LONG dwHelpContext);
+
+		HRESULT SetVersion(
+			[in] short wMajorVerNum,
+			[in] short wMinorVerNum);
+
+		HRESULT AddRefTypeInfo(
+			[in] ITypeInfo *pTInfo,
+			[in] LONG *phRefType);
+
+		HRESULT AddFuncDesc(
+			[in] LONG index,
+			[in] FUNCDESC * pFuncDesc);
+
+		HRESULT AddImplType(
+			[in] LONG index,
+			[in] LONG hRefType);
+
+		HRESULT SetImplTypeFlags(
+			[in] LONG index,
+			[in] INT implTypeFlags);
+
+		HRESULT SetAlignment(
+			[in] short cbAlignment);
+
+		HRESULT SetSchema(
+			[in] LPWSTR pStrSchema);
+
+		HRESULT AddVarDesc(
+			[in] LONG index,
+			[in] VARDESC * pVarDesc);
+
+		HRESULT SetFuncAndParamNames(
+			[in] LONG index,
+			[in] LPWSTR * rgszNames,
+			[in] LONG cNames);
+
+		HRESULT SetVarName(
+			[in] LONG index,
+			[in] LPWSTR szName);
+
+		HRESULT SetTypeDescAlias(
+			[in] TYPEDESC * pTDescAlias);
+
+		HRESULT DefineFuncAsDllEntry(
+			[in] LONG index,
+			[in] LPWSTR szDllName,
+	//        [in] LPWSTR szProcName);
+			[in] long pszProcName);
+
+		HRESULT SetFuncDocString(
+			[in] LONG index,
+			[in] LPWSTR szDocString);
+
+		HRESULT SetVarDocString(
+			[in] LONG index,
+			[in] LPWSTR szDocString);
+
+		HRESULT SetFuncHelpContext(
+			[in] LONG index,
+			[in] LONG dwHelpContext);
+
+		HRESULT SetVarHelpContext(
+			[in] LONG index,
+			[in] LONG dwHelpContext);
+
+		HRESULT SetMops(
+			[in] LONG index,
+			[in] BSTR bstrMops);
+
+		HRESULT SetTypeIdldesc(
+			[in] IDLDESC * pIdlDesc);
+
+		HRESULT LayOut(void);
+
+	}
+
+
+	[odl,uuid(0002040E-0000-0000-C000-000000000046)]
+	interface ICreateTypeInfo2: ICreateTypeInfo {
+
+		HRESULT DeleteFuncDesc(
+			[in] LONG index);
+
+		HRESULT DeleteFuncDescByMemId(
+			[in] LONG memid,
+			[in] INVOKEKIND invKind);
+
+		HRESULT DeleteVarDesc(
+			[in] LONG index);
+
+		HRESULT DeleteVarDescByMemId(
+			[in] LONG memid);
+
+		HRESULT DeleteImplType(
+			[in] LONG index);
+
+		HRESULT SetCustData(
+			[in] UUID *guid,
+			[in] VARIANT * pVarVal);
+
+		HRESULT SetFuncCustData(
+			[in] LONG index,
+			[in] UUID *guid,
+			[in] VARIANT * pVarVal);
+
+		HRESULT SetParamCustData(
+			[in] LONG indexFunc,
+			[in] LONG indexParam,
+			[in] UUID *guid,
+			[in] VARIANT * pVarVal);
+
+		HRESULT SetVarCustData(
+			[in] LONG index,
+			[in] UUID *guid,
+			[in] VARIANT * pVarVal);
+
+		HRESULT SetImplTypeCustData(
+			[in] LONG index,
+			[in] UUID *guid,
+			[in] VARIANT * pVarVal);
+
+		HRESULT SetHelpStringContext(
+			[in] LONG dwHelpStringContext);
+
+		HRESULT SetFuncHelpStringContext(
+			[in] LONG index,
+			[in] LONG dwHelpStringContext);
+
+		HRESULT SetVarHelpStringContext(
+			[in] LONG index,
+			[in] LONG dwHelpStringContext);
+
+		HRESULT Invalidate(void);
+
+		HRESULT SetName(
+			[in]  LPWSTR szName);
+
+	}
+
+
+	[odl,uuid(00020406-0000-0000-C000-000000000046)]
+	interface ICreateTypeLib : IUnknown {
+
+		HRESULT CreateTypeInfo(
+			[in] LPWSTR szName,
+			[in] TYPEKIND tkind,
+			[out] ICreateTypeInfo **ppCTInfo);
+
+		HRESULT SetName(
+			[in] LPWSTR szName);
+
+		HRESULT SetVersion(
+			[in] short wMajorVerNum,
+			[in] short wMinorVerNum);
+
+		HRESULT SetGuid(
+			[in] UUID *guid);
+
+		HRESULT SetDocString(
+			[in] LPWSTR szDoc);
+
+		HRESULT SetHelpFileName(
+			[in] LPWSTR szHelpFileName);
+
+		HRESULT SetHelpContext(
+			[in] LONG dwHelpContext);
+
+		HRESULT SetLcid(
+			[in] LONG lcid);
+
+		HRESULT SetLibFlags(
+			[in] LONG uLibFlags);
+
+		HRESULT SaveAllChanges(void);
+	}
+
+
+
+	[odl,uuid(0002040F-0000-0000-C000-000000000046)]
+	interface ICreateTypeLib2 : IUnknown {
+
+		HRESULT DeleteTypeInfo(
+			[in] LPWSTR szName);
+
+		HRESULT SetCustData(
+			[in] UUID *guid,
+			[in] VARIANT * pVarVal);
+
+		HRESULT SetHelpStringContext(
+			[in] LONG dwHelpStringContext);
+
+		HRESULT SetHelpStringDll(
+			[in] LPWSTR szFileName);
+
+	}
+
+
+
+
+};

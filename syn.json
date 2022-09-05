@@ -1,0 +1,126 @@
+{
+	rel:{
+		nosyntax:"",
+		js:"js,json,php",
+		vb:"vbs,bas,cls,frm,pag,ctl",
+		htm:"html,htm"
+	},
+	nosyntax:{
+		"000 FFFFFF000000":{
+			rd:1,
+			rem:"nosyntax",
+			pat:"[^\\0]*"
+		}
+	},
+	js:{
+		"000 FFFFFF000000":{
+			rd:1,
+			rem:"nosyntax",
+			pat:"[^\\0]*"
+		},
+		"707070":{
+			rd:1,
+			rem:"literals",
+			pat:"\x01\"(?:[^\\\\]\\\\\"|.)*?\"|'(?:[^\\\\]\\\\'|.)*?'"
+		},
+		"3F7C42":{
+			rd:1,
+			rem:"comments",
+			pat:"\x01[\\t ]*//.*"
+		},
+		"3F7C41":{
+			rd:1,
+			rem:"multiline comments",
+			pat:"\x01\x01/\\*(?:[^\\0](?!/\\*))*?\\*/"
+		},
+		C00020:{
+			rd:1,
+			rem:"reserved",
+			pat:"\\b(?:function|try|catch|return|require|join|split|slice|replace|Math|Date|Object|String|Number|RegExp|Array|Boolean|Enumerator|Error|arguments|GetObject|this|new|var|ActiveXObject|for|break|in|continue|do|while|if|else|switch|throw|with|delete|typeof|void|instanceof)\\b"
+		},
+		"0000BA":{
+			rd:1,
+			rem:"numbers",
+			pat:"\\b\\d+(?:\\.\\d+(e[+-]*\\d{1,3})?)?\\b|\\b0x[\\da-f]+\\b"
+		},
+		"@":{
+			rd:1,
+			rem:"function list",
+			pat:"([\\t ]*?\\b(?:(?:(?:\\w+|(?:\\w+\\.prototype)?)\\.|var +)?\\w+[ =(]+)?\\(?function(?: +\\w+)?(?: *\\x28[^\\x29]*\\x29))\\s*\r\n1"
+		},
+		"D7FFFF    FF":{
+			rd:1,
+			rem:"php",
+			pat:"^<\\?PHP$|^\\?>$"
+		}
+	},
+	vb:{
+		"000 FFFFFF000000":{
+			rd:1,
+			rem:"nosyntax",
+			pat:"[^\\0]*"
+		},
+		"707070":{
+			rd:1,
+			rem:"literals",
+			pat:"\x01\"(?:\"\"|.)*?\""
+		},
+		"008020":{
+			rd:1,
+			rem:"line comments",
+			pat:"\x01[\\t ]*'.*?$"
+		},
+		A00002:{
+			rd:1,
+			rem:"reserved",
+			pat:"\\b(?:And|Or|Not|True|False|Nothing|Empty|Null|As|ByRef|ByVal|Call|Case|Class|Default|Const|Dim|Do|Each|Else|ElseIf|End|Erase|Error|Exit|For|Function|Get|GoTo|If|Is|In|IsNumeric|Let|Loop|Me|New|Next|On|Object|Preserve|Property|Declare|Type|Friend|Private|Public|ReDim|Resume|Select|Set|Step|Stop|Sub|Then|To|Until|Wend|While|With)\\b"
+		},
+		"@":{
+			rd:1,
+			rem:"function list",
+			pat:"(?:^|:)(?:([\\t ]*(?:public +(?:default +)?|friend +|private +)?(sub|function|property|type)(?: get| let| set)? +\\w+ *(?:\\x28[^\\x29]*\\x29)?)[^\\0]+?(?:(?=[\\t ]*(?:public +(?:default +)?|friend +|private +)?(?:sub|function|type|property +(?:get|let|set)) +\\w+)|\\bend +\\2)|\\bclass +\\w+.*|\\bend +class.*|\\b(?:dim|private|public|declare) +[\\w, \\t]+|\\b(?:public +|private +)?const (?:\\w+ *=[^:\\n]+,?)+|^#\\w+[^#].*?$)"
+		},
+		"0000BA":{
+			rd:1,
+			rem:"numbers",
+			pat:"\\b(?:\\d+?\\.\\d+(?:e[+-]?\\d{1,3})?|\\d+)\\b|&H[0-9a-f]+&?|&O[0-7]+&?"
+		},
+		DDFFDDFF0000:{
+			rd:1,
+			rem:"#include",
+			pat:"^#include .*$"
+		}
+	},
+	htm:{
+		"001 FFFFFF     0":{
+			rd:1,
+			rem:"nosyntax",
+			pat:"[^\\0]*"
+		},
+		"0       3F7C42":{
+			rd:1,
+			rem:"comments",
+			pat:"\x01<!--.+-->"
+		},
+		"0 DDFFDD  4000":{
+			rd:1,
+			rem:"condition compile",
+			pat:"<!--\\[.+\\]>|<!\\[.+\\]-->"
+		},
+		"0 D9FFFF3C3C3C":{
+			rd:1,
+			rem:"tag",
+			pat:"<.+?>"
+		},
+		"0       707070":{
+			rd:1,
+			rem:"literals",
+			pat:"\x01\"(?:[^\\\\]\\\\\"|.)*?\"|'(?:[^\\\\]\\\\'|.)*?'"
+		},
+		"0       A00002":{
+			rd:1,
+			rem:"reserved",
+			pat:"\\b(?:div|html|nav|h1|ul|id|a|href|header|class|p|link|rel|meta|head|script|title|type|lang|charset|img|h3|li|span|section|src|alt|strong|h4|Set|Step|Stop|Sub|Then|To|Until|Wend|While|With)\\b|\\&nbsp\\;"
+		}
+	}
+}
